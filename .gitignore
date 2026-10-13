@@ -1,0 +1,36 @@
+﻿# Archivos comprimidos y de respaldo
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Archivos temporales de Office y del sistema
+~$*
+*.tmp
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Carpetas de ejemplos y otros semestres
+p1/00. PROYECTOS EJEMPLO*
+p1/*PAO202650*
+p1/*GR03*
+p1/*GR05*
+p1/*GR69*
+
+# Compilacion y dependencias (Java / .NET)
+target/
+bin/
+obj/
+*.class
+*.dll
+*.exe
+
+# IDEs y editores
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
