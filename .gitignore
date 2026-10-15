@@ -34,3 +34,11 @@ obj/
 *.user
 *.userosscache
 *.sln.docstates
+
+# Android
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+
