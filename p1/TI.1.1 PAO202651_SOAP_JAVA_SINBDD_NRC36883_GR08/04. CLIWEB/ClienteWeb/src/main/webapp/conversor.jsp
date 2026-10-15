@@ -405,9 +405,11 @@
                         badgeEstado.className = "status-badge badge-error";
                         badgeEstado.innerText = "ESTADO: ERROR";
                         badgeCodigo.innerText = "CÓDIGO: " + (data.codigo || "ERR");
-                        displayResultado.className = "result-display result-error";
-                        displayResultado.innerText = "Error en Conversión";
-                        displayMensaje.innerText = data.mensaje || "Error desconocido devuelto por el Web Service.";
+                        if (data.codigo === "AUTH-001") {
+                            displayMensaje.innerHTML = (data.mensaje || "Token inválido.") + "<br><span style='color:#38bdf8; font-size:0.85rem;'>El servidor se reinició o tu token expiró. Haz clic en <strong>'Cerrar Sesión'</strong> y vuelve a ingresar.</span>";
+                        } else {
+                            displayMensaje.innerText = data.mensaje || "Error desconocido devuelto por el Web Service.";
+                        }
                     }
 
                 } catch (err) {
