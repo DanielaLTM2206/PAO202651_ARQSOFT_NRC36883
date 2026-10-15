@@ -70,6 +70,21 @@ public class ControladorConversiones {
         return Collections.emptyList();
     }
 
+    public double convertirLongitud(double valor, String origen, String destino) throws Exception {
+        RespuestaConversion res = port.convertirLongitud(valor, origen.toLowerCase(), destino.toLowerCase(), token);
+        return res.getResultado() != null ? res.getResultado() : 0.0;
+    }
+
+    public double convertirMasa(double valor, String origen, String destino) throws Exception {
+        RespuestaConversion res = port.convertirMasa(valor, origen.toLowerCase(), destino.toLowerCase(), token);
+        return res.getResultado() != null ? res.getResultado() : 0.0;
+    }
+
+    public double convertirTemperatura(double valor, String origen, String destino) throws Exception {
+        RespuestaConversion res = port.convertirTemperatura(valor, origen.toLowerCase(), destino.toLowerCase(), token);
+        return res.getResultado() != null ? res.getResultado() : 0.0;
+    }
+
     public RespuestaConversion convertir(double valor, String origen, String destino) {
         try {
             if (port == null) {
@@ -79,7 +94,7 @@ public class ControladorConversiones {
                 err.setMensaje("No hay conexión con el servidor SOAP");
                 return err;
             }
-            return port.convertir(valor, origen, destino, token);
+            return port.convertir(valor, origen.toLowerCase(), destino.toLowerCase(), token);
         } catch (Exception e) {
             RespuestaConversion err = new RespuestaConversion();
             err.setEstado("ERROR");

@@ -78,8 +78,23 @@ public class ControladorConversiones {
         return Collections.emptyList();
     }
 
+    public double convertirLongitud(double valor, String origen, String destino) throws Exception {
+        RespuestaConversion res = port.convertirLongitud(valor, origen, destino, token);
+        return res.getResultado() != null ? res.getResultado() : 0.0;
+    }
+
+    public double convertirMasa(double valor, String origen, String destino) throws Exception {
+        RespuestaConversion res = port.convertirMasa(valor, origen, destino, token);
+        return res.getResultado() != null ? res.getResultado() : 0.0;
+    }
+
+    public double convertirTemperatura(double valor, String origen, String destino) throws Exception {
+        RespuestaConversion res = port.convertirTemperatura(valor, origen, destino, token);
+        return res.getResultado() != null ? res.getResultado() : 0.0;
+    }
+
     /**
-     * RF-05 (CU-04): Ejecuta la conversión enviando el token emitido.
+     * RF-05 (CU-04): Ejecuta la conversión enviando el token emitido con Respuesta Estructurada.
      */
     public RespuestaConversion convertir(double valor, String origen, String destino) {
         try {
