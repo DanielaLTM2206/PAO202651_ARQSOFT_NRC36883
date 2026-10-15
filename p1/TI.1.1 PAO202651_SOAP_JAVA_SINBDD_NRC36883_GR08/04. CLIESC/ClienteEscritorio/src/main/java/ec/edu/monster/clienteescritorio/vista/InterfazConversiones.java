@@ -1,253 +1,344 @@
 package ec.edu.monster.clienteescritorio.vista;
 
 import ec.edu.monster.clienteescritorio.controlador.ControladorConversiones;
-import ec.edu.monster.clienteescritorio.modelo.CatalogoUnidades;
-import java.util.Arrays;
+import ec.edu.monster.clientesws.RespuestaConversion;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
- * Pantalla de Conversiones con Sullivan de Monsters Inc (GR08).
- * Compatible con NetBeans GUI Builder (.form).
+ * Pantalla de Conversiones con Sullivan de Monsters Inc y Respuesta Estructurada (RF-06).
+ * Cuenta con botones ModernButton de alto contraste y soporte multiplataforma completo.
  * 
  * @author GR08 - Arquitectura de Software
  */
-public class InterfazConversiones extends javax.swing.JFrame {
-    
+public class InterfazConversiones extends JFrame {
+
     private final ControladorConversiones controlador;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfazConversiones.class.getName());
 
-    public InterfazConversiones(ControladorConversiones controladorAuth) {
+    private JComboBox<String> cbxCategoria;
+    private JTextField txtValor;
+    private JComboBox<String> cbxOrigen;
+    private JComboBox<String> cbxDestino;
+    private ModernButton btnConvertir;
+    private ModernButton btnCerrarSesion;
+
+    // Tarjeta de Respuesta Estructurada (RF-06 / CU-07)
+    private JLabel lblEstadoBadge;
+    private JLabel lblCodigoBadge;
+    private JLabel lblResultadoNumero;
+    private JLabel lblMensajeServidor;
+
+    public InterfazConversiones(ControladorConversiones controlador) {
+        this.controlador = controlador;
         initComponents();
-        this.controlador = controladorAuth;
-        setLocationRelativeTo(null);
-        actualizarCombosUnidades();
+        cargarUnidadesSegunCategoria();
     }
 
-    private DefaultComboBoxModel<String> crearModeloString(Enum<?>[] valores) {
-        String[] nombres = Arrays.stream(valores)
-                                 .map(Enum::name)
-                                 .toArray(String[]::new);
-        return new DefaultComboBoxModel<>(nombres);
-    }
-    
-    private void actualizarCombosUnidades() {
-        String tipoSeleccionado = cbxTipoConversion.getSelectedItem().toString();
-
-        switch (tipoSeleccionado) {
-            case "Longitud" -> {
-                cbxOrigen.setModel(crearModeloString(CatalogoUnidades.Longitud.values()));
-                cbxDestino.setModel(crearModeloString(CatalogoUnidades.Longitud.values()));
-            }
-            case "Masa" -> {
-                cbxOrigen.setModel(crearModeloString(CatalogoUnidades.Masa.values()));
-                cbxDestino.setModel(crearModeloString(CatalogoUnidades.Masa.values()));
-            }
-            case "Temperatura" -> {
-                cbxOrigen.setModel(crearModeloString(CatalogoUnidades.Temperatura.values()));
-                cbxDestino.setModel(crearModeloString(CatalogoUnidades.Temperatura.values()));
-            }
-        }
-    }
-    
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        setTitle("Monster Inc - Panel de Conversiones SOAP GR08");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(780, 520);
+        setLocationRelativeTo(null);
 
-        jPanel1 = new javax.swing.JPanel();
-        cbxOrigen = new javax.swing.JComboBox<>();
-        cbxDestino = new javax.swing.JComboBox<>();
-        txtTitulo = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
-        txtResultado = new javax.swing.JTextField();
-        btnConvertir = new javax.swing.JButton();
-        cbxTipoConversion = new javax.swing.JComboBox<>();
-        lblOrigen = new javax.swing.JLabel();
-        lblFlecha = new javax.swing.JLabel();
-        lblDestino = new javax.swing.JLabel();
-        icono = new javax.swing.JLabel();
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(null);
+        mainPanel.setBackground(new Color(11, 19, 37)); // Azul medianoche profundo
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Monster Inc - Panel de Conversiones GR08");
-        setBackground(new java.awt.Color(13, 13, 13));
+        // Encabezado
+        JLabel lblTitulo = new JLabel("Sistema de Conversión de Unidades");
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setBounds(30, 18, 450, 28);
+        mainPanel.add(lblTitulo);
 
-        jPanel1.setBackground(new java.awt.Color(13, 13, 13));
+        JLabel lblSub = new JLabel("Consumo de Web Service SOAP (JAX-WS / Payara Server) - GR08");
+        lblSub.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        lblSub.setForeground(new Color(148, 163, 184));
+        lblSub.setBounds(30, 48, 450, 20);
+        mainPanel.add(lblSub);
 
-        cbxOrigen.setBackground(new java.awt.Color(13, 13, 13));
-        cbxOrigen.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        cbxOrigen.setForeground(new java.awt.Color(242, 242, 242));
-        cbxOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        // 1. Categoría Física
+        JLabel lblCat = new JLabel("Categoría Física:");
+        lblCat.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblCat.setForeground(new Color(226, 232, 240));
+        lblCat.setBounds(30, 80, 190, 20);
+        mainPanel.add(lblCat);
 
-        cbxDestino.setBackground(new java.awt.Color(13, 13, 13));
-        cbxDestino.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        cbxDestino.setForeground(new java.awt.Color(242, 242, 242));
-        cbxDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCategoria = new JComboBox<>(new String[]{"Masa", "Longitud", "Temperatura"});
+        estilizarComboBox(cbxCategoria);
+        cbxCategoria.setBounds(30, 105, 195, 34);
+        cbxCategoria.addActionListener(e -> cargarUnidadesSegunCategoria());
+        mainPanel.add(cbxCategoria);
 
-        txtTitulo.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(242, 242, 242));
-        txtTitulo.setText("Elija el tipo de unidad para la conversión");
+        // 2. Valor Numérico
+        JLabel lblVal = new JLabel("Valor Numérico:");
+        lblVal.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblVal.setForeground(new Color(226, 232, 240));
+        lblVal.setBounds(245, 80, 205, 20);
+        mainPanel.add(lblVal);
 
-        txtValor.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtValor.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        txtValor = new JTextField("73");
+        txtValor.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        txtValor.setBackground(new Color(30, 41, 59));
+        txtValor.setForeground(Color.WHITE);
+        txtValor.setCaretColor(Color.WHITE);
+        txtValor.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(71, 85, 105), 1),
+                BorderFactory.createEmptyBorder(4, 10, 4, 10)
+        ));
+        txtValor.setBounds(245, 105, 205, 34);
+        mainPanel.add(txtValor);
 
-        txtResultado.setEditable(false);
-        txtResultado.setBackground(new java.awt.Color(255, 255, 255));
-        txtResultado.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        txtResultado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtResultado.setEnabled(false);
+        // 3. Unidad Origen
+        JLabel lblOrig = new JLabel("Unidad Origen:");
+        lblOrig.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblOrig.setForeground(new Color(226, 232, 240));
+        lblOrig.setBounds(30, 152, 175, 20);
+        mainPanel.add(lblOrig);
 
-        btnConvertir.setBackground(new java.awt.Color(82, 122, 242));
-        btnConvertir.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnConvertir.setForeground(new java.awt.Color(242, 242, 242));
-        btnConvertir.setText("CONVERTIR");
-        btnConvertir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnConvertir.addActionListener(this::btnConvertirActionPerformed);
+        cbxOrigen = new JComboBox<>();
+        estilizarComboBox(cbxOrigen);
+        cbxOrigen.setBounds(30, 177, 175, 34);
+        mainPanel.add(cbxOrigen);
 
-        cbxTipoConversion.setBackground(new java.awt.Color(13, 13, 13));
-        cbxTipoConversion.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        cbxTipoConversion.setForeground(new java.awt.Color(242, 242, 242));
-        cbxTipoConversion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Longitud", "Masa", "Temperatura" }));
-        cbxTipoConversion.addActionListener(this::cbxTipoConversionActionPerformed);
-
-        lblOrigen.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        lblOrigen.setForeground(new java.awt.Color(242, 242, 242));
-        lblOrigen.setText("Unidad de origen");
-
-        lblFlecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/monster/clienteescritorio/vista/flecha40px.png"))); // NOI18N
-
-        lblDestino.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        lblDestino.setForeground(new java.awt.Color(242, 242, 242));
-        lblDestino.setText("Unidad de destino");
-
-        icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/monster/clienteescritorio/vista/monsterlogin.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnConvertir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFlecha)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblDestino)
-                            .addComponent(txtResultado)
-                            .addComponent(cbxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtTitulo)
-                    .addComponent(cbxTipoConversion, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtTitulo)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbxTipoConversion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblOrigen)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblDestino)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblFlecha, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)
-                        .addComponent(btnConvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
+        // Flecha indicadora central
+        JLabel lblFlecha = new JLabel();
+        lblFlecha.setHorizontalAlignment(SwingConstants.CENTER);
         try {
-            double valor = Double.parseDouble(txtValor.getText());
-            String origen = cbxOrigen.getSelectedItem().toString().toLowerCase();
-            String destino = cbxDestino.getSelectedItem().toString().toLowerCase();
-            String tipo = cbxTipoConversion.getSelectedItem().toString();
-            
-            double resultado = 0;
-
-            switch (tipo) {
-                case "Longitud" -> resultado = controlador.convertirLongitud(valor, origen, destino);
-                case "Masa" -> resultado = controlador.convertirMasa(valor, origen, destino);
-                case "Temperatura" -> resultado = controlador.convertirTemperatura(valor, origen, destino);
+            java.net.URL arrowUrl = getClass().getResource("/ec/edu/monster/clienteescritorio/vista/flecha40px.png");
+            if (arrowUrl != null) {
+                ImageIcon rawIcon = new ImageIcon(arrowUrl);
+                Image img = rawIcon.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH);
+                lblFlecha.setIcon(new ImageIcon(img));
+            } else {
+                lblFlecha.setText("→");
+                lblFlecha.setFont(new Font("Segoe UI", Font.BOLD, 22));
+                lblFlecha.setForeground(new Color(99, 102, 241));
             }
-            
-            txtResultado.setText(String.format(java.util.Locale.US, "%.4f", resultado));
-            
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Ingresa un número válido.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            lblFlecha.setText("→");
+            lblFlecha.setFont(new Font("Segoe UI", Font.BOLD, 22));
+            lblFlecha.setForeground(new Color(99, 102, 241));
         }
-    }//GEN-LAST:event_btnConvertirActionPerformed
+        lblFlecha.setBounds(212, 177, 32, 34);
+        mainPanel.add(lblFlecha);
 
-    private void cbxTipoConversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoConversionActionPerformed
-        actualizarCombosUnidades();
-    }//GEN-LAST:event_cbxTipoConversionActionPerformed
+        // 4. Unidad Destino
+        JLabel lblDest = new JLabel("Unidad Destino:");
+        lblDest.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblDest.setForeground(new Color(226, 232, 240));
+        lblDest.setBounds(250, 152, 200, 20);
+        mainPanel.add(lblDest);
+
+        cbxDestino = new JComboBox<>();
+        estilizarComboBox(cbxDestino);
+        cbxDestino.setBounds(250, 177, 200, 34);
+        mainPanel.add(cbxDestino);
+
+        // 5. Botón Convertir con ModernButton (Verde Esmeralda con texto Blanco Antialiased)
+        btnConvertir = new ModernButton("CONVERTIR AHORA", new Color(16, 185, 129), Color.WHITE, 8);
+        btnConvertir.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btnConvertir.setBounds(30, 225, 420, 42);
+        btnConvertir.addActionListener(this::accionConvertir);
+        mainPanel.add(btnConvertir);
+
+        // 6. Tarjeta de Respuesta Estructurada (RF-06 / CU-07)
+        JPanel cardResultado = new JPanel();
+        cardResultado.setLayout(null);
+        cardResultado.setBackground(new Color(24, 33, 51));
+        cardResultado.setBorder(BorderFactory.createLineBorder(new Color(51, 65, 85), 1));
+        cardResultado.setBounds(30, 280, 420, 175);
+
+        JLabel lblResTitle = new JLabel("RESPUESTA ESTRUCTURADA DEL SERVIDOR (RF-06)");
+        lblResTitle.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        lblResTitle.setForeground(new Color(148, 163, 184));
+        lblResTitle.setBounds(15, 10, 390, 16);
+        cardResultado.add(lblResTitle);
+
+        lblEstadoBadge = new JLabel("ESTADO: ESPERANDO");
+        lblEstadoBadge.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        lblEstadoBadge.setForeground(new Color(148, 163, 184));
+        lblEstadoBadge.setBounds(15, 32, 170, 20);
+        cardResultado.add(lblEstadoBadge);
+
+        lblCodigoBadge = new JLabel("CÓDIGO: ---");
+        lblCodigoBadge.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        lblCodigoBadge.setForeground(new Color(148, 163, 184));
+        lblCodigoBadge.setBounds(190, 32, 150, 20);
+        cardResultado.add(lblCodigoBadge);
+
+        lblResultadoNumero = new JLabel("---");
+        lblResultadoNumero.setFont(new Font("Segoe UI", Font.BOLD, 26));
+        lblResultadoNumero.setForeground(new Color(52, 211, 153)); // Verde menta brillante
+        lblResultadoNumero.setBounds(15, 58, 390, 40);
+        cardResultado.add(lblResultadoNumero);
+
+        lblMensajeServidor = new JLabel("Seleccione unidades y presione Convertir.");
+        lblMensajeServidor.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        lblMensajeServidor.setForeground(new Color(203, 213, 225));
+        lblMensajeServidor.setBounds(15, 105, 390, 56);
+        cardResultado.add(lblMensajeServidor);
+
+        mainPanel.add(cardResultado);
+
+        // 7. Imagen de Sullivan de Monsters Inc (Requerimiento institucional GR08)
+        JLabel lblSulley = new JLabel();
+        lblSulley.setHorizontalAlignment(SwingConstants.CENTER);
+        try {
+            java.net.URL imgUrl = getClass().getResource("/ec/edu/monster/clienteescritorio/vista/monsterlogin.jpg");
+            if (imgUrl != null) {
+                ImageIcon rawIcon = new ImageIcon(imgUrl);
+                Image img = rawIcon.getImage().getScaledInstance(260, 345, Image.SCALE_SMOOTH);
+                lblSulley.setIcon(new ImageIcon(img));
+            }
+        } catch (Exception ex) {
+            System.err.println("No se pudo cargar la imagen de Sullivan: " + ex.getMessage());
+        }
+        lblSulley.setBounds(475, 60, 260, 345);
+        mainPanel.add(lblSulley);
+
+        // 8. Botón Cerrar Sesión con ModernButton (Gris Pizarra elegante con texto Blanco)
+        btnCerrarSesion = new ModernButton("Cerrar Sesión", new Color(51, 65, 85), Color.WHITE, 8);
+        btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnCerrarSesion.setBounds(475, 417, 260, 38);
+        btnCerrarSesion.addActionListener(e -> {
+            controlador.cerrarSesion();
+            new LoginFrame(controlador).setVisible(true);
+            dispose();
+        });
+        mainPanel.add(btnCerrarSesion);
+
+        getContentPane().add(mainPanel);
+    }
+
+    /**
+     * Aplica estilo de alto contraste al JComboBox para garantizar que el texto
+     * sea siempre 100% visible tanto en estado cerrado como en el menú desplegable.
+     */
+    private void estilizarComboBox(JComboBox<String> cbx) {
+        cbx.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        cbx.setBackground(Color.WHITE);
+        cbx.setForeground(new Color(15, 23, 42)); // Texto oscuro de máxima legibilidad
+        cbx.setOpaque(true);
+        cbx.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel l = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                l.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
+                l.setFont(new Font("Segoe UI", isSelected ? Font.BOLD : Font.PLAIN, 13));
+                if (isSelected) {
+                    l.setBackground(new Color(37, 99, 235)); // Azul real de selección
+                    l.setForeground(Color.WHITE);
+                } else {
+                    l.setBackground(Color.WHITE);
+                    l.setForeground(new Color(15, 23, 42)); // Azul oscuro pizarra
+                }
+                return l;
+            }
+        });
+    }
+
+    private void cargarUnidadesSegunCategoria() {
+        String seleccion = (String) cbxCategoria.getSelectedItem();
+        String[] unidades;
+        if ("Longitud".equalsIgnoreCase(seleccion)) {
+            unidades = new String[]{"centimetros", "metros", "pies", "yardas", "millas"};
+        } else if ("Masa".equalsIgnoreCase(seleccion)) {
+            unidades = new String[]{"kilogramos", "libras", "gramos", "onzas", "quintales"};
+        } else {
+            unidades = new String[]{"celsius", "fahrenheit", "kelvin", "newton", "reaumur"};
+        }
+        cbxOrigen.setModel(new DefaultComboBoxModel<>(unidades));
+        cbxDestino.setModel(new DefaultComboBoxModel<>(unidades));
+        if (unidades.length > 1) {
+            cbxDestino.setSelectedIndex(1);
+        }
+    }
+
+    private void accionConvertir(ActionEvent e) {
+        String valStr = txtValor.getText().trim();
+        String origen = (String) cbxOrigen.getSelectedItem();
+        String destino = (String) cbxDestino.getSelectedItem();
+
+        double valor;
+        try {
+            valor = Double.parseDouble(valStr);
+        } catch (NumberFormatException ex) {
+            lblEstadoBadge.setText("ESTADO: ERROR");
+            lblEstadoBadge.setForeground(new Color(239, 68, 68));
+            lblCodigoBadge.setText("CÓDIGO: PARAM-001");
+            lblCodigoBadge.setForeground(new Color(239, 68, 68));
+            lblResultadoNumero.setText("Valor Inválido");
+            lblResultadoNumero.setForeground(new Color(239, 68, 68));
+            lblMensajeServidor.setText("<html>Por favor ingrese un número válido.</html>");
+            return;
+        }
+
+        btnConvertir.setEnabled(false);
+        lblMensajeServidor.setText("Invocando servicio SOAP del GR08...");
+
+        SwingUtilities.invokeLater(() -> {
+            try {
+                RespuestaConversion res = controlador.convertir(valor, origen, destino);
+
+                if ("OK".equalsIgnoreCase(res.getEstado())) {
+                    lblEstadoBadge.setText("ESTADO: OK");
+                    lblEstadoBadge.setForeground(new Color(16, 185, 129));
+                    lblCodigoBadge.setText("CÓDIGO: " + res.getCodigo());
+                    lblCodigoBadge.setForeground(new Color(16, 185, 129));
+                    
+                    double resultado = res.getResultado() != null ? res.getResultado() : 0.0;
+                    lblResultadoNumero.setText(String.format(java.util.Locale.US, "%.4f %s", resultado, destino));
+                    lblResultadoNumero.setForeground(new Color(52, 211, 153));
+                    lblMensajeServidor.setText("<html>" + res.getMensaje() + " (" + valor + " " + origen + " &rarr; " + destino + ")</html>");
+                } else {
+                    lblEstadoBadge.setText("ESTADO: ERROR");
+                    lblEstadoBadge.setForeground(new Color(239, 68, 68));
+                    lblCodigoBadge.setText("CÓDIGO: " + (res.getCodigo() != null ? res.getCodigo() : "ERR"));
+                    lblCodigoBadge.setForeground(new Color(239, 68, 68));
+                    lblResultadoNumero.setText("Error");
+                    lblResultadoNumero.setForeground(new Color(239, 68, 68));
+                    lblMensajeServidor.setText("<html>" + (res.getMensaje() != null ? res.getMensaje() : "Error en conversión") + "</html>");
+                }
+            } catch (Exception ex) {
+                lblEstadoBadge.setText("ESTADO: ERROR");
+                lblEstadoBadge.setForeground(new Color(239, 68, 68));
+                lblCodigoBadge.setText("CÓDIGO: EXC-001");
+                lblCodigoBadge.setForeground(new Color(239, 68, 68));
+                lblResultadoNumero.setText("Error");
+                lblResultadoNumero.setForeground(new Color(239, 68, 68));
+                lblMensajeServidor.setText("<html>" + ex.getMessage() + "</html>");
+            } finally {
+                btnConvertir.setEnabled(true);
+            }
+        });
+    }
 
     public static void main(String args[]) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored) {
         }
 
-        java.awt.EventQueue.invokeLater(() -> new InterfazConversiones(new ControladorConversiones()).setVisible(true));
+        SwingUtilities.invokeLater(() -> {
+            ControladorConversiones ctrl = new ControladorConversiones();
+            new InterfazConversiones(ctrl).setVisible(true);
+        });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConvertir;
-    private javax.swing.JComboBox<String> cbxDestino;
-    private javax.swing.JComboBox<String> cbxOrigen;
-    private javax.swing.JComboBox<String> cbxTipoConversion;
-    private javax.swing.JLabel icono;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblDestino;
-    private javax.swing.JLabel lblFlecha;
-    private javax.swing.JLabel lblOrigen;
-    private javax.swing.JTextField txtResultado;
-    private javax.swing.JLabel txtTitulo;
-    private javax.swing.JTextField txtValor;
-    // End of variables declaration//GEN-END:variables
 }
