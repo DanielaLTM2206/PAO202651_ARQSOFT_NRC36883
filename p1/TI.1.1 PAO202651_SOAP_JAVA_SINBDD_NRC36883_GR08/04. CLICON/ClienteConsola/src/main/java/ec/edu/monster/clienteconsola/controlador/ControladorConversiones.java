@@ -111,4 +111,21 @@ public class ControladorConversiones {
     public String getUltimoError() {
         return ultimoError;
     }
+
+    /**
+     * Consulta el historial centralizado compartido de conversiones.
+     */
+    public List<ec.edu.monster.clientesws.RegistroHistorialDTO> obtenerHistorial() {
+        try {
+            if (port != null && token != null) {
+                ec.edu.monster.clientesws.RespuestaHistorial res = port.consultarHistorial(token);
+                if ("OK".equalsIgnoreCase(res.getEstado()) && res.getItem() != null) {
+                    return res.getItem();
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error al consultar historial: " + e.getMessage());
+        }
+        return Collections.emptyList();
+    }
 }

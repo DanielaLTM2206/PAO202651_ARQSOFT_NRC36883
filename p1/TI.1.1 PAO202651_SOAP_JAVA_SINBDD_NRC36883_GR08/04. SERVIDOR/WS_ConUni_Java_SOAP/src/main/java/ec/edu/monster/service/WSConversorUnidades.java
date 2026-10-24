@@ -2,10 +2,12 @@ package ec.edu.monster.service;
 
 import ec.edu.monster.catalog.CatalogoUnidades;
 import ec.edu.monster.conversion.MotorConversion;
+import ec.edu.monster.history.GestorHistorial;
 import ec.edu.monster.model.CategoriaDTO;
 import ec.edu.monster.model.RespuestaAutenticacion;
 import ec.edu.monster.model.RespuestaCatalogo;
 import ec.edu.monster.model.RespuestaConversion;
+import ec.edu.monster.model.RespuestaHistorial;
 import ec.edu.monster.security.ResultadoValidacionToken;
 import ec.edu.monster.security.ServicioSeguridad;
 import jakarta.jws.WebMethod;
@@ -130,5 +132,37 @@ public class WSConversorUnidades {
             @WebParam(name = "unidadDestino") String unidadDestino,
             @WebParam(name = "token") String token) {
         return motorConversion.procesarConversion(valor, unidadOrigen, unidadDestino, token);
+    }
+
+    /**
+     * Consulta el historial global de conversiones sincronizado para todos los clientes (Web, Móvil, Escritorio, Consola).
+     */
+    @WebMethod(operationName = "consultarHistorial")
+    public RespuestaHistorial consultarHistorial(
+            @WebParam(name = "token") String token) {
+        
+        ResultadoValidacionToken val = servicioSeguridad.validarToken(token);
+        if (!val.isValido()) {
+            return RespuestaHistorial.error(val.getCodigo(), val.getMensaje());
+        }
+
+        List<ec.edu.monster.model.RegistroHistorialDTO> items = GestorHistorial.getInstance().obtenerHistorial();
+        return RespuestaHistorial.exitoso(items);
+    }
+
+    /**
+     * Limpia el historial global de conversiones.
+     */
+    @WebMethod(operationName = "limpiarHistorial")
+    public RespuestaConversion limpiarHistorial(
+            @WebParam(name = "token") String token) {
+        
+        ResultadoValidacionToken val = servicioSeguridad.validarToken(token);
+        if (!val.isValido()) {
+            return RespuestaConversion.error(val.getCodigo(), val.getMensaje());
+        }
+
+        GestorHistorial.getInstance().limpiarHistorial();
+        return new RespuestaConversion("OK", "200", "Historial limpiado correctamente.", 0.0);
     }
 }

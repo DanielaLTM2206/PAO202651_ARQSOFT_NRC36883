@@ -171,4 +171,16 @@ public interface WSConversorUnidades {
         @WebParam(name = "token", targetNamespace = "")
         String token);
 
+    /**
+     * Consulta el historial global de conversiones.
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultarHistorial", targetNamespace = "http://monster.edu.ec/services", className = "ec.edu.monster.clientesws.ConsultarHistorial")
+    @ResponseWrapper(localName = "consultarHistorialResponse", targetNamespace = "http://monster.edu.ec/services", className = "ec.edu.monster.clientesws.ConsultarHistorialResponse")
+    @Action(input = "http://monster.edu.ec/services/WSConversorUnidades/consultarHistorialRequest", output = "http://monster.edu.ec/services/WSConversorUnidades/consultarHistorialResponse")
+    public RespuestaHistorial consultarHistorial(
+        @WebParam(name = "token", targetNamespace = "")
+        String token);
+
 }

@@ -1,12 +1,14 @@
 package ec.edu.monster.clienteescritorio.vista;
 
 import ec.edu.monster.clienteescritorio.controlador.ControladorConversiones;
+import ec.edu.monster.clientesws.RegistroHistorialDTO;
 import ec.edu.monster.clientesws.RespuestaConversion;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
@@ -16,9 +18,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Pantalla de Conversiones con Sullivan de Monsters Inc y Respuesta Estructurada (RF-06).
@@ -43,17 +49,22 @@ public class InterfazConversiones extends JFrame {
     private JLabel lblResultadoNumero;
     private JLabel lblMensajeServidor;
 
+    // Panel de Historial Global Compartido
+    private DefaultTableModel modeloHistorial;
+    private JTable tablaHistorial;
+
     public InterfazConversiones(ControladorConversiones controlador) {
         this.controlador = controlador;
         initComponents();
         cargarUnidadesSegunCategoria();
+        cargarHistorialEnTabla();
     }
 
     private void initComponents() {
         setTitle("Monster Inc - Panel de Conversiones SOAP GR08");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setSize(780, 520);
+        setSize(1140, 530);
         setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel();
@@ -210,19 +221,130 @@ public class InterfazConversiones extends JFrame {
         } catch (Exception ex) {
             System.err.println("No se pudo cargar la imagen de Sullivan: " + ex.getMessage());
         }
-        lblSulley.setBounds(475, 60, 260, 345);
+        lblSulley.setBounds(465, 60, 235, 345);
         mainPanel.add(lblSulley);
 
         // 8. Botón Cerrar Sesión con ModernButton (Gris Pizarra elegante con texto Blanco)
         btnCerrarSesion = new ModernButton("Cerrar Sesión", new Color(51, 65, 85), Color.WHITE, 8);
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnCerrarSesion.setBounds(475, 417, 260, 38);
+        btnCerrarSesion.setBounds(465, 417, 235, 38);
         btnCerrarSesion.addActionListener(e -> {
             controlador.cerrarSesion();
             new LoginFrame(controlador).setVisible(true);
             dispose();
         });
         mainPanel.add(btnCerrarSesion);
+
+        // 9. Panel de Historial Global Compartido (Sincronizado multi-canal)
+        JPanel panelHistorial = new JPanel();
+        panelHistorial.setLayout(null);
+        panelHistorial.setBackground(new Color(24, 33, 51));
+        panelHistorial.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(51, 65, 85), 1),
+                BorderFactory.createEmptyBorder(0, 0, 0, 0)
+        ));
+        panelHistorial.setBounds(705, 20, 405, 455);
+
+        JLabel lblHistTitle = new JLabel("HISTORIAL COMPARTIDO");
+        lblHistTitle.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblHistTitle.setForeground(new Color(56, 189, 248)); // Celeste
+        lblHistTitle.setBounds(15, 12, 230, 20);
+        panelHistorial.add(lblHistTitle);
+
+        JLabel lblHistSub = new JLabel("Web • Móvil • Escritorio • Consola");
+        lblHistSub.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+        lblHistSub.setForeground(new Color(148, 163, 184));
+        lblHistSub.setBounds(15, 32, 230, 16);
+        panelHistorial.add(lblHistSub);
+
+        ModernButton btnRefrescar = new ModernButton("Refrescar", new Color(30, 41, 59), new Color(56, 189, 248), 6);
+        btnRefrescar.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        btnRefrescar.setBounds(295, 12, 98, 30);
+        btnRefrescar.addActionListener(e -> cargarHistorialEnTabla());
+        panelHistorial.add(btnRefrescar);
+
+        String[] columnas = {"#", "Hora", "Cat", "Conversión"};
+        modeloHistorial = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        tablaHistorial = new JTable(modeloHistorial);
+        tablaHistorial.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+        tablaHistorial.setRowHeight(28);
+        tablaHistorial.setBackground(new Color(15, 23, 42));
+        tablaHistorial.setForeground(new Color(241, 245, 249));
+        tablaHistorial.setGridColor(new Color(30, 41, 59));
+        tablaHistorial.setShowGrid(true);
+        tablaHistorial.setSelectionBackground(new Color(30, 58, 138));
+        tablaHistorial.setSelectionForeground(Color.WHITE);
+
+        tablaHistorial.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 11));
+        tablaHistorial.getTableHeader().setBackground(new Color(30, 41, 59));
+        tablaHistorial.getTableHeader().setForeground(new Color(56, 189, 248));
+        tablaHistorial.getTableHeader().setPreferredSize(new java.awt.Dimension(0, 28));
+
+        // Renderizador con estilo moderno, badges por categoría y zebra striping
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+                JLabel c = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                c.setBorder(BorderFactory.createEmptyBorder(2, 6, 2, 6));
+
+                if (isSelected) {
+                    c.setBackground(new Color(30, 58, 138));
+                    c.setForeground(Color.WHITE);
+                } else {
+                    c.setBackground(row % 2 == 0 ? new Color(15, 23, 42) : new Color(24, 33, 51));
+                    c.setForeground(new Color(241, 245, 249));
+                }
+
+                String valStr = value != null ? value.toString() : "";
+                if (column == 0) {
+                    c.setHorizontalAlignment(SwingConstants.CENTER);
+                    c.setFont(new Font("Segoe UI", Font.BOLD, 11));
+                    if (!isSelected) c.setForeground(new Color(148, 163, 184));
+                } else if (column == 1) {
+                    c.setHorizontalAlignment(SwingConstants.CENTER);
+                    c.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+                    if (!isSelected) c.setForeground(new Color(56, 189, 248));
+                } else if (column == 2) {
+                    c.setHorizontalAlignment(SwingConstants.CENTER);
+                    c.setFont(new Font("Segoe UI", Font.BOLD, 10));
+                    if ("Masa".equalsIgnoreCase(valStr)) {
+                        c.setText("<html><b style='color:#34d399;'>MASA</b></html>");
+                    } else if ("Longitud".equalsIgnoreCase(valStr)) {
+                        c.setText("<html><b style='color:#60a5fa;'>LONGITUD</b></html>");
+                    } else if ("Temperatura".equalsIgnoreCase(valStr)) {
+                        c.setText("<html><b style='color:#fbbf24;'>TEMPERATURA</b></html>");
+                    }
+                } else if (column == 3) {
+                    c.setHorizontalAlignment(SwingConstants.LEFT);
+                    c.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+                }
+                return c;
+            }
+        };
+
+        for (int i = 0; i < 4; i++) {
+            tablaHistorial.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+        }
+
+        tablaHistorial.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tablaHistorial.getColumnModel().getColumn(1).setPreferredWidth(52);
+        tablaHistorial.getColumnModel().getColumn(2).setPreferredWidth(86);
+        tablaHistorial.getColumnModel().getColumn(3).setPreferredWidth(213);
+
+        JScrollPane scrollHist = new JScrollPane(tablaHistorial);
+        scrollHist.setBounds(12, 55, 381, 388);
+        scrollHist.getViewport().setBackground(new Color(15, 23, 42));
+        scrollHist.setBorder(BorderFactory.createLineBorder(new Color(51, 65, 85), 1));
+        panelHistorial.add(scrollHist);
+
+        mainPanel.add(panelHistorial);
 
         getContentPane().add(mainPanel);
     }
@@ -307,6 +429,9 @@ public class InterfazConversiones extends JFrame {
                     lblResultadoNumero.setText(String.format(java.util.Locale.US, "%.4f %s", resultado, destino));
                     lblResultadoNumero.setForeground(new Color(52, 211, 153));
                     lblMensajeServidor.setText("<html>" + res.getMensaje() + " (" + valor + " " + origen + " &rarr; " + destino + ")</html>");
+                    
+                    // Actualizar historial central inmediatamente
+                    cargarHistorialEnTabla();
                 } else {
                     lblEstadoBadge.setText("ESTADO: ERROR");
                     lblEstadoBadge.setForeground(new Color(239, 68, 68));
@@ -328,6 +453,32 @@ public class InterfazConversiones extends JFrame {
                 btnConvertir.setEnabled(true);
             }
         });
+    }
+
+    /**
+     * Carga el historial global de conversiones de manera asíncrona para no congelar la UI Swing.
+     */
+    public void cargarHistorialEnTabla() {
+        new Thread(() -> {
+            List<RegistroHistorialDTO> items = controlador.obtenerHistorial();
+            SwingUtilities.invokeLater(() -> {
+                if (modeloHistorial == null) return;
+                modeloHistorial.setRowCount(0);
+                if (items == null || items.isEmpty()) {
+                    modeloHistorial.addRow(new Object[]{"-", "--:--", "-", "Sin conversiones registradas"});
+                    return;
+                }
+                for (RegistroHistorialDTO r : items) {
+                    String hora = r.getFechaHora() != null && r.getFechaHora().length() >= 16 
+                            ? r.getFechaHora().substring(11, 16) 
+                            : r.getFechaHora();
+                    String conv = String.format(java.util.Locale.US, 
+                            "<html><span style='color:#cbd5e1;'>%.1f %s</span> <span style='color:#38bdf8; font-weight:bold;'>&rarr;</span> <span style='color:#4ade80; font-weight:bold;'>%.2f %s</span></html>", 
+                            r.getValorOriginal(), r.getUnidadOrigen(), r.getResultado(), r.getUnidadDestino());
+                    modeloHistorial.addRow(new Object[]{r.getId(), hora, r.getCategoria(), conv});
+                }
+            });
+        }).start();
     }
 
     public static void main(String args[]) {

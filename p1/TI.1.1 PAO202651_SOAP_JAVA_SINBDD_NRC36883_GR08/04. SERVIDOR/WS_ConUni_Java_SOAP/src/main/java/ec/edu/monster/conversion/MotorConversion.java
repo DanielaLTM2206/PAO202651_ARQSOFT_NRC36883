@@ -97,6 +97,9 @@ public class MotorConversion {
             }
 
             // 6. RF-06 (CU-07): Construcción de Respuesta Estructurada Homogénea Exitosa
+            ec.edu.monster.history.GestorHistorial.getInstance().registrar(
+                    catOrigen, valor, origenLimpio, resultado, destinoLimpio
+            );
             return RespuestaConversion.exitosa(resultado, catOrigen, origenLimpio, destinoLimpio, valor);
 
         } catch (Exception ex) {

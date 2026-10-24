@@ -7,7 +7,7 @@
     <artifactId>WS_ConUni_Java_SOAP</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>WS_ConUni_Java_SOAP-1.0-SNAPSHOT</name>
+    <name>WS_ConUni_Java_SOAP_GR08</name>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

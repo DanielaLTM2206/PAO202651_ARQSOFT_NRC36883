@@ -34,7 +34,7 @@
             border: 1px solid #334155;
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            max-width: 860px;
+            max-width: 980px;
             width: 100%;
             overflow: hidden;
             display: flex;
@@ -245,6 +245,79 @@
             color: #cbd5e1;
             line-height: 1.4;
         }
+        .history-card {
+            margin-top: 25px;
+            background-color: #0b1325;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 18px 20px;
+        }
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .history-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #38bdf8;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-refresh {
+            background-color: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #475569;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-refresh:hover {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        .table-container {
+            max-height: 190px;
+            overflow-y: auto;
+            border: 1px solid #1e293b;
+            border-radius: 6px;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+        }
+        .history-table th {
+            background-color: #151b28;
+            color: #94a3b8;
+            padding: 8px 10px;
+            font-weight: 600;
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+        }
+        .history-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #1e293b;
+            color: #e2e8f0;
+        }
+        .history-table tr:hover {
+            background-color: rgba(30, 41, 59, 0.5);
+        }
+        .cat-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background-color: #1e3a8a;
+            color: #60a5fa;
+        }
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column-reverse;
@@ -317,6 +390,34 @@
                 </div>
                 <div id="displayResultado" class="result-display">---</div>
                 <div id="displayMensaje" class="server-message">Seleccione parámetros y presione "Convertir Ahora".</div>
+            </div>
+
+            <!-- Historial Global Compartido (Multi-canal) -->
+            <div class="history-card">
+                <div class="history-header">
+                    <div>
+                        <span class="history-title">Historial Global Compartido</span>
+                        <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">Sincronizado entre Web, Móvil, Escritorio y Consola</div>
+                    </div>
+                    <button type="button" class="btn-refresh" onclick="cargarHistorial()" title="Recargar historial">🔄 Actualizar</button>
+                </div>
+                <div class="table-container">
+                    <table class="history-table" id="tablaHistorial">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Fecha / Hora</th>
+                                <th>Categoría</th>
+                                <th>Conversión Realizada</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyHistorial">
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: #94a3b8; padding: 12px;">Cargando historial central...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -401,6 +502,8 @@
                         displayResultado.className = "result-display";
                         displayResultado.innerText = Number(data.resultado).toFixed(4) + " " + dest;
                         displayMensaje.innerText = data.mensaje;
+                        // Actualizar historial central inmediatamente
+                        cargarHistorial();
                     } else {
                         badgeEstado.className = "status-badge badge-error";
                         badgeEstado.innerText = "ESTADO: ERROR";
@@ -423,7 +526,42 @@
                     btn.disabled = false;
                 }
             });
+
+            // Cargar historial al iniciar la página
+            cargarHistorial();
         };
+
+        async function cargarHistorial() {
+            const tbody = document.getElementById("tbodyHistorial");
+            try {
+                const res = await fetch('ConversorServlet', { method: 'GET' });
+                if (res.status === 401) {
+                    window.location.href = "index.jsp";
+                    return;
+                }
+                const data = await res.json();
+                if (data.estado === "OK" && data.item) {
+                    if (data.item.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#94a3b8; padding:15px;">Sin conversiones registradas aún. ¡Realiza una en cualquier cliente!</td></tr>';
+                        return;
+                    }
+                    let html = '';
+                    data.item.forEach((r) => {
+                        html += `<tr>
+                            <td>\${r.id}</td>
+                            <td style="color:#94a3b8; font-size:0.78rem;">\${r.fechaHora}</td>
+                            <td><span class="cat-pill">\${r.categoria}</span></td>
+                            <td><strong>\${Number(r.valorOriginal).toFixed(2)}</strong> \${r.unidadOrigen} <span style="color:#38bdf8; font-weight:bold; margin: 0 6px;">&rarr;</span> <strong style="color:#34d399;">\${Number(r.resultado).toFixed(4)}</strong> \${r.unidadDestino}</td>
+                        </tr>`;
+                    });
+                    tbody.innerHTML = html;
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#94a3b8; padding:12px;">Sin registros en el historial.</td></tr>';
+                }
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#f87171; padding:12px;">No se pudo sincronizar el historial central.</td></tr>';
+            }
+        }
     </script>
 </body>
 </html>

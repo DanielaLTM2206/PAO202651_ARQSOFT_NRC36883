@@ -12,7 +12,8 @@ public enum OpcionMenu {
         CONVERTIR_LONGITUD("1", "Convertir Longitud"),
         CONVERTIR_MASA("2", "Convertir Masa"),
         CONVERTIR_TEMPERATURA("3", "Convertir Temperatura"),
-        SALIR("4", "Salir");
+        VER_HISTORIAL("4", "Ver Historial Global de Conversiones (Multi-canal)"),
+        SALIR("5", "Salir");
 
         private final String numero;
         private final String descripcion;

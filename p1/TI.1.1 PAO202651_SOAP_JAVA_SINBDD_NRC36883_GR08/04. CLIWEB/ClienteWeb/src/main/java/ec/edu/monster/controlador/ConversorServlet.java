@@ -104,4 +104,33 @@ public class ConversorServlet extends HttpServlet {
             response.getWriter().write(gson.toJson(errorRes));
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("application/json;charset=UTF-8");
+
+        HttpSession session = request.getSession(false);
+        String token = (session != null) ? (String) session.getAttribute("token") : null;
+
+        if (token == null || token.trim().isEmpty()) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("{\"estado\":\"ERROR\",\"codigo\":\"AUTH-001\",\"mensaje\":\"Sesión no válida o expirada.\"}");
+            return;
+        }
+
+        try {
+            WSConversorUnidades_Service service = new WSConversorUnidades_Service();
+            WSConversorUnidades port = service.getWSConversorUnidadesPort();
+            ((BindingProvider) port).getRequestContext().put(
+                    BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
+                    DEFAULT_ENDPOINT
+            );
+
+            ec.edu.monster.clientesws.RespuestaHistorial hist = port.consultarHistorial(token);
+            response.getWriter().write(gson.toJson(hist));
+        } catch (Exception e) {
+            response.getWriter().write("{\"estado\":\"ERROR\",\"codigo\":\"SYS-001\",\"mensaje\":\"" + e.getMessage() + "\"}");
+        }
+    }
 }

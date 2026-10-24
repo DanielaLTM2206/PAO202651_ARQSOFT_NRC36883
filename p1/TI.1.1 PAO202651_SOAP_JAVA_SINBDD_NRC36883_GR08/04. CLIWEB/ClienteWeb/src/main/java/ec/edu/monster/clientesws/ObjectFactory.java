@@ -42,6 +42,8 @@ public class ObjectFactory {
     private static final QName _ConvertirResponse_QNAME = new QName("http://monster.edu.ec/services", "convertirResponse");
     private static final QName _ConvertirTemperatura_QNAME = new QName("http://monster.edu.ec/services", "convertirTemperatura");
     private static final QName _ConvertirTemperaturaResponse_QNAME = new QName("http://monster.edu.ec/services", "convertirTemperaturaResponse");
+    private static final QName _ConsultarHistorial_QNAME = new QName("http://monster.edu.ec/services", "consultarHistorial");
+    private static final QName _ConsultarHistorialResponse_QNAME = new QName("http://monster.edu.ec/services", "consultarHistorialResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: ec.edu.monster.clientesws
@@ -472,6 +474,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://monster.edu.ec/services", name = "convertirTemperaturaResponse")
     public JAXBElement<ConvertirTemperaturaResponse> createConvertirTemperaturaResponse(ConvertirTemperaturaResponse value) {
         return new JAXBElement<>(_ConvertirTemperaturaResponse_QNAME, ConvertirTemperaturaResponse.class, null, value);
+    }
+
+    public RegistroHistorialDTO createRegistroHistorialDTO() {
+        return new RegistroHistorialDTO();
+    }
+
+    public RespuestaHistorial createRespuestaHistorial() {
+        return new RespuestaHistorial();
+    }
+
+    public ConsultarHistorial createConsultarHistorial() {
+        return new ConsultarHistorial();
+    }
+
+    public ConsultarHistorialResponse createConsultarHistorialResponse() {
+        return new ConsultarHistorialResponse();
+    }
+
+    @XmlElementDecl(namespace = "http://monster.edu.ec/services", name = "consultarHistorial")
+    public JAXBElement<ConsultarHistorial> createConsultarHistorial(ConsultarHistorial value) {
+        return new JAXBElement<>(_ConsultarHistorial_QNAME, ConsultarHistorial.class, null, value);
+    }
+
+    @XmlElementDecl(namespace = "http://monster.edu.ec/services", name = "consultarHistorialResponse")
+    public JAXBElement<ConsultarHistorialResponse> createConsultarHistorialResponse(ConsultarHistorialResponse value) {
+        return new JAXBElement<>(_ConsultarHistorialResponse_QNAME, ConsultarHistorialResponse.class, null, value);
     }
 
 }

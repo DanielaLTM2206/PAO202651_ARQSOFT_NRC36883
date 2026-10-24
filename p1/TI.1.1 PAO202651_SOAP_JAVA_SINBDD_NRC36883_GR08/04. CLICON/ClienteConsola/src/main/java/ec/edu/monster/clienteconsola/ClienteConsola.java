@@ -54,10 +54,31 @@ public class ClienteConsola {
                             CatalogoUnidades.Masa.values(), 
                             (v, o, d) -> controlador.convertirMasa(v, o, d)
                     );
+                    case VER_HISTORIAL -> mostrarHistorial(controlador);
                     case SALIR -> System.out.println("Saliendo...");
                 }
             }
         } while (opcion != OpcionMenu.SALIR);
+    }
+
+    private static void mostrarHistorial(ControladorConversiones controlador) {
+        System.out.println("\n==========================================================================");
+        System.out.println("     HISTORIAL GLOBAL COMPARTIDO DE CONVERSIONES (SIN BDD - MEMORIA)      ");
+        System.out.println("==========================================================================");
+        var items = controlador.obtenerHistorial();
+        if (items == null || items.isEmpty()) {
+            System.out.println("No hay conversiones registradas actualmente en el servidor.");
+        } else {
+            System.out.printf("%-4s | %-19s | %-12s | %s%n", "ID", "FECHA Y HORA", "CATEGORÍA", "CONVERSIÓN REALIZADA");
+            System.out.println("--------------------------------------------------------------------------");
+            for (var r : items) {
+                String conv = String.format(java.util.Locale.US, "%.2f %s ➜ %.4f %s",
+                        r.getValorOriginal(), r.getUnidadOrigen(), r.getResultado(), r.getUnidadDestino());
+                System.out.printf("%-4d | %-19s | %-12s | %s%n",
+                        r.getId(), r.getFechaHora(), r.getCategoria(), conv);
+            }
+        }
+        System.out.println("==========================================================================\n");
     }
 
     /**

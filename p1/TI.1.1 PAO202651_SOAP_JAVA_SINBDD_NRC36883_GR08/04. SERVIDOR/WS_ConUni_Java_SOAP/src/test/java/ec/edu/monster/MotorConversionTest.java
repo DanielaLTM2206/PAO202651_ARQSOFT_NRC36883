@@ -108,4 +108,24 @@ public class MotorConversionTest {
         assertEquals("UNIT-001", res.getCodigo());
         assertNull(res.getResultado());
     }
+
+    @Test
+    public void testRF08_ConsultarHistorialGlobal() {
+        servicio.limpiarHistorial(tokenValido);
+        
+        // Ejecutar dos conversiones
+        servicio.convertirLongitud(5.0, "metros", "centimetros", tokenValido);
+        servicio.convertirMasa(2.0, "kilogramos", "libras", tokenValido);
+
+        // Consultar historial
+        var hist = servicio.consultarHistorial(tokenValido);
+        assertEquals("OK", hist.getEstado());
+        assertEquals("200", hist.getCodigo());
+        assertTrue(hist.getItems().size() >= 2);
+        
+        // El más reciente debe ser Masa
+        assertEquals("Masa", hist.getItems().get(0).getCategoria());
+        assertEquals("kilogramos", hist.getItems().get(0).getUnidadOrigen());
+        assertEquals("libras", hist.getItems().get(0).getUnidadDestino());
+    }
 }
