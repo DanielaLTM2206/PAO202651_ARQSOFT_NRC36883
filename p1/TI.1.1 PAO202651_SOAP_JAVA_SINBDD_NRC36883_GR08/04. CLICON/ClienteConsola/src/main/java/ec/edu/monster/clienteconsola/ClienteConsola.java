@@ -55,10 +55,33 @@ public class ClienteConsola {
                             (v, o, d) -> controlador.convertirMasa(v, o, d)
                     );
                     case VER_HISTORIAL -> mostrarHistorial(controlador);
+                    case CAMBIAR_CONTRASENIA -> ejecutarFlujoCambioClave(interfaz, controlador);
                     case SALIR -> System.out.println("Saliendo...");
                 }
             }
         } while (opcion != OpcionMenu.SALIR);
+    }
+
+    private static void ejecutarFlujoCambioClave(InterfazConsola interfaz, ControladorConversiones controlador) {
+        System.out.println("\n--- CAMBIO DE CONTRASEÑA CENTRALIZADO (SIN BDD - MEMORIA) ---");
+        System.out.println("Nota: El cambio se sincronizará inmediatamente en todos los clientes (Web, Escritorio, Móvil).");
+        String actual = interfaz.pedirTexto("Ingresa tu contraseña ACTUAL: ");
+        String nueva = interfaz.pedirTexto("Ingresa tu NUEVA contraseña: ");
+        String confirmar = interfaz.pedirTexto("Confirma tu NUEVA contraseña: ");
+
+        if (!nueva.equals(confirmar)) {
+            System.out.println("❌ ERROR: La confirmación no coincide con la nueva contraseña.\n");
+            return;
+        }
+
+        System.out.println("[Enviando solicitud SOAP al servidor central...]");
+        var resp = controlador.cambiarContrasenia(actual, nueva);
+        if ("OK".equalsIgnoreCase(resp.getEstado())) {
+            System.out.println("✅ ÉXITO: " + resp.getMensaje());
+            System.out.println("La nueva clave ya está activa en memoria para todos los canales.\n");
+        } else {
+            System.out.println("❌ ERROR [" + resp.getCodigo() + "]: " + resp.getMensaje() + "\n");
+        }
     }
 
     private static void mostrarHistorial(ControladorConversiones controlador) {

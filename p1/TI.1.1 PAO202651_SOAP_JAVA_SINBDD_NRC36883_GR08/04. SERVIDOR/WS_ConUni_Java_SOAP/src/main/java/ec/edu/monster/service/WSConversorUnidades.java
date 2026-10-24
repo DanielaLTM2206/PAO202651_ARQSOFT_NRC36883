@@ -165,4 +165,16 @@ public class WSConversorUnidades {
         GestorHistorial.getInstance().limpiarHistorial();
         return new RespuestaConversion("OK", "200", "Historial limpiado correctamente.", 0.0);
     }
+
+    /**
+     * RF-08: Operación SOAP para cambiar la contraseña del usuario en memoria.
+     * Al ejecutarse, actualiza la clave en el servidor central y se propaga inmediatamente a todos los clientes.
+     */
+    @WebMethod(operationName = "cambiarContrasenia")
+    public RespuestaAutenticacion cambiarContrasenia(
+            @WebParam(name = "contraseniaActual") String contraseniaActual,
+            @WebParam(name = "contraseniaNueva") String contraseniaNueva,
+            @WebParam(name = "token") String token) {
+        return servicioSeguridad.cambiarContrasenia(contraseniaActual, contraseniaNueva, token);
+    }
 }

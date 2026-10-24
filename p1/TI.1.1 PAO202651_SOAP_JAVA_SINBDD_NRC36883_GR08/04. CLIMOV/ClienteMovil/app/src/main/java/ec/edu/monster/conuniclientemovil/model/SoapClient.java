@@ -28,6 +28,7 @@ public class SoapClient {
     private static final String SERVICE_NAME = "WSConversorUnidades";
 
     private static final String METHOD_AUTENTICAR = "autenticar";
+    private static final String METHOD_CAMBIAR_CONTRASENIA = "cambiarContrasenia";
     private static final String METHOD_CONVERTIR = "convertir";
     private static final String METHOD_CONVERTIR_LONGITUD = "convertirLongitud";
     private static final String METHOD_CONVERTIR_MASA = "convertirMasa";
@@ -98,6 +99,42 @@ public class SoapClient {
             }
 
             return LoginResult.error("AUTH-001", "Respuesta vacía del servidor.");
+        });
+    }
+
+    /**
+     * RF-08 / DS_07: Cambia la contraseña en el servidor central SOAP.
+     * Sincronizado para todos los clientes en memoria.
+     */
+    public Future<LoginResult> cambiarContrasenia(String baseUrl, String contraseniaActual, String contraseniaNueva, String token) {
+        return executorService.submit(() -> {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_CAMBIAR_CONTRASENIA);
+            request.addProperty("contraseniaActual", contraseniaActual);
+            request.addProperty("contraseniaNueva", contraseniaNueva);
+            request.addProperty("token", token != null ? token : sessionToken);
+
+            Object response = callWithFallback(baseUrl, METHOD_CAMBIAR_CONTRASENIA, request);
+
+            if (response instanceof SoapObject) {
+                SoapObject obj = (SoapObject) response;
+                String estado = getProperty(obj, "estado");
+                String codigo = getProperty(obj, "codigo");
+                String mensaje = getProperty(obj, "mensaje");
+
+                if ("OK".equalsIgnoreCase(estado)) {
+                    return new LoginResult(true, sessionToken, codigo, mensaje);
+                } else {
+                    return LoginResult.error(codigo, mensaje != null ? mensaje : "Error al cambiar contraseña");
+                }
+            } else if (response != null) {
+                String resStr = response.toString();
+                if (resStr.contains("ERROR")) {
+                    return LoginResult.error("AUTH-002", resStr);
+                }
+                return LoginResult.success(sessionToken);
+            }
+
+            return LoginResult.error("AUTH-002", "Respuesta vacía del servidor.");
         });
     }
 

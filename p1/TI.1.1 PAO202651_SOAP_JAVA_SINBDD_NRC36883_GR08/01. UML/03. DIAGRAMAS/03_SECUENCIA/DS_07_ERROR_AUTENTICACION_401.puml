@@ -1,5 +1,5 @@
 @startuml
-title "DS_06_ERROR_AUTENTICACION_401"
+title "DS_07_ERROR_AUTENTICACION_401"
 autonumber
 
 actor "APLICACION" as Aplicacion

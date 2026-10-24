@@ -79,6 +79,148 @@
         .user-info strong {
             color: #38bdf8;
         }
+        .btn-change-pass {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 8px;
+        }
+        .btn-change-pass:hover {
+            background-color: #1d4ed8;
+        }
+        /* Modal Cambiar Contraseña */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 440px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            overflow: hidden;
+            animation: modalFadeIn 0.2s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-header {
+            padding: 18px 24px;
+            background-color: #0f172a;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            font-size: 1.1rem;
+            color: #38bdf8;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+        .modal-close:hover { color: #fff; }
+        .modal-body {
+            padding: 24px;
+        }
+        .modal-body .form-group {
+            margin-bottom: 16px;
+        }
+        .modal-body label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+        .modal-body input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        .modal-body input[type="password"]:focus {
+            border-color: #38bdf8;
+            outline: none;
+        }
+        .modal-feedback {
+            display: none;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        .modal-feedback.success {
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid #10b981;
+            color: #34d399;
+            display: block;
+        }
+        .modal-feedback.error {
+            background-color: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #f87171;
+            display: block;
+        }
+        .modal-footer {
+            padding: 14px 24px;
+            background-color: #0f172a;
+            border-top: 1px solid #334155;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        .btn-cancel {
+            background-color: #334155;
+            color: #e2e8f0;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .btn-save-pass {
+            background-color: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .btn-save-pass:hover { background-color: #1d4ed8; }
         .btn-logout {
             display: block;
             width: 100%;
@@ -430,7 +572,42 @@
                     <span style="font-size: 0.75rem; color: #94a3b8;">Token validado en memoria</span>
                 </div>
             </div>
+            <button type="button" class="btn-change-pass" onclick="abrirModalClave()">🔑 Cambiar Contraseña</button>
             <a href="LogoutServlet" class="btn-logout">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Modal Cambiar Contraseña (RF-08 / DS_07 - Sincronización Multi-canal) -->
+    <div id="modalClave" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔑 Cambiar Contraseña</h3>
+                <button type="button" class="modal-close" onclick="cerrarModalClave()">&times;</button>
+            </div>
+            <form id="formCambiarClave" onsubmit="enviarCambioClave(event)">
+                <div class="modal-body">
+                    <p style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 14px;">
+                        Al cambiar tu contraseña, la actualización se sincroniza centralmente en el servidor SOAP en memoria para todos los clientes (Web, Móvil, Escritorio y Consola).
+                    </p>
+                    <div id="modalClaveFeedback" class="modal-feedback"></div>
+                    <div class="form-group">
+                        <label for="txtClaveActual">Contraseña Actual:</label>
+                        <input type="password" id="txtClaveActual" name="txtClaveActual" required placeholder="Ingresa tu clave actual">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtClaveNueva">Nueva Contraseña:</label>
+                        <input type="password" id="txtClaveNueva" name="txtClaveNueva" required placeholder="Mínimo 4 caracteres">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtClaveConfirmar">Confirmar Nueva Contraseña:</label>
+                        <input type="password" id="txtClaveConfirmar" name="txtClaveConfirmar" required placeholder="Repite la nueva contraseña">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" onclick="cerrarModalClave()">Cancelar</button>
+                    <button type="submit" id="btnGuardarClave" class="btn-save-pass">Actualizar Contraseña</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -560,6 +737,68 @@
                 }
             } catch (err) {
                 tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#f87171; padding:12px;">No se pudo sincronizar el historial central.</td></tr>';
+            }
+        }
+
+        function abrirModalClave() {
+            const feedback = document.getElementById("modalClaveFeedback");
+            feedback.className = "modal-feedback";
+            feedback.innerText = "";
+            document.getElementById("formCambiarClave").reset();
+            document.getElementById("modalClave").style.display = "flex";
+            document.getElementById("txtClaveActual").focus();
+        }
+
+        function cerrarModalClave() {
+            document.getElementById("modalClave").style.display = "none";
+        }
+
+        async function enviarCambioClave(e) {
+            e.preventDefault();
+            const actual = document.getElementById("txtClaveActual").value;
+            const nueva = document.getElementById("txtClaveNueva").value;
+            const confirmar = document.getElementById("txtClaveConfirmar").value;
+            const feedback = document.getElementById("modalClaveFeedback");
+            const btn = document.getElementById("btnGuardarClave");
+
+            if (nueva !== confirmar) {
+                feedback.className = "modal-feedback error";
+                feedback.innerText = "La nueva contraseña y la confirmación no coinciden.";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Actualizando en servidor...";
+
+            try {
+                const params = new URLSearchParams();
+                params.append("txtClaveActual", actual);
+                params.append("txtClaveNueva", nueva);
+                params.append("txtClaveConfirmar", confirmar);
+
+                const res = await fetch("CambiarClaveServlet", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: params.toString()
+                });
+
+                const data = await res.json();
+                if (data.estado === "OK") {
+                    feedback.className = "modal-feedback success";
+                    feedback.innerHTML = '<strong>¡Éxito!</strong> ' + data.mensaje + '<br><span style="font-size:0.75rem;">Sincronizado en memoria para todos los clientes (Web, Consola, Escritorio y Móvil).</span>';
+                    setTimeout(() => {
+                        cerrarModalClave();
+                    }, 2500);
+                } else {
+                    feedback.className = "modal-feedback error";
+                    feedback.innerText = '[' + data.codigo + '] ' + data.mensaje;
+                }
+            } catch (err) {
+                feedback.className = "modal-feedback error";
+                feedback.innerText = "Error al conectar con CambiarClaveServlet: " + err.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Actualizar Contraseña";
             }
         }
     </script>

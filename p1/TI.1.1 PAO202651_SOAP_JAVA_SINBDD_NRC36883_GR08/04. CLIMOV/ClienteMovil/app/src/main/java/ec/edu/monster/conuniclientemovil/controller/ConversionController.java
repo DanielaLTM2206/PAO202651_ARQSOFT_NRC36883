@@ -21,6 +21,10 @@ public class ConversionController {
         void onHistorial(List<RegistroHistorial> items, String error);
     }
 
+    public interface CambiarClaveCallback {
+        void onResult(ec.edu.monster.conuniclientemovil.model.LoginResult result);
+    }
+
     private final SoapClient soapClient;
     private final ExecutorService executorService;
 
@@ -65,6 +69,17 @@ public class ConversionController {
                 }
                 callback.onHistorial(Collections.emptyList(),
                         cause.getClass().getSimpleName() + ": " + cause.getMessage());
+            }
+        });
+    }
+
+    public void cambiarContrasenia(String baseUrl, String actual, String nueva, String token, CambiarClaveCallback callback) {
+        executorService.execute(() -> {
+            try {
+                ec.edu.monster.conuniclientemovil.model.LoginResult result = soapClient.cambiarContrasenia(baseUrl, actual, nueva, token).get();
+                callback.onResult(result);
+            } catch (Exception exception) {
+                callback.onResult(ec.edu.monster.conuniclientemovil.model.LoginResult.error("SYS-001", extractMessage(exception)));
             }
         });
     }

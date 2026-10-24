@@ -43,6 +43,7 @@ public class ConversionActivity extends AppCompatActivity {
 
     private Button btnConvertir;
     private Button btnLogout;
+    private Button btnCambiarClave;
     private Button btnRefrescarHistorial;
 
     private TextView tvEstado;
@@ -102,6 +103,7 @@ public class ConversionActivity extends AppCompatActivity {
 
         btnConvertir = findViewById(R.id.btnConvertir);
         btnLogout = findViewById(R.id.btnLogout);
+        btnCambiarClave = findViewById(R.id.btnCambiarClave);
         btnRefrescarHistorial = findViewById(R.id.btnRefrescarHistorial);
 
         tvEstado = findViewById(R.id.tvEstado);
@@ -170,7 +172,70 @@ public class ConversionActivity extends AppCompatActivity {
     private void setupActions() {
         btnConvertir.setOnClickListener(v -> doConvert());
         btnLogout.setOnClickListener(v -> doLogout());
+        if (btnCambiarClave != null) {
+            btnCambiarClave.setOnClickListener(v -> showChangePasswordDialog());
+        }
         btnRefrescarHistorial.setOnClickListener(v -> cargarHistorial());
+    }
+
+    private void showChangePasswordDialog() {
+        android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
+        layout.setOrientation(android.widget.LinearLayout.VERTICAL);
+        layout.setPadding(50, 40, 50, 10);
+
+        final android.widget.EditText etActual = new android.widget.EditText(this);
+        etActual.setHint("Contraseña actual");
+        etActual.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        layout.addView(etActual);
+
+        final android.widget.EditText etNueva = new android.widget.EditText(this);
+        etNueva.setHint("Nueva contraseña");
+        etNueva.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        layout.addView(etNueva);
+
+        final android.widget.EditText etConfirmar = new android.widget.EditText(this);
+        etConfirmar.setHint("Confirmar nueva contraseña");
+        etConfirmar.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        layout.addView(etConfirmar);
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("🔑 Cambiar Contraseña")
+                .setMessage("Se sincronizará en todos los clientes (Web, Móvil, Escritorio, Consola).")
+                .setView(layout)
+                .setPositiveButton("Actualizar", (dialog, which) -> {
+                    String actual = etActual.getText().toString().trim();
+                    String nueva = etNueva.getText().toString().trim();
+                    String confirmar = etConfirmar.getText().toString().trim();
+
+                    if (actual.isEmpty() || nueva.isEmpty()) {
+                        showToast("Debe ingresar la contraseña actual y la nueva.");
+                        return;
+                    }
+                    if (!nueva.equals(confirmar)) {
+                        showToast("La confirmación no coincide.");
+                        return;
+                    }
+
+                    setBusy(true);
+                    conversionController.cambiarContrasenia(baseUrl, actual, nueva, currentToken, res -> runOnUiThread(() -> {
+                        setBusy(false);
+                        if (res.isSuccess()) {
+                            new androidx.appcompat.app.AlertDialog.Builder(this)
+                                    .setTitle("Éxito")
+                                    .setMessage(res.getErrorMessage() != null ? res.getErrorMessage() : "Contraseña actualizada correctamente en memoria.")
+                                    .setPositiveButton("OK", null)
+                                    .show();
+                        } else {
+                            new androidx.appcompat.app.AlertDialog.Builder(this)
+                                    .setTitle("Error [" + res.getCodigo() + "]")
+                                    .setMessage(res.getErrorMessage())
+                                    .setPositiveButton("OK", null)
+                                    .show();
+                        }
+                    }));
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
     private void doConvert() {

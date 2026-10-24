@@ -13,7 +13,8 @@ public enum OpcionMenu {
         CONVERTIR_MASA("2", "Convertir Masa"),
         CONVERTIR_TEMPERATURA("3", "Convertir Temperatura"),
         VER_HISTORIAL("4", "Ver Historial Global de Conversiones (Multi-canal)"),
-        SALIR("5", "Salir");
+        CAMBIAR_CONTRASENIA("5", "Cambiar Contraseña (Sincronización Global)"),
+        SALIR("6", "Salir");
 
         private final String numero;
         private final String descripcion;

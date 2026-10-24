@@ -502,4 +502,11 @@ public class ObjectFactory {
         return new JAXBElement<>(_ConsultarHistorialResponse_QNAME, ConsultarHistorialResponse.class, null, value);
     }
 
+
+    public CambiarContrasenia createCambiarContrasenia() {
+        return new CambiarContrasenia();
+    }
+    public CambiarContraseniaResponse createCambiarContraseniaResponse() {
+        return new CambiarContraseniaResponse();
+    }
 }

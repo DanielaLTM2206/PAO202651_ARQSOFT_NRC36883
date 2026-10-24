@@ -1,5 +1,5 @@
 @startuml
-title "DS_07_ERROR_VALIDACION_400"
+title "DS_08_ERROR_VALIDACION_400"
 autonumber
 
 actor "APLICACION" as Aplicacion

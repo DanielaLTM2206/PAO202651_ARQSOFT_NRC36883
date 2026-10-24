@@ -20,7 +20,7 @@ public class ServicioSeguridad {
 
     // Credenciales válidas para el actor Monster
     private static final String USUARIO_VALIDO = "monster";
-    private static final String CLAVE_VALIDA = "monster9";
+    private static volatile String claveActual = "monster9";
 
     // Tiempo de vida del token (30 minutos según diseño de sesión)
     private static final Duration TOKEN_TTL = Duration.ofMinutes(30);
@@ -63,13 +63,43 @@ public class ServicioSeguridad {
         String userTrim = usuario.trim();
         String passTrim = clave.trim();
 
-        if (USUARIO_VALIDO.equals(userTrim) && CLAVE_VALIDA.equals(passTrim)) {
+        if (USUARIO_VALIDO.equals(userTrim) && claveActual.equals(passTrim)) {
             String token = UUID.randomUUID().toString();
             sesionesActivas.put(token, new SesionInfo(userTrim));
             return RespuestaAutenticacion.exitosa(token);
         } else {
             return RespuestaAutenticacion.error("Credenciales incorrectas. Acceso denegado (AUTH-001).");
         }
+    }
+
+    /**
+     * RF-08: Cambio de contraseña centralizado en memoria.
+     * Si un cliente cambia la contraseña, el cambio se refleja inmediatamente para todos los demás clientes.
+     */
+    public RespuestaAutenticacion cambiarContrasenia(String contraseniaActual, String contraseniaNueva, String token) {
+        ResultadoValidacionToken val = validarToken(token);
+        if (!val.isValido()) {
+            return RespuestaAutenticacion.error(val.getMensaje());
+        }
+
+        if (contraseniaActual == null || contraseniaActual.trim().isEmpty() ||
+            contraseniaNueva == null || contraseniaNueva.trim().isEmpty()) {
+            return RespuestaAutenticacion.error("Las contraseñas no pueden estar vacías.");
+        }
+
+        String actualTrim = contraseniaActual.trim();
+        String nuevaTrim = contraseniaNueva.trim();
+
+        if (!claveActual.equals(actualTrim)) {
+            return RespuestaAutenticacion.error("La contraseña actual es incorrecta (AUTH-002).");
+        }
+
+        if (claveActual.equals(nuevaTrim)) {
+            return RespuestaAutenticacion.error("La nueva contraseña no puede ser idéntica a la actual.");
+        }
+
+        claveActual = nuevaTrim;
+        return new RespuestaAutenticacion("OK", "200", "Contraseña cambiada exitosamente para todos los clientes.", token);
     }
 
     /**

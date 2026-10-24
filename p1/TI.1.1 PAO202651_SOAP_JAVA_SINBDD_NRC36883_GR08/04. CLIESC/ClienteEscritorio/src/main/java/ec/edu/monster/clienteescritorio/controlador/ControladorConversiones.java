@@ -147,4 +147,34 @@ public class ControladorConversiones {
         }
         return Collections.emptyList();
     }
+
+    /**
+     * RF-08 / DS_07: Cambia la contraseña en el servidor central SOAP.
+     * La actualización se propaga inmediatamente a todos los demás clientes (Web, Consola, Móvil).
+     */
+    public RespuestaAutenticacion cambiarContrasenia(String actual, String nueva) {
+        try {
+            if (port == null) {
+                RespuestaAutenticacion err = new RespuestaAutenticacion();
+                err.setEstado("ERROR");
+                err.setCodigo("CONN-001");
+                err.setMensaje("No hay conexión con el servidor SOAP");
+                return err;
+            }
+            if (token == null) {
+                RespuestaAutenticacion err = new RespuestaAutenticacion();
+                err.setEstado("ERROR");
+                err.setCodigo("AUTH-001");
+                err.setMensaje("No hay sesión activa.");
+                return err;
+            }
+            return port.cambiarContrasenia(actual, nueva, token);
+        } catch (Exception e) {
+            RespuestaAutenticacion err = new RespuestaAutenticacion();
+            err.setEstado("ERROR");
+            err.setCodigo("SOAP-ERR");
+            err.setMensaje("Error al cambiar contraseña: " + e.getMessage());
+            return err;
+        }
+    }
 }

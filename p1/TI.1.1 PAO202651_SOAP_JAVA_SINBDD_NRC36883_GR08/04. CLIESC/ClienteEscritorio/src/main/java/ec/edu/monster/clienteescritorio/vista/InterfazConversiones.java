@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -221,13 +223,20 @@ public class InterfazConversiones extends JFrame {
         } catch (Exception ex) {
             System.err.println("No se pudo cargar la imagen de Sullivan: " + ex.getMessage());
         }
-        lblSulley.setBounds(465, 60, 235, 345);
+        lblSulley.setBounds(465, 45, 235, 315);
         mainPanel.add(lblSulley);
 
-        // 8. Botón Cerrar Sesión con ModernButton (Gris Pizarra elegante con texto Blanco)
+        // 8. Botón Cambiar Contraseña (RF-08 / DS_07 - Sincronización Global)
+        ModernButton btnCambiarClave = new ModernButton("🔑 Cambiar Contraseña", new Color(37, 99, 235), Color.WHITE, 8);
+        btnCambiarClave.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnCambiarClave.setBounds(465, 372, 235, 38);
+        btnCambiarClave.addActionListener(e -> mostrarDialogoCambiarClave());
+        mainPanel.add(btnCambiarClave);
+
+        // 9. Botón Cerrar Sesión con ModernButton (Gris Pizarra elegante con texto Blanco)
         btnCerrarSesion = new ModernButton("Cerrar Sesión", new Color(51, 65, 85), Color.WHITE, 8);
         btnCerrarSesion.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnCerrarSesion.setBounds(465, 417, 235, 38);
+        btnCerrarSesion.setBounds(465, 418, 235, 38);
         btnCerrarSesion.addActionListener(e -> {
             controlador.cerrarSesion();
             new LoginFrame(controlador).setVisible(true);
@@ -479,6 +488,50 @@ public class InterfazConversiones extends JFrame {
                 }
             });
         }).start();
+    }
+
+    private void mostrarDialogoCambiarClave() {
+        JPasswordField txtActual = new JPasswordField();
+        JPasswordField txtNueva = new JPasswordField();
+        JPasswordField txtConfirmar = new JPasswordField();
+
+        JPanel panel = new JPanel(new java.awt.GridLayout(0, 1, 5, 5));
+        panel.add(new JLabel("Contraseña Actual:"));
+        panel.add(txtActual);
+        panel.add(new JLabel("Nueva Contraseña:"));
+        panel.add(txtNueva);
+        panel.add(new JLabel("Confirmar Nueva Contraseña:"));
+        panel.add(txtConfirmar);
+
+        int result = JOptionPane.showConfirmDialog(this, panel,
+                "Cambiar Contraseña - Sincronización Global",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            String actual = new String(txtActual.getPassword()).trim();
+            String nueva = new String(txtNueva.getPassword()).trim();
+            String confirmar = new String(txtConfirmar.getPassword()).trim();
+
+            if (actual.isEmpty() || nueva.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar tanto la contraseña actual como la nueva.", "Campos Requeridos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (!nueva.equals(confirmar)) {
+                JOptionPane.showMessageDialog(this, "La nueva contraseña y la confirmación no coinciden.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            var resp = controlador.cambiarContrasenia(actual, nueva);
+            if ("OK".equalsIgnoreCase(resp.getEstado())) {
+                JOptionPane.showMessageDialog(this,
+                        resp.getMensaje() + "\n\nSincronizado en memoria para todos los canales (Web, Móvil, Escritorio, Consola).",
+                        "Contraseña Actualizada", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "[" + resp.getCodigo() + "] " + resp.getMensaje(),
+                        "Error al Cambiar Contraseña", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     public static void main(String args[]) {

@@ -183,4 +183,21 @@ public interface WSConversorUnidades {
         @WebParam(name = "token", targetNamespace = "")
         String token);
 
+
+    /**
+     * Cambiar contrasenia de usuario centralizada en memoria.
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "cambiarContrasenia", targetNamespace = "http://monster.edu.ec/services", className = "ec.edu.monster.clientesws.CambiarContrasenia")
+    @ResponseWrapper(localName = "cambiarContraseniaResponse", targetNamespace = "http://monster.edu.ec/services", className = "ec.edu.monster.clientesws.CambiarContraseniaResponse")
+    @Action(input = "http://monster.edu.ec/services/WSConversorUnidades/cambiarContraseniaRequest", output = "http://monster.edu.ec/services/WSConversorUnidades/cambiarContraseniaResponse")
+    public RespuestaAutenticacion cambiarContrasenia(
+        @WebParam(name = "contraseniaActual", targetNamespace = "")
+        String contraseniaActual,
+        @WebParam(name = "contraseniaNueva", targetNamespace = "")
+        String contraseniaNueva,
+        @WebParam(name = "token", targetNamespace = "")
+        String token);
+
 }
