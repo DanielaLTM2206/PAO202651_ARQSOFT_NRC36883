@@ -33,7 +33,7 @@ public class ControladorConversiones {
             this.port = service.getWSConversorUnidadesPort();
             ((BindingProvider) port).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, ENDPOINT_URL);
         } catch (Exception e) {
-            this.ultimoError = "Error conectando con el servicio SOAP: " + e.getMessage();
+            this.ultimoError = "No se pudo conectar con el servidor. Verifica que el servicio esté activo.";
         }
     }
 
@@ -43,7 +43,7 @@ public class ControladorConversiones {
     public boolean iniciarSesion(String usuario, String clave) {
         try {
             if (port == null) {
-                this.ultimoError = "No se pudo conectar al servidor SOAP. ¿Payara está iniciado?";
+                this.ultimoError = "No se pudo conectar con el servidor. Verifica que el servicio esté activo.";
                 return false;
             }
             RespuestaAutenticacion resp = port.autenticar(usuario, clave);
@@ -52,11 +52,11 @@ public class ControladorConversiones {
                 this.ultimoError = null;
                 return true;
             } else {
-                this.ultimoError = resp.getMensaje() != null ? resp.getMensaje() : "Credenciales inválidas";
+                this.ultimoError = resp.getMensaje() != null ? resp.getMensaje() : "Credenciales incorrectas. Verifica tus datos.";
                 return false;
             }
         } catch (Exception e) {
-            this.ultimoError = "Fallo de comunicación SOAP: " + e.getMessage();
+            this.ultimoError = "No se pudo conectar con el servidor de autenticación.";
             return false;
         }
     }
@@ -102,7 +102,7 @@ public class ControladorConversiones {
                 RespuestaConversion err = new RespuestaConversion();
                 err.setEstado("ERROR");
                 err.setCodigo("CONN-001");
-                err.setMensaje("No hay conexión con el servidor SOAP");
+                err.setMensaje("No se pudo conectar con el servidor.");
                 return err;
             }
             return port.convertir(valor, origen, destino, token);
@@ -110,7 +110,7 @@ public class ControladorConversiones {
             RespuestaConversion err = new RespuestaConversion();
             err.setEstado("ERROR");
             err.setCodigo("SOAP-ERR");
-            err.setMensaje("Excepción SOAP: " + e.getMessage());
+            err.setMensaje("No se pudo completar la conversión en el servidor.");
             return err;
         }
     }
@@ -158,7 +158,7 @@ public class ControladorConversiones {
                 RespuestaAutenticacion err = new RespuestaAutenticacion();
                 err.setEstado("ERROR");
                 err.setCodigo("CONN-001");
-                err.setMensaje("No hay conexión con el servidor SOAP");
+                err.setMensaje("No se pudo conectar con el servidor.");
                 return err;
             }
             if (token == null) {
@@ -173,7 +173,7 @@ public class ControladorConversiones {
             RespuestaAutenticacion err = new RespuestaAutenticacion();
             err.setEstado("ERROR");
             err.setCodigo("SOAP-ERR");
-            err.setMensaje("Error al cambiar contraseña: " + e.getMessage());
+            err.setMensaje("No se pudo actualizar la contraseña en el servidor.");
             return err;
         }
     }

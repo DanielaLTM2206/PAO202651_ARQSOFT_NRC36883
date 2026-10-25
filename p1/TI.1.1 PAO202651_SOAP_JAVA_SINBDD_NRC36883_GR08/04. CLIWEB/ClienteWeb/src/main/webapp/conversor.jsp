@@ -314,7 +314,7 @@
             background-color: #475569;
             cursor: not-allowed;
         }
-        /* Tarjeta de Respuesta Estructurada (RF-06 / CU-07) */
+        /* Tarjeta de Resultado de la Conversión */
         .response-card {
             background-color: #0f172a;
             border: 1px solid #334155;
@@ -521,17 +521,16 @@
                 <button type="submit" id="btnConvertir" class="btn-convert">CONVERTIR AHORA</button>
             </form>
 
-            <!-- Tarjeta de Respuesta Estructurada (RF-06 / CU-07) -->
+            <!-- Tarjeta de Resultado de la Conversión -->
             <div class="response-card">
                 <div class="response-header">
-                    <span class="response-title">Respuesta Estructurada del Servidor (RF-06)</span>
+                    <span class="response-title">Resultado de la Conversión</span>
                     <div class="badges-container">
                         <span id="badgeEstado" class="status-badge badge-waiting">ESPERANDO</span>
-                        <span id="badgeCodigo" class="code-badge">CÓDIGO: ---</span>
                     </div>
                 </div>
                 <div id="displayResultado" class="result-display">---</div>
-                <div id="displayMensaje" class="server-message">Seleccione parámetros y presione "Convertir Ahora".</div>
+                <div id="displayMensaje" class="server-message">Selecciona las unidades, ingresa un valor y presiona "Convertir Ahora".</div>
             </div>
 
             <!-- Historial Global Compartido (Multi-canal) -->
@@ -577,7 +576,7 @@
         </div>
     </div>
 
-    <!-- Modal Cambiar Contraseña (RF-08 / DS_07 - Sincronización Multi-canal) -->
+    <!-- Modal Cambiar Contraseña (Sincronización Multi-canal) -->
     <div id="modalClave" class="modal-backdrop">
         <div class="modal-content">
             <div class="modal-header">
@@ -644,17 +643,105 @@
 
                 const btn = document.getElementById("btnConvertir");
                 const badgeEstado = document.getElementById("badgeEstado");
-                const badgeCodigo = document.getElementById("badgeCodigo");
                 const displayResultado = document.getElementById("displayResultado");
                 const displayMensaje = document.getElementById("displayMensaje");
+
+                const valInput = document.getElementById("txtValor").value.trim();
+                const categoria = document.getElementById("cmbTipo").value;
+                const origen = document.getElementById("listaOrigen").value;
+                const destino = document.getElementById("listaDestino").value;
+
+                // Validar valor vacío
+                if (!valInput) {
+                    badgeEstado.className = "status-badge badge-error";
+                    badgeEstado.innerText = "ESTADO: ERROR";
+                    displayResultado.className = "result-display result-error";
+                    displayResultado.innerText = "Dato Requerido";
+                    displayMensaje.innerText = "Por favor ingresa un valor numérico para convertir.";
+                    document.getElementById("txtValor").focus();
+                    return;
+                }
+
+                // Validar número válido
+                const valor = parseFloat(valInput);
+                if (isNaN(valor)) {
+                    badgeEstado.className = "status-badge badge-error";
+                    badgeEstado.innerText = "ESTADO: ERROR";
+                    displayResultado.className = "result-display result-error";
+                    displayResultado.innerText = "Número Inválido";
+                    displayMensaje.innerText = "El valor debe ser un número válido (ej. 100 o 3.14).";
+                    document.getElementById("txtValor").focus();
+                    return;
+                }
+
+                // Validar coherencia física
+                if (categoria === "Longitud" && valor < 0) {
+                    badgeEstado.className = "status-badge badge-error";
+                    badgeEstado.innerText = "ESTADO: ERROR";
+                    displayResultado.className = "result-display result-error";
+                    displayResultado.innerText = "Valor No Válido";
+                    displayMensaje.innerText = "La longitud no puede ser un valor negativo.";
+                    document.getElementById("txtValor").focus();
+                    return;
+                }
+
+                if (categoria === "Masa" && valor < 0) {
+                    badgeEstado.className = "status-badge badge-error";
+                    badgeEstado.innerText = "ESTADO: ERROR";
+                    displayResultado.className = "result-display result-error";
+                    displayResultado.innerText = "Valor No Válido";
+                    displayMensaje.innerText = "La masa no puede ser un valor negativo.";
+                    document.getElementById("txtValor").focus();
+                    return;
+                }
+
+                if (categoria === "Temperatura") {
+                    const oNorm = origen.toLowerCase();
+                    if (oNorm === "kelvin" && valor < 0) {
+                        badgeEstado.className = "status-badge badge-error";
+                        badgeEstado.innerText = "ESTADO: ERROR";
+                        displayResultado.className = "result-display result-error";
+                        displayResultado.innerText = "Cero Absoluto";
+                        displayMensaje.innerText = "La temperatura en Kelvin no puede ser menor a 0 K (cero absoluto).";
+                        document.getElementById("txtValor").focus();
+                        return;
+                    }
+                    if (oNorm === "celsius" && valor < -273.15) {
+                        badgeEstado.className = "status-badge badge-error";
+                        badgeEstado.innerText = "ESTADO: ERROR";
+                        displayResultado.className = "result-display result-error";
+                        displayResultado.innerText = "Cero Absoluto";
+                        displayMensaje.innerText = "La temperatura en Celsius no puede ser menor a -273.15 °C (cero absoluto).";
+                        document.getElementById("txtValor").focus();
+                        return;
+                    }
+                    if (oNorm === "fahrenheit" && valor < -459.67) {
+                        badgeEstado.className = "status-badge badge-error";
+                        badgeEstado.innerText = "ESTADO: ERROR";
+                        displayResultado.className = "result-display result-error";
+                        displayResultado.innerText = "Cero Absoluto";
+                        displayMensaje.innerText = "La temperatura en Fahrenheit no puede ser menor a -459.67 °F (cero absoluto).";
+                        document.getElementById("txtValor").focus();
+                        return;
+                    }
+                }
+
+                // Mismas unidades
+                if (origen === destino) {
+                    badgeEstado.className = "status-badge badge-ok";
+                    badgeEstado.innerText = "ESTADO: OK";
+                    displayResultado.className = "result-display";
+                    displayResultado.innerText = Number(valor).toFixed(4) + " " + destino;
+                    displayMensaje.innerText = "Las unidades de origen y destino son iguales (" + origen + "). El valor se mantiene idéntico.";
+                    return;
+                }
 
                 btn.disabled = true;
                 badgeEstado.className = "status-badge badge-waiting";
                 badgeEstado.innerText = "PROCESANDO";
-                badgeCodigo.innerText = "CÓDIGO: ---";
                 displayResultado.className = "result-display";
                 displayResultado.innerText = "...";
-                displayMensaje.innerText = "Consultando Web Service SOAP GR08 en Payara 7...";
+                displayMensaje.innerText = "Consultando el servicio de conversión...";
 
                 const formData = new URLSearchParams(new FormData(this));
 
@@ -674,31 +761,29 @@
                     if (data.estado === "OK") {
                         badgeEstado.className = "status-badge badge-ok";
                         badgeEstado.innerText = "ESTADO: OK";
-                        badgeCodigo.innerText = "CÓDIGO: " + data.codigo;
                         const dest = document.getElementById("listaDestino").value;
                         displayResultado.className = "result-display";
                         displayResultado.innerText = Number(data.resultado).toFixed(4) + " " + dest;
-                        displayMensaje.innerText = data.mensaje;
-                        // Actualizar historial central inmediatamente
+                        displayMensaje.innerText = data.mensaje || "Conversión realizada con éxito.";
                         cargarHistorial();
                     } else {
                         badgeEstado.className = "status-badge badge-error";
                         badgeEstado.innerText = "ESTADO: ERROR";
-                        badgeCodigo.innerText = "CÓDIGO: " + (data.codigo || "ERR");
+                        displayResultado.className = "result-display result-error";
+                        displayResultado.innerText = "Error";
                         if (data.codigo === "AUTH-001") {
-                            displayMensaje.innerHTML = (data.mensaje || "Token inválido.") + "<br><span style='color:#38bdf8; font-size:0.85rem;'>El servidor se reinició o tu token expiró. Haz clic en <strong>'Cerrar Sesión'</strong> y vuelve a ingresar.</span>";
+                            displayMensaje.innerHTML = "Tu sesión ha expirado por inactividad o reinicio del servidor.<br><span style='color:#38bdf8; font-size:0.85rem;'>Haz clic en <strong>'Cerrar Sesión'</strong> e ingresa nuevamente.</span>";
                         } else {
-                            displayMensaje.innerText = data.mensaje || "Error desconocido devuelto por el Web Service.";
+                            displayMensaje.innerText = data.mensaje || "No se pudo realizar la conversión.";
                         }
                     }
 
                 } catch (err) {
                     badgeEstado.className = "status-badge badge-error";
                     badgeEstado.innerText = "ESTADO: ERROR";
-                    badgeCodigo.innerText = "CÓDIGO: SYS-001";
                     displayResultado.className = "result-display result-error";
-                    displayResultado.innerText = "Error de Conexión";
-                    displayMensaje.innerText = "No se pudo conectar con el servidor: " + err.message;
+                    displayResultado.innerText = "Sin Conexión";
+                    displayMensaje.innerText = "No se pudo conectar con el servidor. Verifica que el servicio esté activo e inténtalo de nuevo.";
                 } finally {
                     btn.disabled = false;
                 }
@@ -755,15 +840,37 @@
 
         async function enviarCambioClave(e) {
             e.preventDefault();
-            const actual = document.getElementById("txtClaveActual").value;
-            const nueva = document.getElementById("txtClaveNueva").value;
-            const confirmar = document.getElementById("txtClaveConfirmar").value;
+            const actual = document.getElementById("txtClaveActual").value.trim();
+            const nueva = document.getElementById("txtClaveNueva").value.trim();
+            const confirmar = document.getElementById("txtClaveConfirmar").value.trim();
             const feedback = document.getElementById("modalClaveFeedback");
             const btn = document.getElementById("btnGuardarClave");
 
+            // Validar campos requeridos
+            if (!actual || !nueva || !confirmar) {
+                feedback.className = "modal-feedback error";
+                feedback.innerText = "Por favor completa todos los campos de contraseña.";
+                return;
+            }
+
+            // Validar longitud
+            if (nueva.length < 4) {
+                feedback.className = "modal-feedback error";
+                feedback.innerText = "La nueva contraseña debe tener al menos 4 caracteres.";
+                return;
+            }
+
+            // Validar nueva diferente a actual
+            if (actual === nueva) {
+                feedback.className = "modal-feedback error";
+                feedback.innerText = "La nueva contraseña debe ser diferente a la contraseña actual.";
+                return;
+            }
+
+            // Validar confirmación
             if (nueva !== confirmar) {
                 feedback.className = "modal-feedback error";
-                feedback.innerText = "La nueva contraseña y la confirmación no coinciden.";
+                feedback.innerText = "La confirmación no coincide con la nueva contraseña.";
                 return;
             }
 
@@ -785,17 +892,17 @@
                 const data = await res.json();
                 if (data.estado === "OK") {
                     feedback.className = "modal-feedback success";
-                    feedback.innerHTML = '<strong>¡Éxito!</strong> ' + data.mensaje + '<br><span style="font-size:0.75rem;">Sincronizado en memoria para todos los clientes (Web, Consola, Escritorio y Móvil).</span>';
+                    feedback.innerHTML = '<strong>¡Éxito!</strong> ' + data.mensaje + '<br><span style="font-size:0.75rem;">Sincronizado inmediatamente en todos los clientes (Web, Consola, Escritorio y Móvil).</span>';
                     setTimeout(() => {
                         cerrarModalClave();
                     }, 2500);
                 } else {
                     feedback.className = "modal-feedback error";
-                    feedback.innerText = '[' + data.codigo + '] ' + data.mensaje;
+                    feedback.innerText = data.mensaje || "No se pudo actualizar la contraseña.";
                 }
             } catch (err) {
                 feedback.className = "modal-feedback error";
-                feedback.innerText = "Error al conectar con CambiarClaveServlet: " + err.message;
+                feedback.innerText = "No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.";
             } finally {
                 btn.disabled = false;
                 btn.innerText = "Actualizar Contraseña";

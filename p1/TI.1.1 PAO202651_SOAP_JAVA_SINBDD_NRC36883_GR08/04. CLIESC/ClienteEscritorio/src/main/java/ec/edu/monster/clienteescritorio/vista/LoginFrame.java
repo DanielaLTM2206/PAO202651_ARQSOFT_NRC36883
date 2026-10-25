@@ -136,7 +136,7 @@ public class LoginFrame extends JFrame {
 
         if (usuario.isEmpty() || clave.isEmpty()) {
             lblNotificaciones.setForeground(new Color(239, 68, 68));
-            lblNotificaciones.setText("Complete usuario y clave.");
+            lblNotificaciones.setText("Por favor ingresa usuario y clave.");
             return;
         }
 
@@ -154,7 +154,7 @@ public class LoginFrame extends JFrame {
             } else {
                 lblNotificaciones.setForeground(new Color(239, 68, 68));
                 String err = controlador.getUltimoError();
-                lblNotificaciones.setText(err != null ? err : "Credenciales incorrectas");
+                lblNotificaciones.setText(err != null ? err : "Credenciales incorrectas. Verifica tus datos.");
                 btnIniciarSesion.setEnabled(true);
             }
         });

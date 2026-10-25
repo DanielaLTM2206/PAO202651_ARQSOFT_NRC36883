@@ -50,12 +50,12 @@ public class MotorConversion {
 
         // 2. RF-04 (CU-06), CU-11: Validación de Parámetros no nulos
         if (valor == null || Double.isNaN(valor) || Double.isInfinite(valor)) {
-            return RespuestaConversion.error("PARAM-001", "El valor numérico a convertir es inválido o no fue proporcionado (CU-11).");
+            return RespuestaConversion.error("PARAM-001", "El valor numérico a convertir no es válido.");
         }
 
         if (unidadOrigen == null || unidadOrigen.trim().isEmpty() ||
             unidadDestino == null || unidadDestino.trim().isEmpty()) {
-            return RespuestaConversion.error("PARAM-001", "Las unidades de origen y destino son obligatorias y no pueden estar vacías (CU-11).");
+            return RespuestaConversion.error("PARAM-001", "Las unidades de origen y destino son obligatorias y no pueden estar vacías.");
         }
 
         String origenLimpio = unidadOrigen.trim();
@@ -63,10 +63,10 @@ public class MotorConversion {
 
         // 3. CU-10: Validación de que ambas unidades pertenezcan al catálogo
         if (!catalogoUnidades.esUnidadSoportada(origenLimpio)) {
-            return RespuestaConversion.error("UNIT-001", "La unidad de origen '" + origenLimpio + "' no se encuentra soportada en el catálogo (CU-10).");
+            return RespuestaConversion.error("UNIT-001", "La unidad de origen '" + origenLimpio + "' no se encuentra en el catálogo de unidades soportadas.");
         }
         if (!catalogoUnidades.esUnidadSoportada(destinoLimpio)) {
-            return RespuestaConversion.error("UNIT-001", "La unidad de destino '" + destinoLimpio + "' no se encuentra soportada en el catálogo (CU-10).");
+            return RespuestaConversion.error("UNIT-001", "La unidad de destino '" + destinoLimpio + "' no se encuentra en el catálogo de unidades soportadas.");
         }
 
         // 4. RF-04 (CU-06), CU-11: Coherencia de Magnitud (Misma categoría física)
@@ -75,8 +75,27 @@ public class MotorConversion {
 
         if (catOrigen == null || catDestino == null || !catOrigen.equalsIgnoreCase(catDestino)) {
             return RespuestaConversion.error("PARAM-001", 
-                    "Inconsistencia de magnitudes físicas: No es posible convertir entre categorías diferentes ('" 
-                    + catOrigen + "' -> '" + catDestino + "') (CU-11).");
+                    "Inconsistencia de magnitudes físicas: No es posible convertir entre diferentes magnitudes ('" + catOrigen + "' y '" + catDestino + "').");
+        }
+
+        // Validación de límites físicos coherentes
+        if (CatalogoUnidades.CAT_LONGITUD.equalsIgnoreCase(catOrigen) && valor < 0) {
+            return RespuestaConversion.error("PARAM-001", "La longitud no puede ser un valor negativo.");
+        }
+        if (CatalogoUnidades.CAT_MASA.equalsIgnoreCase(catOrigen) && valor < 0) {
+            return RespuestaConversion.error("PARAM-001", "La masa no puede ser un valor negativo.");
+        }
+        if (CatalogoUnidades.CAT_TEMPERATURA.equalsIgnoreCase(catOrigen)) {
+            String oNorm = CatalogoUnidades.normalizar(origenLimpio);
+            if ("kelvin".equals(oNorm) && valor < 0) {
+                return RespuestaConversion.error("PARAM-001", "La temperatura en Kelvin no puede ser menor a 0 K (cero absoluto).");
+            }
+            if ("celsius".equals(oNorm) && valor < -273.15) {
+                return RespuestaConversion.error("PARAM-001", "La temperatura en Celsius no puede ser menor a -273.15 °C (cero absoluto).");
+            }
+            if ("fahrenheit".equals(oNorm) && valor < -459.67) {
+                return RespuestaConversion.error("PARAM-001", "La temperatura en Fahrenheit no puede ser menor a -459.67 °F (cero absoluto).");
+            }
         }
 
         // 5. RF-05 (CU-04): Ejecución del Motor Matemático según categoría

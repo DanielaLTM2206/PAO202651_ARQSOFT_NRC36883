@@ -207,12 +207,20 @@ public class ConversionActivity extends AppCompatActivity {
                     String nueva = etNueva.getText().toString().trim();
                     String confirmar = etConfirmar.getText().toString().trim();
 
-                    if (actual.isEmpty() || nueva.isEmpty()) {
-                        showToast("Debe ingresar la contraseña actual y la nueva.");
+                    if (actual.isEmpty() || nueva.isEmpty() || confirmar.isEmpty()) {
+                        showToast("Por favor completa todos los campos de contraseña.");
+                        return;
+                    }
+                    if (nueva.length() < 4) {
+                        showToast("La nueva contraseña debe tener al menos 4 caracteres.");
+                        return;
+                    }
+                    if (actual.equals(nueva)) {
+                        showToast("La nueva contraseña debe ser diferente a la actual.");
                         return;
                     }
                     if (!nueva.equals(confirmar)) {
-                        showToast("La confirmación no coincide.");
+                        showToast("La confirmación no coincide con la nueva contraseña.");
                         return;
                     }
 
@@ -227,7 +235,7 @@ public class ConversionActivity extends AppCompatActivity {
                                     .show();
                         } else {
                             new androidx.appcompat.app.AlertDialog.Builder(this)
-                                    .setTitle("Error [" + res.getCodigo() + "]")
+                                    .setTitle("Error")
                                     .setMessage(res.getErrorMessage())
                                     .setPositiveButton("OK", null)
                                     .show();
@@ -248,12 +256,49 @@ public class ConversionActivity extends AppCompatActivity {
                 || TextUtils.isEmpty(selectedServiceName)
                 || TextUtils.isEmpty(origin)
                 || TextUtils.isEmpty(destination)) {
-            showToast("Complete todos los campos de conversión.");
+            showToast("Por favor completa todos los campos de conversión.");
             return;
         }
 
+        double val;
+        try {
+            val = Double.parseDouble(valueText);
+        } catch (NumberFormatException e) {
+            showToast("El valor debe ser un número válido (ej. 100 o 3.14).");
+            return;
+        }
+
+        // Validar coherencia física
+        if ("Longitud".equalsIgnoreCase(selectedServiceName) && val < 0) {
+            showToast("La longitud no puede ser un valor negativo.");
+            return;
+        }
+        if ("Masa".equalsIgnoreCase(selectedServiceName) && val < 0) {
+            showToast("La masa no puede ser un valor negativo.");
+            return;
+        }
+        if ("Temperatura".equalsIgnoreCase(selectedServiceName)) {
+            String oNorm = origin.toLowerCase();
+            if ("kelvin".equals(oNorm) && val < 0) {
+                showToast("La temperatura en Kelvin no puede ser menor a 0 K (cero absoluto).");
+                return;
+            }
+            if ("celsius".equals(oNorm) && val < -273.15) {
+                showToast("La temperatura no puede ser menor a -273.15 °C (cero absoluto).");
+                return;
+            }
+            if ("fahrenheit".equals(oNorm) && val < -459.67) {
+                showToast("La temperatura no puede ser menor a -459.67 °F (cero absoluto).");
+                return;
+            }
+        }
+
         if (origin.equals(destination)) {
-            showToast("Seleccione unidades diferentes para convertir.");
+            etDestinoPreview.setText(String.format(Locale.US, "%.4f", val));
+            tvEstado.setText("ESTADO: OK");
+            tvEstado.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light));
+            tvMensaje.setText("Las unidades de origen y destino son iguales (" + origin + "). El valor se mantiene idéntico.");
+            showToast("Unidades iguales: el valor se mantiene idéntico.");
             return;
         }
 

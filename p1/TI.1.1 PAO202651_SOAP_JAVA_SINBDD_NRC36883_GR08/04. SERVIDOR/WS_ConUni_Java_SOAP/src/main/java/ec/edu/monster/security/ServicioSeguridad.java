@@ -68,7 +68,7 @@ public class ServicioSeguridad {
             sesionesActivas.put(token, new SesionInfo(userTrim));
             return RespuestaAutenticacion.exitosa(token);
         } else {
-            return RespuestaAutenticacion.error("Credenciales incorrectas. Acceso denegado (AUTH-001).");
+            return RespuestaAutenticacion.error("Credenciales incorrectas. Verifica tu usuario y contraseña.");
         }
     }
 
@@ -91,9 +91,12 @@ public class ServicioSeguridad {
         String nuevaTrim = contraseniaNueva.trim();
 
         if (!claveActual.equals(actualTrim)) {
-            return RespuestaAutenticacion.error("La contraseña actual es incorrecta (AUTH-002).");
+            return RespuestaAutenticacion.error("La contraseña actual es incorrecta.");
         }
 
+                if (nuevaTrim.length() < 4) {
+            return RespuestaAutenticacion.error("La nueva contraseña debe tener al menos 4 caracteres.");
+        }
         if (claveActual.equals(nuevaTrim)) {
             return RespuestaAutenticacion.error("La nueva contraseña no puede ser idéntica a la actual.");
         }
@@ -107,7 +110,7 @@ public class ServicioSeguridad {
      */
     public ResultadoValidacionToken validarToken(String token) {
         if (token == null || token.trim().isEmpty()) {
-            return ResultadoValidacionToken.invalido("Token de seguridad no proporcionado (AUTH-001).");
+            return ResultadoValidacionToken.invalido("Sesión no válida. Inicia sesión nuevamente.");
         }
 
         String tokenLimpio = token.trim();
@@ -115,13 +118,13 @@ public class ServicioSeguridad {
 
         // CU-08: Token no coincide o no existe
         if (sesion == null) {
-            return ResultadoValidacionToken.invalido("Token inválido o no reconocido por el servidor (AUTH-001).");
+            return ResultadoValidacionToken.invalido("Sesión no válida o expirada. Inicia sesión nuevamente.");
         }
 
         // CU-09: Token expirado por inactividad
         if (sesion.estaExpirada()) {
             sesionesActivas.remove(tokenLimpio);
-            return ResultadoValidacionToken.expirado("La sesión del token ha expirado. Por favor autentíquese nuevamente (AUTH-001).");
+            return ResultadoValidacionToken.expirado("Tu sesión ha expirado por inactividad. Inicia sesión nuevamente.");
         }
 
         // Token válido: se renueva la marca de actividad

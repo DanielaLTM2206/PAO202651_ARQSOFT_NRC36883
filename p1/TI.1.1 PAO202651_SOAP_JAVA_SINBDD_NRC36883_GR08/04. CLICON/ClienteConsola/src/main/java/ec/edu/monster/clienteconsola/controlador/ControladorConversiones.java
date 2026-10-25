@@ -91,7 +91,7 @@ public class ControladorConversiones {
                 RespuestaConversion err = new RespuestaConversion();
                 err.setEstado("ERROR");
                 err.setCodigo("CONN-001");
-                err.setMensaje("No hay conexión con el servidor SOAP");
+                err.setMensaje("No se pudo conectar con el servidor.");
                 return err;
             }
             return port.convertir(valor, origen.toLowerCase(), destino.toLowerCase(), token);
@@ -99,7 +99,7 @@ public class ControladorConversiones {
             RespuestaConversion err = new RespuestaConversion();
             err.setEstado("ERROR");
             err.setCodigo("SOAP-ERR");
-            err.setMensaje("Excepción SOAP: " + e.getMessage());
+            err.setMensaje("No se pudo realizar la conversión en el servidor.");
             return err;
         }
     }
@@ -139,7 +139,7 @@ public class ControladorConversiones {
                 RespuestaAutenticacion err = new RespuestaAutenticacion();
                 err.setEstado("ERROR");
                 err.setCodigo("CONN-001");
-                err.setMensaje("No hay conexión con el servidor SOAP");
+                err.setMensaje("No se pudo conectar con el servidor.");
                 return err;
             }
             if (token == null) {
@@ -154,7 +154,7 @@ public class ControladorConversiones {
             RespuestaAutenticacion err = new RespuestaAutenticacion();
             err.setEstado("ERROR");
             err.setCodigo("SOAP-ERR");
-            err.setMensaje("Error al cambiar contraseña: " + e.getMessage());
+            err.setMensaje("No se pudo actualizar la contraseña.");
             return err;
         }
     }

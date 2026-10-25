@@ -54,7 +54,7 @@ public class ConversorServlet extends HttpServlet {
             RespuestaConversion errorRes = new RespuestaConversion();
             errorRes.setEstado("ERROR");
             errorRes.setCodigo("PARAM-001");
-            errorRes.setMensaje("Parámetros incompletos en la solicitud.");
+            errorRes.setMensaje("Por favor completa todos los campos para realizar la conversión.");
             errorRes.setResultado(null);
             response.getWriter().write(gson.toJson(errorRes));
             return;
@@ -67,7 +67,7 @@ public class ConversorServlet extends HttpServlet {
             RespuestaConversion errorRes = new RespuestaConversion();
             errorRes.setEstado("ERROR");
             errorRes.setCodigo("PARAM-001");
-            errorRes.setMensaje("El valor numérico ingresado no es válido.");
+            errorRes.setMensaje("El valor ingresado debe ser un número válido.");
             errorRes.setResultado(null);
             response.getWriter().write(gson.toJson(errorRes));
             return;
@@ -99,7 +99,7 @@ public class ConversorServlet extends HttpServlet {
             RespuestaConversion errorRes = new RespuestaConversion();
             errorRes.setEstado("ERROR");
             errorRes.setCodigo("SYS-001");
-            errorRes.setMensaje("Fallo al conectar con el servicio SOAP: " + e.getMessage());
+            errorRes.setMensaje("No se pudo conectar con el servidor de conversiones. Inténtalo de nuevo.");
             errorRes.setResultado(null);
             response.getWriter().write(gson.toJson(errorRes));
         }

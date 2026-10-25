@@ -53,7 +53,7 @@ public class CambiarClaveServlet extends HttpServlet {
             RespuestaAutenticacion errorRes = new RespuestaAutenticacion();
             errorRes.setEstado("ERROR");
             errorRes.setCodigo("PARAM-001");
-            errorRes.setMensaje("Debe proporcionar la contraseña actual y la nueva contraseña.");
+            errorRes.setMensaje("Por favor completa todos los campos de contraseña.");
             response.getWriter().write(gson.toJson(errorRes));
             return;
         }
@@ -83,7 +83,7 @@ public class CambiarClaveServlet extends HttpServlet {
             RespuestaAutenticacion errorRes = new RespuestaAutenticacion();
             errorRes.setEstado("ERROR");
             errorRes.setCodigo("SYS-001");
-            errorRes.setMensaje("Error al conectar con el servidor SOAP: " + e.getMessage());
+            errorRes.setMensaje("No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.");
             response.getWriter().write(gson.toJson(errorRes));
         }
     }

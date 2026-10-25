@@ -63,30 +63,42 @@ public class ClienteConsola {
     }
 
     private static void ejecutarFlujoCambioClave(InterfazConsola interfaz, ControladorConversiones controlador) {
-        System.out.println("\n--- CAMBIO DE CONTRASEÑA CENTRALIZADO (SIN BDD - MEMORIA) ---");
-        System.out.println("Nota: El cambio se sincronizará inmediatamente en todos los clientes (Web, Escritorio, Móvil).");
-        String actual = interfaz.pedirTexto("Ingresa tu contraseña ACTUAL: ");
-        String nueva = interfaz.pedirTexto("Ingresa tu NUEVA contraseña: ");
-        String confirmar = interfaz.pedirTexto("Confirma tu NUEVA contraseña: ");
+        System.out.println("\n--- CAMBIO DE CONTRASEÑA ---");
+        System.out.println("El cambio se sincronizará inmediatamente en todos los clientes (Web, Escritorio, Móvil).");
+        String actual = interfaz.pedirTexto("Ingresa tu contraseña actual: ");
+        String nueva = interfaz.pedirTexto("Ingresa tu nueva contraseña: ");
+        String confirmar = interfaz.pedirTexto("Confirma tu nueva contraseña: ");
 
+        if (actual.isEmpty() || nueva.isEmpty() || confirmar.isEmpty()) {
+            System.out.println("❌ Error: Por favor completa todos los campos de contraseña.\n");
+            return;
+        }
+        if (nueva.length() < 4) {
+            System.out.println("❌ Error: La nueva contraseña debe tener al menos 4 caracteres.\n");
+            return;
+        }
+        if (actual.equals(nueva)) {
+            System.out.println("❌ Error: La nueva contraseña debe ser diferente a la contraseña actual.\n");
+            return;
+        }
         if (!nueva.equals(confirmar)) {
-            System.out.println("❌ ERROR: La confirmación no coincide con la nueva contraseña.\n");
+            System.out.println("❌ Error: La confirmación no coincide con la nueva contraseña.\n");
             return;
         }
 
-        System.out.println("[Enviando solicitud SOAP al servidor central...]");
+        System.out.println("[Actualizando contraseña en el servidor...]");
         var resp = controlador.cambiarContrasenia(actual, nueva);
         if ("OK".equalsIgnoreCase(resp.getEstado())) {
-            System.out.println("✅ ÉXITO: " + resp.getMensaje());
-            System.out.println("La nueva clave ya está activa en memoria para todos los canales.\n");
+            System.out.println("✅ Éxito: " + (resp.getMensaje() != null ? resp.getMensaje() : "Contraseña actualizada exitosamente."));
+            System.out.println("La nueva clave ya se encuentra sincronizada en todos los clientes.\n");
         } else {
-            System.out.println("❌ ERROR [" + resp.getCodigo() + "]: " + resp.getMensaje() + "\n");
+            System.out.println("❌ Error: " + (resp.getMensaje() != null ? resp.getMensaje() : "No se pudo actualizar la contraseña.") + "\n");
         }
     }
 
     private static void mostrarHistorial(ControladorConversiones controlador) {
         System.out.println("\n==========================================================================");
-        System.out.println("     HISTORIAL GLOBAL COMPARTIDO DE CONVERSIONES (SIN BDD - MEMORIA)      ");
+        System.out.println("     HISTORIAL GLOBAL COMPARTIDO DE CONVERSIONES      ");
         System.out.println("==========================================================================");
         var items = controlador.obtenerHistorial();
         if (items == null || items.isEmpty()) {
@@ -129,14 +141,43 @@ public class ClienteConsola {
         Double valor = interfaz.pedirValorAConvertir();
         if (valor == null) return;
 
-        System.out.println("\n[Llamando Controlador...] Convirtiendo " + valor + " de " + origen.name() + " a " + destino.name());
+        // Validar coherencia física
+        String origStr = origen.name().toLowerCase();
+        if (origStr.contains("kelvin") && valor < 0) {
+            System.out.println("❌ Error: La temperatura en Kelvin no puede ser menor a 0 K (cero absoluto).\n");
+            return;
+        }
+        if (origStr.contains("celsius") && valor < -273.15) {
+            System.out.println("❌ Error: La temperatura en Celsius no puede ser menor a -273.15 °C (cero absoluto).\n");
+            return;
+        }
+        if (origStr.contains("fahrenheit") && valor < -459.67) {
+            System.out.println("❌ Error: La temperatura en Fahrenheit no puede ser menor a -459.67 °F (cero absoluto).\n");
+            return;
+        }
+        if ((origStr.contains("metro") || origStr.contains("centimetro") || origStr.contains("pie") || origStr.contains("yarda") || origStr.contains("milla")) && valor < 0) {
+            System.out.println("❌ Error: La longitud no puede ser un valor negativo.\n");
+            return;
+        }
+        if ((origStr.contains("gramo") || origStr.contains("kilogramo") || origStr.contains("libra") || origStr.contains("onza") || origStr.contains("quintal")) && valor < 0) {
+            System.out.println("❌ Error: La masa no puede ser un valor negativo.\n");
+            return;
+        }
+
+        // Mismas unidades
+        if (origen == destino) {
+            System.out.printf("ℹ️  Nota: Las unidades de origen y destino son iguales (%s).%n", origen.name());
+            System.out.printf("Resultado = %.4f %s%n%n", valor, destino.name());
+            return;
+        }
+
+        System.out.println("\n[Procesando conversión...] " + valor + " " + origen.name() + " ➔ " + destino.name());
         
         try {
-            // El controlador maneja la complejidad subyacente
             double result = operacion.ejecutar(valor, origen.name(), destino.name());
-            System.out.println("Resultado = " + result);
+            System.out.printf("Resultado = %.4f %s%n%n", result, destino.name());
         } catch (Exception ex) {
-            System.err.println("Error durante la conversion: " + ex.getMessage());
+            System.err.println("❌ No se pudo completar la conversión: " + ex.getMessage());
         }
     }
 }

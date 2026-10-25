@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
         String pass = request.getParameter("txtClave");
 
         if (user == null || user.trim().isEmpty() || pass == null || pass.trim().isEmpty()) {
-            request.setAttribute("error", "Debe ingresar usuario y contraseña.");
+            request.setAttribute("error", "Por favor ingresa usuario y contraseña.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
             return;
         }
@@ -52,14 +52,14 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("usuario", user.trim());
                 response.sendRedirect("conversor.jsp");
             } else {
-                String errorMsg = res.getMensaje() != null ? res.getMensaje() : "Credenciales inválidas.";
+                String errorMsg = res.getMensaje() != null ? res.getMensaje() : "Credenciales incorrectas. Verifica tu usuario y contraseña.";
                 request.setAttribute("error", errorMsg);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("error", "Error de conexión con el Web Service SOAP (Payara 7): " + e.getMessage());
+            request.setAttribute("error", "No se pudo conectar con el servidor. Verifica que el servicio esté activo e inténtalo de nuevo.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

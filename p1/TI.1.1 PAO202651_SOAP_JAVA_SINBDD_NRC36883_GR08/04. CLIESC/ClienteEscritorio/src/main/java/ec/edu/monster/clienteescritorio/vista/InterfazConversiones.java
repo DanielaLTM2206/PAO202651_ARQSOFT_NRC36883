@@ -178,7 +178,7 @@ public class InterfazConversiones extends JFrame {
         cardResultado.setBorder(BorderFactory.createLineBorder(new Color(51, 65, 85), 1));
         cardResultado.setBounds(30, 280, 420, 175);
 
-        JLabel lblResTitle = new JLabel("RESPUESTA ESTRUCTURADA DEL SERVIDOR (RF-06)");
+        JLabel lblResTitle = new JLabel("RESULTADO DE LA CONVERSIÓN");
         lblResTitle.setFont(new Font("Segoe UI", Font.BOLD, 11));
         lblResTitle.setForeground(new Color(148, 163, 184));
         lblResTitle.setBounds(15, 10, 390, 16);
@@ -194,7 +194,7 @@ public class InterfazConversiones extends JFrame {
         lblCodigoBadge.setFont(new Font("Segoe UI", Font.BOLD, 11));
         lblCodigoBadge.setForeground(new Color(148, 163, 184));
         lblCodigoBadge.setBounds(190, 32, 150, 20);
-        cardResultado.add(lblCodigoBadge);
+        // cardResultado.add(lblCodigoBadge); // Oculto para no mostrar códigos técnicos confusos
 
         lblResultadoNumero = new JLabel("---");
         lblResultadoNumero.setFont(new Font("Segoe UI", Font.BOLD, 26));
@@ -406,23 +406,95 @@ public class InterfazConversiones extends JFrame {
         String valStr = txtValor.getText().trim();
         String origen = (String) cbxOrigen.getSelectedItem();
         String destino = (String) cbxDestino.getSelectedItem();
+        String categoria = (String) cbxCategoria.getSelectedItem();
 
+        // 1. Validar vacío
+        if (valStr.isEmpty()) {
+            lblEstadoBadge.setText("ESTADO: ERROR");
+            lblEstadoBadge.setForeground(new Color(239, 68, 68));
+            lblResultadoNumero.setText("Dato Requerido");
+            lblResultadoNumero.setForeground(new Color(239, 68, 68));
+            lblMensajeServidor.setText("<html>Por favor ingresa un número para realizar la conversión.</html>");
+            txtValor.requestFocus();
+            return;
+        }
+
+        // 2. Validar formato numérico
         double valor;
         try {
             valor = Double.parseDouble(valStr);
         } catch (NumberFormatException ex) {
             lblEstadoBadge.setText("ESTADO: ERROR");
             lblEstadoBadge.setForeground(new Color(239, 68, 68));
-            lblCodigoBadge.setText("CÓDIGO: PARAM-001");
-            lblCodigoBadge.setForeground(new Color(239, 68, 68));
+            lblResultadoNumero.setText("Número Inválido");
+            lblResultadoNumero.setForeground(new Color(239, 68, 68));
+            lblMensajeServidor.setText("<html>El valor ingresado debe ser un número válido (ej. 100 o 3.14).</html>");
+            txtValor.requestFocus();
+            return;
+        }
+
+        // 3. Validar coherencia física
+        if ("Longitud".equalsIgnoreCase(categoria) && valor < 0) {
+            lblEstadoBadge.setText("ESTADO: ERROR");
+            lblEstadoBadge.setForeground(new Color(239, 68, 68));
             lblResultadoNumero.setText("Valor Inválido");
             lblResultadoNumero.setForeground(new Color(239, 68, 68));
-            lblMensajeServidor.setText("<html>Por favor ingrese un número válido.</html>");
+            lblMensajeServidor.setText("<html>La longitud no puede ser un valor negativo.</html>");
+            txtValor.requestFocus();
+            return;
+        }
+        if ("Masa".equalsIgnoreCase(categoria) && valor < 0) {
+            lblEstadoBadge.setText("ESTADO: ERROR");
+            lblEstadoBadge.setForeground(new Color(239, 68, 68));
+            lblResultadoNumero.setText("Valor Inválido");
+            lblResultadoNumero.setForeground(new Color(239, 68, 68));
+            lblMensajeServidor.setText("<html>La masa no puede ser un valor negativo.</html>");
+            txtValor.requestFocus();
+            return;
+        }
+        if ("Temperatura".equalsIgnoreCase(categoria)) {
+            String oNorm = origen != null ? origen.toLowerCase() : "";
+            if ("kelvin".equals(oNorm) && valor < 0) {
+                lblEstadoBadge.setText("ESTADO: ERROR");
+                lblEstadoBadge.setForeground(new Color(239, 68, 68));
+                lblResultadoNumero.setText("Cero Absoluto");
+                lblResultadoNumero.setForeground(new Color(239, 68, 68));
+                lblMensajeServidor.setText("<html>La temperatura en Kelvin no puede ser menor a 0 K (cero absoluto).</html>");
+                txtValor.requestFocus();
+                return;
+            }
+            if ("celsius".equals(oNorm) && valor < -273.15) {
+                lblEstadoBadge.setText("ESTADO: ERROR");
+                lblEstadoBadge.setForeground(new Color(239, 68, 68));
+                lblResultadoNumero.setText("Cero Absoluto");
+                lblResultadoNumero.setForeground(new Color(239, 68, 68));
+                lblMensajeServidor.setText("<html>La temperatura en Celsius no puede ser menor a -273.15 °C (cero absoluto).</html>");
+                txtValor.requestFocus();
+                return;
+            }
+            if ("fahrenheit".equals(oNorm) && valor < -459.67) {
+                lblEstadoBadge.setText("ESTADO: ERROR");
+                lblEstadoBadge.setForeground(new Color(239, 68, 68));
+                lblResultadoNumero.setText("Cero Absoluto");
+                lblResultadoNumero.setForeground(new Color(239, 68, 68));
+                lblMensajeServidor.setText("<html>La temperatura en Fahrenheit no puede ser menor a -459.67 °F (cero absoluto).</html>");
+                txtValor.requestFocus();
+                return;
+            }
+        }
+
+        // 4. Mismas unidades origen y destino
+        if (origen != null && origen.equalsIgnoreCase(destino)) {
+            lblEstadoBadge.setText("ESTADO: OK");
+            lblEstadoBadge.setForeground(new Color(16, 185, 129));
+            lblResultadoNumero.setText(String.format(java.util.Locale.US, "%.4f %s", valor, destino));
+            lblResultadoNumero.setForeground(new Color(52, 211, 153));
+            lblMensajeServidor.setText("<html>Las unidades de origen y destino son iguales (" + origen + "). El valor se mantiene idéntico.</html>");
             return;
         }
 
         btnConvertir.setEnabled(false);
-        lblMensajeServidor.setText("Invocando servicio SOAP del GR08...");
+        lblMensajeServidor.setText("Invocando servicio de conversión...");
 
         SwingUtilities.invokeLater(() -> {
             try {
@@ -431,43 +503,33 @@ public class InterfazConversiones extends JFrame {
                 if ("OK".equalsIgnoreCase(res.getEstado())) {
                     lblEstadoBadge.setText("ESTADO: OK");
                     lblEstadoBadge.setForeground(new Color(16, 185, 129));
-                    lblCodigoBadge.setText("CÓDIGO: " + res.getCodigo());
-                    lblCodigoBadge.setForeground(new Color(16, 185, 129));
                     
                     double resultado = res.getResultado() != null ? res.getResultado() : 0.0;
                     lblResultadoNumero.setText(String.format(java.util.Locale.US, "%.4f %s", resultado, destino));
                     lblResultadoNumero.setForeground(new Color(52, 211, 153));
-                    lblMensajeServidor.setText("<html>" + res.getMensaje() + " (" + valor + " " + origen + " &rarr; " + destino + ")</html>");
+                    lblMensajeServidor.setText("<html>" + (res.getMensaje() != null ? res.getMensaje() : "Conversión realizada con éxito.") + " (" + valor + " " + origen + " &rarr; " + destino + ")</html>");
                     
-                    // Actualizar historial central inmediatamente
                     cargarHistorialEnTabla();
                 } else {
                     lblEstadoBadge.setText("ESTADO: ERROR");
                     lblEstadoBadge.setForeground(new Color(239, 68, 68));
-                    lblCodigoBadge.setText("CÓDIGO: " + (res.getCodigo() != null ? res.getCodigo() : "ERR"));
-                    lblCodigoBadge.setForeground(new Color(239, 68, 68));
                     lblResultadoNumero.setText("Error");
                     lblResultadoNumero.setForeground(new Color(239, 68, 68));
-                    lblMensajeServidor.setText("<html>" + (res.getMensaje() != null ? res.getMensaje() : "Error en conversión") + "</html>");
+                    lblMensajeServidor.setText("<html>" + (res.getMensaje() != null ? res.getMensaje() : "No se pudo realizar la conversión.") + "</html>");
                 }
             } catch (Exception ex) {
                 lblEstadoBadge.setText("ESTADO: ERROR");
                 lblEstadoBadge.setForeground(new Color(239, 68, 68));
-                lblCodigoBadge.setText("CÓDIGO: EXC-001");
-                lblCodigoBadge.setForeground(new Color(239, 68, 68));
                 lblResultadoNumero.setText("Error");
                 lblResultadoNumero.setForeground(new Color(239, 68, 68));
-                lblMensajeServidor.setText("<html>" + ex.getMessage() + "</html>");
+                lblMensajeServidor.setText("<html>No se pudo conectar con el servidor. Inténtalo de nuevo.</html>");
             } finally {
                 btnConvertir.setEnabled(true);
             }
         });
     }
 
-    /**
-     * Carga el historial global de conversiones de manera asíncrona para no congelar la UI Swing.
-     */
-    public void cargarHistorialEnTabla() {
+        public void cargarHistorialEnTabla() {
         new Thread(() -> {
             List<RegistroHistorialDTO> items = controlador.obtenerHistorial();
             SwingUtilities.invokeLater(() -> {
@@ -498,7 +560,7 @@ public class InterfazConversiones extends JFrame {
         JPanel panel = new JPanel(new java.awt.GridLayout(0, 1, 5, 5));
         panel.add(new JLabel("Contraseña Actual:"));
         panel.add(txtActual);
-        panel.add(new JLabel("Nueva Contraseña:"));
+        panel.add(new JLabel("Nueva Contraseña (mínimo 4 caracteres):"));
         panel.add(txtNueva);
         panel.add(new JLabel("Confirmar Nueva Contraseña:"));
         panel.add(txtConfirmar);
@@ -512,29 +574,38 @@ public class InterfazConversiones extends JFrame {
             String nueva = new String(txtNueva.getPassword()).trim();
             String confirmar = new String(txtConfirmar.getPassword()).trim();
 
-            if (actual.isEmpty() || nueva.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar tanto la contraseña actual como la nueva.", "Campos Requeridos", JOptionPane.WARNING_MESSAGE);
+            if (actual.isEmpty() || nueva.isEmpty() || confirmar.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor completa todos los campos de contraseña.", "Campos Requeridos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (nueva.length() < 4) {
+                JOptionPane.showMessageDialog(this, "La nueva contraseña debe tener al menos 4 caracteres.", "Dato Inválido", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (actual.equals(nueva)) {
+                JOptionPane.showMessageDialog(this, "La nueva contraseña debe ser diferente a la contraseña actual.", "Dato Inválido", JOptionPane.WARNING_MESSAGE);
                 return;
             }
             if (!nueva.equals(confirmar)) {
-                JOptionPane.showMessageDialog(this, "La nueva contraseña y la confirmación no coinciden.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La confirmación no coincide con la nueva contraseña.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             var resp = controlador.cambiarContrasenia(actual, nueva);
             if ("OK".equalsIgnoreCase(resp.getEstado())) {
                 JOptionPane.showMessageDialog(this,
-                        resp.getMensaje() + "\n\nSincronizado en memoria para todos los canales (Web, Móvil, Escritorio, Consola).",
+                        (resp.getMensaje() != null ? resp.getMensaje() : "Contraseña actualizada exitosamente.") + 
+                        "\n\nSincronizado inmediatamente para todos los canales (Web, Móvil, Escritorio, Consola).",
                         "Contraseña Actualizada", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "[" + resp.getCodigo() + "] " + resp.getMensaje(),
+                        resp.getMensaje() != null ? resp.getMensaje() : "No se pudo actualizar la contraseña.",
                         "Error al Cambiar Contraseña", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    public static void main(String args[]) {
+        public static void main(String args[]) {
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ignored) {

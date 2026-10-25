@@ -318,7 +318,7 @@
             <div class="card">
                 <div class="card-title">
                     <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                    <span>Operaciones Disponibles (RF-01 a RF-05)</span>
+                    <span>Operaciones Disponibles</span>
                 </div>
                 <table>
                     <thead>
@@ -402,7 +402,7 @@
                 </table>
 
                 <div style="margin-top: 1.25rem;">
-                    <div style="font-size: 0.85rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.4rem;">CÓDIGOS DE RESPUESTA HOMOGÉNEOS (RF-06):</div>
+                    <div style="font-size: 0.85rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.4rem;">ESTRUCTURA DE RESPUESTA DEL SERVICIO:</div>
                     <ul style="font-size: 0.8rem; color: #94a3b8; padding-left: 1.2rem;">
                         <li><span class="tag" style="color: #6ee7b7;">200</span> Éxito en la operación</li>
                         <li><span class="tag" style="color: #fca5a5;">AUTH-001</span> Token inválido o sesión expirada</li>
@@ -417,7 +417,7 @@
         <div class="card">
             <div class="card-title">
                 <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                <span>Ejemplo de Petición y Respuesta Estructurada (RF-06)</span>
+                <span>Ejemplo de Petición y Respuesta del Servicio</span>
             </div>
             <pre><code>&lt;!-- SOAP Request: convertir --&gt;
 &lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://monster.edu.ec/services"&gt;
@@ -432,7 +432,7 @@
    &lt;/soapenv:Body&gt;
 &lt;/soapenv:Envelope&gt;
 
-&lt;!-- SOAP Response: RespuestaConversion (CU-07) --&gt;
+&lt;!-- SOAP Response: RespuestaConversion --&gt;
 &lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"&gt;
    &lt;soapenv:Body&gt;
       &lt;ns2:convertirResponse xmlns:ns2="http://monster.edu.ec/services"&gt;

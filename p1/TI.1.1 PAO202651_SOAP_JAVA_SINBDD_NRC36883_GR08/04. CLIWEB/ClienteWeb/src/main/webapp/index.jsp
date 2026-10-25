@@ -154,7 +154,7 @@
         <div class="form-section">
             <span class="badge">SOA Web Service &bull; GR08</span>
             <h2>Monsters Inc. Conversor</h2>
-            <p class="subtitle">Ingrese credenciales autorizadas (CU-01 / RF-01)</p>
+            <p class="subtitle">Ingresa tus credenciales para acceder</p>
 
             <form method="POST" action="LoginServlet">
                 <div class="input-group">
@@ -170,7 +170,7 @@
 
             <% if (request.getAttribute("error") != null) { %>
                 <div class="error-msg">
-                    <strong>Error de Autenticación:</strong><br>
+                    <strong>No se pudo iniciar sesión</strong><br>
                     <%= request.getAttribute("error") %>
                 </div>
             <% } %>

@@ -29,7 +29,7 @@ public class InterfazConsola {
             }
         }
         
-        System.out.println("Opcion invalida. Intenta de nuevo.");
+        System.out.println("Opción inválida. Por favor selecciona una de las opciones del menú.");
         return null;
     }
     
@@ -58,7 +58,7 @@ public class InterfazConsola {
         try {
             return Double.valueOf(entrada.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Debe ser un numero valido.");
+            System.out.println("El valor ingresado debe ser un número válido (ej. 100 o 3.14).");
             return null;
         }
     }
