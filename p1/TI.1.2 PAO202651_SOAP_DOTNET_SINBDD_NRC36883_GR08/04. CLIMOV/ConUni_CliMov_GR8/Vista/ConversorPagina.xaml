@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ec.edu.monster.Vista.ConversorPagina"
+             Title="Conversor de Unidades"
+             BackgroundColor="{StaticResource ColorFondo}"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Encabezado: las opciones de la cuenta van en el menú del botón de usuario -->
+        <Grid BackgroundColor="{StaticResource ColorPrimario}" Padding="20,18,16,18" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                <Label Text="Conversor de Unidades" TextColor="White" FontSize="21" FontAttributes="Bold" />
+                <Label Text="ConUni GR08 · Servicio SOAP .NET" TextColor="#D6E4F0" FontSize="13" />
+            </VerticalStackLayout>
+            <Button x:Name="btnUsuario" Grid.Column="1"
+                    Text="Usuario ▾"
+                    BackgroundColor="#1069AA" TextColor="White"
+                    FontSize="14" CornerRadius="20" HeightRequest="40" Padding="14,0"
+                    VerticalOptions="Center"
+                    Clicked="BtnUsuario_Clicked"
+                    SemanticProperties.Description="Opciones de la cuenta" />
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16,18,16,28" Spacing="14">
+
+                <!-- Pestañas de tipo de conversión -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                    <Button x:Name="btnLongitud" Text="Longitud" Style="{StaticResource Pestania}" Clicked="BtnTipo_Clicked" />
+                    <Button x:Name="btnMasa" Grid.Column="1" Text="Masa" Style="{StaticResource Pestania}" Clicked="BtnTipo_Clicked" />
+                    <Button x:Name="btnTemperatura" Grid.Column="2" Text="Temperatura" Style="{StaticResource Pestania}" Clicked="BtnTipo_Clicked" />
+                </Grid>
+
+                <!-- Formulario de conversión -->
+                <Border Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout>
+                        <Label Text="Valor a convertir" Style="{StaticResource Etiqueta}" Margin="0,0,0,4" />
+                        <Border x:Name="bordeValor" Style="{StaticResource CajaTexto}">
+                            <Entry x:Name="txtValor"
+                                   Style="{StaticResource CampoTexto}"
+                                   Placeholder="Ejemplo: 1000 o 12.5"
+                                   Keyboard="Numeric"
+                                   MaxLength="27"
+                                   ReturnType="Done"
+                                   TextChanged="TxtValor_TextChanged"
+                                   Completed="BtnConvertir_Clicked" />
+                        </Border>
+
+                        <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="8" Margin="0,6,0,0">
+                            <VerticalStackLayout>
+                                <Label Text="De" Style="{StaticResource Etiqueta}" />
+                                <Border x:Name="bordeOrigen" Style="{StaticResource CajaTexto}">
+                                    <Picker x:Name="cmbOrigen" Style="{StaticResource CampoLista}" Title="Origen"
+                                            SelectedIndexChanged="CmbUnidad_SelectedIndexChanged" />
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <Button Grid.Column="1" Text="⇄"
+                                    BackgroundColor="{StaticResource ColorSuave}"
+                                    TextColor="{StaticResource ColorPrimario}"
+                                    FontSize="20" CornerRadius="24"
+                                    WidthRequest="48" HeightRequest="48"
+                                    Padding="0" VerticalOptions="End" Margin="0,0,0,2"
+                                    Clicked="BtnIntercambiar_Clicked"
+                                    SemanticProperties.Description="Intercambiar unidades" />
+
+                            <VerticalStackLayout Grid.Column="2">
+                                <Label Text="A" Style="{StaticResource Etiqueta}" />
+                                <Border x:Name="bordeDestino" Style="{StaticResource CajaTexto}">
+                                    <Picker x:Name="cmbDestino" Style="{StaticResource CampoLista}" Title="Destino"
+                                            SelectedIndexChanged="CmbUnidad_SelectedIndexChanged" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Border x:Name="pnlError" Style="{StaticResource CajaError}" IsVisible="False">
+                            <Label x:Name="lblError" TextColor="{StaticResource ColorPeligro}" FontSize="14" />
+                        </Border>
+
+                        <Button x:Name="btnConvertir"
+                                Text="Convertir"
+                                Style="{StaticResource BotonPrimario}"
+                                Margin="0,18,0,0"
+                                Clicked="BtnConvertir_Clicked" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Resultado -->
+                <Border BackgroundColor="{StaticResource ColorSuave}" Stroke="Transparent"
+                        StrokeShape="RoundRectangle 14" Padding="20,16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label x:Name="lblResultadoTitulo" Text="Resultado" TextColor="{StaticResource ColorTextoSecundario}" FontSize="15" />
+                        <Label x:Name="lblResultado" Text="—" TextColor="{StaticResource ColorPrimario}"
+                               FontSize="26" FontAttributes="Bold" LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Historial compartido: lo guarda el servidor y lo ven todos los clientes -->
+                <Border Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="10">
+                        <VerticalStackLayout>
+                            <Label Text="Historial de conversiones" TextColor="{StaticResource ColorTexto}"
+                                   FontSize="18" FontAttributes="Bold" />
+                            <Label x:Name="lblContadorHistorial" Text="Aún no hay conversiones" Style="{StaticResource TextoTenue}" />
+                        </VerticalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Button x:Name="btnActualizarHistorial"
+                                    Text="Actualizar" Style="{StaticResource BotonPequenio}"
+                                    BackgroundColor="{StaticResource ColorSuave}"
+                                    TextColor="{StaticResource ColorPrimario}" FontAttributes="Bold"
+                                    Clicked="BtnActualizarHistorial_Clicked"
+                                    SemanticProperties.Description="Ver las conversiones hechas desde los otros clientes" />
+                            <Button x:Name="btnLimpiarHistorial"
+                                    Text="Limpiar" Style="{StaticResource BotonPequenio}"
+                                    IsVisible="False"
+                                    Clicked="BtnLimpiarHistorial_Clicked" />
+                        </HorizontalStackLayout>
+
+                        <Border x:Name="pnlHistorialVacio" Stroke="#E9ECEF" StrokeThickness="2"
+                                StrokeDashArray="4,3" StrokeShape="RoundRectangle 12" Padding="16,26">
+                            <Label Text="Las conversiones que realice aparecerán aquí."
+                                   Style="{StaticResource TextoTenue}" HorizontalTextAlignment="Center" />
+                        </Border>
+
+                        <VerticalStackLayout x:Name="listaHistorial" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Indicador mientras se consulta al servidor -->
+        <ActivityIndicator x:Name="indicadorCarga" Grid.Row="1"
+                           Color="{StaticResource ColorPrimario}"
+                           IsRunning="False" IsVisible="False"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           WidthRequest="48" HeightRequest="48" />
+    </Grid>
+</ContentPage>

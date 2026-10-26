@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormLogin.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormLogin.cs",
+              "RelativeDocumentMoniker": "Vista\\FormLogin.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormLogin.cs",
+              "RelativeToolTip": "Vista\\FormLogin.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAqwFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-15T20:43:57.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormLogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormLogin.cs",
+              "RelativeDocumentMoniker": "Vista\\FormLogin.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Vista\\FormLogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-15T20:44:02.102Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
