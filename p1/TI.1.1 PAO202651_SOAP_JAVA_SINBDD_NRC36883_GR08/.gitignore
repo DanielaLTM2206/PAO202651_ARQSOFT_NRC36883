@@ -1,0 +1,26 @@
+# Compiled class file
+*.class
+
+# Log files
+*.log
+
+# Maven build outputs
+target/
+
+# Gradle build outputs
+.gradle/
+build/
+app/build/
+
+# IDE / Project environments
+.idea/
+*.iml
+local.properties
+.vscode/
+
+# NetBeans private user configurations
+**/nbproject/private/
+
+# OS files
+Thumbs.db
+.DS_Store

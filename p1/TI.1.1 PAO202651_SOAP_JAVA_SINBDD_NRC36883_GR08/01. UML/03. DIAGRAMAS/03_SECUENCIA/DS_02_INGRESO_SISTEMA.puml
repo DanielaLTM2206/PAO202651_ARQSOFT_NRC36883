@@ -1,0 +1,32 @@
+@startuml
+title "DS_02_INGRESO_SISTEMA"
+autonumber
+
+actor "APLICACION" as Aplicacion
+participant "LOGIN_VISTA" as LoginVista
+participant "LOGIN_CONTROLADOR" as LoginControlador
+participant "CLIENTE_SOAP_CONVERSOR" as ClienteSoap
+participant "WSCONVERSORUNIDADES" as WSConversorUnidades
+participant "SERVICIO_SEGURIDAD" as ServicioSeguridad
+
+Aplicacion -> LoginVista: Ingresa usuario y contraseña
+LoginVista -> LoginControlador: iniciarSesion(usuario, clave)
+LoginControlador -> ClienteSoap: autenticar(usuario, clave)
+
+ClienteSoap -> WSConversorUnidades: SOAP autenticar(usuario, clave)
+WSConversorUnidades -> ServicioSeguridad: autenticar(usuario, clave)
+ServicioSeguridad -> ServicioSeguridad: valida contra 'claveActual' en memoria
+
+alt credenciales validas
+    ServicioSeguridad --> WSConversorUnidades: token de sesion generado
+    WSConversorUnidades --> ClienteSoap: RespuestaAutenticacion(OK, 200, token)
+    ClienteSoap --> LoginControlador: sesion exitosa
+    LoginControlador --> LoginVista: redirigir a pantalla principal
+else credenciales invalidas
+    ServicioSeguridad --> WSConversorUnidades: RespuestaAutenticacion(ERROR, AUTH-001)
+    WSConversorUnidades --> ClienteSoap: RespuestaAutenticacion(ERROR, AUTH-001)
+    ClienteSoap --> LoginControlador: error autenticacion
+    LoginControlador --> LoginVista: mostrar mensaje de error
+end
+
+@enduml

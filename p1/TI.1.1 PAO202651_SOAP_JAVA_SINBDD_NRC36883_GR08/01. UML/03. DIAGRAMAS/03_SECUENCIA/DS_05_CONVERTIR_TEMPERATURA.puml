@@ -1,0 +1,30 @@
+@startuml
+title "DS_05_CONVERTIR_TEMPERATURA"
+autonumber
+
+actor "APLICACION" as Aplicacion
+participant "CONVERSION_VISTA" as ConversionVista
+participant "CONVERSION_CONTROLADOR" as ConversionControlador
+participant "CLIENTE_SOAP_CONVERSOR" as ClienteSoap
+participant "WSCONVERSORUNIDADES" as WSConversorUnidades
+participant "SERVICIO_CONVERSION" as ServicioConversion
+participant "HISTORIAL_CENTRAL" as HistorialCentral
+
+Aplicacion -> ConversionVista: Ingresa valor, origen, destino
+ConversionVista -> ConversionControlador: convertirTemperatura(valor, origen, destino)
+ConversionControlador -> ClienteSoap: convertirTemperatura(valor, origen, destino, token)
+
+ClienteSoap -> WSConversorUnidades: SOAP convertirTemperatura(valor, origen, destino, token)
+WSConversorUnidades -> WSConversorUnidades: validarToken(token)
+
+WSConversorUnidades -> ServicioConversion: convertirTemperatura(valor, origen, destino)
+ServicioConversion -> ServicioConversion: calcular formula matematica
+ServicioConversion --> WSConversorUnidades: resultado
+
+WSConversorUnidades -> HistorialCentral: registrarConversion("Temperatura", valor, origen, resultado, destino)
+WSConversorUnidades --> ClienteSoap: RespuestaConversion(OK, 200, resultado)
+ClienteSoap --> ConversionControlador: resultado estructurado
+ConversionControlador --> ConversionVista: renderizar resultado y actualizar historial
+ConversionVista --> Aplicacion: mostrar resultado en pantalla
+
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+title "DA_02_CAMBIAR_CONTRASENIA - Diagrama de Actividad (GR08)"
+
+|Cliente (Web / Móvil / Escritorio / Consola)|
+start
+:Usuario solicita cambiar contraseña;
+:Ingresar contraseña actual y nueva contraseña;
+:Confirmar que la nueva contraseña coincida;
+
+if (¿Coinciden contraseñas?) then (no)
+    :Mostrar error de validación local;
+    stop
+else (sí)
+endif
+
+:Construir SOAP Request 'cambiarContrasenia'
+con contraseniaActual, contraseniaNueva y Token;
+:Enviar SOAP Request al servidor Payara;
+
+|Servidor SOAP (WSConversorUnidades)|
+:Recibir SOAP Request;
+:Interceptar y validar Token de seguridad;
+
+if (¿Token válido y activo en memoria?) then (no)
+    :Generar SOAP Fault (AUTH-001: Sesión inválida);
+    |Cliente (Web / Móvil / Escritorio / Consola)|
+    :Mostrar error de sesión y redirigir a Login;
+    stop
+else (sí)
+endif
+
+|Servidor SOAP (WSConversorUnidades)|
+:Validar campos no vacíos y verificar
+que contraseniaActual == claveActual en memoria;
+
+if (¿Contraseña actual coincide?) then (no)
+    :Construir SOAP Response de Error (AUTH-002: Clave incorrecta);
+    |Cliente (Web / Móvil / Escritorio / Consola)|
+    :Mostrar mensaje de error en pantalla;
+    stop
+else (sí)
+endif
+
+|Servidor SOAP (WSConversorUnidades)|
+:Actualizar variable volátil 'claveActual' en memoria;
+:Construir SOAP Response estructurado
+(Estado: OK, Código: 200, Mensaje: Exitoso);
+:Retornar SOAP Response;
+
+|Cliente (Web / Móvil / Escritorio / Consola)|
+:Recibir SOAP Response;
+:Mostrar notificación de éxito:
+"Contraseña actualizada y sincronizada en todos los clientes";
+note right
+  A partir de este momento, cualquier intento
+  de inicio de sesión en Web, Consola, Escritorio o Móvil
+  requiere obligatoriamente la nueva contraseña.
+end note
+stop
+
+@enduml
