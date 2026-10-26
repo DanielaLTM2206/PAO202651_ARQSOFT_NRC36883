@@ -1,0 +1,13 @@
+<Project>
+  <!--
+    La herramienta de recursos de Android (aapt2) no admite rutas de más de 260 caracteres,
+    y la carpeta del repositorio ya es muy larga. Por eso los archivos de compilación (obj y bin)
+    se generan en una ruta corta del usuario: %LOCALAPPDATA%\ConUniGR8\<proyecto>\.
+    El código fuente no se mueve. Aplica a la app y al proyecto de Pruebas.
+  -->
+  <PropertyGroup>
+    <CarpetaCompilacion>$(LOCALAPPDATA)\ConUniGR8\$(MSBuildProjectName)\</CarpetaCompilacion>
+    <BaseIntermediateOutputPath>$(CarpetaCompilacion)obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(CarpetaCompilacion)bin\</BaseOutputPath>
+  </PropertyGroup>
+</Project>

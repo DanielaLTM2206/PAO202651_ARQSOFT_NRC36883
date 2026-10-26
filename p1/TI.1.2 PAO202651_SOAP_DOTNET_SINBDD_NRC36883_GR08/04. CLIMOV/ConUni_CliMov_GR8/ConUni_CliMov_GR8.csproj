@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-android</TargetFrameworks>
+    <!-- Cliente móvil Android (más Windows para pruebas rápidas en la PC). iOS y Mac requieren una Mac para compilar. -->
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ec.edu.monster</RootNamespace>
+    <!-- Las pruebas están en Pruebas/, en su propio proyecto: no forman parte de la app -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);Pruebas\**</DefaultItemExcludes>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Genera el código de las páginas XAML al compilar (más rápido que interpretarlas al ejecutar) -->
+    <MauiXamlInflator>SourceGen</MauiXamlInflator>
+
+    <!-- Nombre visible de la app -->
+    <ApplicationTitle>ConUni SOAP GR08</ApplicationTitle>
+
+    <!-- Identificador distinto al de la app RESTful (ec.edu.monster.conunigr08) para que ambas convivan en el emulador -->
+    <ApplicationId>ec.edu.monster.conunisoapgr08</ApplicationId>
+
+    <!-- Versiones -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <WindowsPackageType>None</WindowsPackageType>
+
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Ícono de la app -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#005493" />
+
+    <!-- Pantalla de inicio -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#005493" BaseSize="128,128" />
+
+    <!-- Imágenes -->
+    <MauiImage Include="Resources\Images\*" />
+
+    <!-- Fuentes -->
+    <MauiFont Include="Resources\Fonts\*" />
+
+    <!-- Archivos sin procesar (se quita el prefijo "Resources\Raw") -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+  </ItemGroup>
+
+  <!--
+    Cliente WCF para consumir el servicio SOAP (proxy en Connected Services\ReferenciaServicio).
+    El asistente instala la versión 4.10, que arrastra paquetes con vulnerabilidades conocidas;
+    se usa la versión 10, solo los paquetes de HTTP, y se fijan las versiones corregidas de las
+    dependencias de criptografía (la 10.0.0 que trae WCF también tiene avisos de seguridad).
+  -->
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Http" Version="10.0.652802" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.13" />
+  </ItemGroup>
+
+</Project>

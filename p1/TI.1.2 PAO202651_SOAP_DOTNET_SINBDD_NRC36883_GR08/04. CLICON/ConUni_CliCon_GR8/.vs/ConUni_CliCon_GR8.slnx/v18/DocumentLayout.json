@@ -1,0 +1,213 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\util\\formatoutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:util\\formatoutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\util\\entradautil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:util\\entradautil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\cliente\\manejadortokensoap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:cliente\\manejadortokensoap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\controlador\\logincontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:controlador\\logincontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\controlador\\conversioncontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:controlador\\conversioncontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\modelo\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:modelo\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\modelo\\mensajesmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:modelo\\mensajesmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\modelo\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:modelo\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. clicon\\conuni_clicon_gr8\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C2AD9C1-FEE8-1594-114C-6C505B69CE0F}|ConUni_CliCon_GR8.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormatoUtil.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Util\\FormatoUtil.cs",
+              "RelativeDocumentMoniker": "Util\\FormatoUtil.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Util\\FormatoUtil.cs",
+              "RelativeToolTip": "Util\\FormatoUtil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:45:21.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EntradaUtil.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Util\\EntradaUtil.cs",
+              "RelativeDocumentMoniker": "Util\\EntradaUtil.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Util\\EntradaUtil.cs",
+              "RelativeToolTip": "Util\\EntradaUtil.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAQwG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:45:17.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ManejadorTokenSOAP.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\ManejadorTokenSOAP.cs",
+              "RelativeDocumentMoniker": "Cliente\\ManejadorTokenSOAP.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\ManejadorTokenSOAP.cs",
+              "RelativeToolTip": "Cliente\\ManejadorTokenSOAP.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAUwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:44:15.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IContratoWSConversor.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\IContratoWSConversor.cs",
+              "RelativeDocumentMoniker": "Cliente\\IContratoWSConversor.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\IContratoWSConversor.cs",
+              "RelativeToolTip": "Cliente\\IContratoWSConversor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:44:16.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExcepcionClienteWS.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\ExcepcionClienteWS.cs",
+              "RelativeDocumentMoniker": "Cliente\\ExcepcionClienteWS.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\ExcepcionClienteWS.cs",
+              "RelativeToolTip": "Cliente\\ExcepcionClienteWS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:44:10.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClienteWSConversor.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\ClienteWSConversor.cs",
+              "RelativeDocumentMoniker": "Cliente\\ClienteWSConversor.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Cliente\\ClienteWSConversor.cs",
+              "RelativeToolTip": "Cliente\\ClienteWSConversor.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAQwMAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:44:03.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginControlador.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Controlador\\LoginControlador.cs",
+              "RelativeDocumentMoniker": "Controlador\\LoginControlador.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Controlador\\LoginControlador.cs",
+              "RelativeToolTip": "Controlador\\LoginControlador.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA2wDgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:42:30.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ConversionControlador.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Controlador\\ConversionControlador.cs",
+              "RelativeDocumentMoniker": "Controlador\\ConversionControlador.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Controlador\\ConversionControlador.cs",
+              "RelativeToolTip": "Controlador\\ConversionControlador.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAQwFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:42:25.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TipoConversion.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Modelo\\TipoConversion.cs",
+              "RelativeDocumentMoniker": "Modelo\\TipoConversion.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Modelo\\TipoConversion.cs",
+              "RelativeToolTip": "Modelo\\TipoConversion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:41:19.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MensajesModelo.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Modelo\\MensajesModelo.cs",
+              "RelativeDocumentMoniker": "Modelo\\MensajesModelo.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Modelo\\MensajesModelo.cs",
+              "RelativeToolTip": "Modelo\\MensajesModelo.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAUwFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:41:12.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ConversionModelo.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Modelo\\ConversionModelo.cs",
+              "RelativeDocumentMoniker": "Modelo\\ConversionModelo.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Modelo\\ConversionModelo.cs",
+              "RelativeToolTip": "Modelo\\ConversionModelo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T20:40:33.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLICON\\ConUni_CliCon_GR8\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T19:59:59.487Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

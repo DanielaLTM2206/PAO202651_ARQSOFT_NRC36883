@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://localhost:5080/WSConversorUnidades.svc?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, ReferenciaServicio"
+    ],
+    "targetFramework": "net10.0-windows10.0.19041.0",
+    "typeReuseMode": "All"
+  }
+}

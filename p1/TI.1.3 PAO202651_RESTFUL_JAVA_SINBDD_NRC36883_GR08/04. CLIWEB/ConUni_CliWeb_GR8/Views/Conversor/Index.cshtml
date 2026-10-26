@@ -1,0 +1,135 @@
+@model ConversorModelo
+@{
+    ViewData["Title"] = "Conversor";
+    string ClaseError(string campo) => Model.CampoConError == campo ? " campo-invalido" : string.Empty;
+}
+
+<div class="rejilla-conversor">
+    <div class="columna-principal">
+        <nav class="pestanias" aria-label="Tipo de conversión">
+            @foreach (TipoConversion tipo in Enum.GetValues<TipoConversion>())
+            {
+                <a class="pestania@(tipo == Model.Tipo ? " pestania-activa" : string.Empty)"
+                   asp-action="Index" asp-route-tipo="@tipo"
+                   aria-current="@(tipo == Model.Tipo ? "page" : null)">@tipo.NombreVisible()</a>
+            }
+        </nav>
+
+        <form asp-action="Convertir" method="post" class="tarjeta formulario" data-bloquear-envio="Convirtiendo...">
+            <input type="hidden" name="Tipo" value="@Model.Tipo" />
+
+            <label for="Valor" class="etiqueta">Valor a convertir</label>
+            <input type="text" class="campo-texto campo-grande@(ClaseError("valor"))" id="Valor" name="Valor"
+                   value="@Model.Valor" placeholder="Ejemplo: 1000 o 12.5" maxlength="27"
+                   inputmode="decimal" autocomplete="off" data-solo-numeros autofocus />
+
+            <div class="fila-unidades">
+                <div class="grupo-unidad">
+                    <label for="UnidadOrigen" class="etiqueta">De</label>
+                    <select class="campo-texto campo-select" id="UnidadOrigen" name="UnidadOrigen">
+                        @foreach (string unidad in Model.Unidades)
+                        {
+                            <option value="@unidad" selected="@(unidad == Model.UnidadOrigen)">@unidad</option>
+                        }
+                    </select>
+                </div>
+
+                <button type="button" class="boton-intercambiar" data-intercambiar="UnidadOrigen,UnidadDestino"
+                        title="Intercambiar unidades" aria-label="Intercambiar unidades">⇄</button>
+
+                <div class="grupo-unidad">
+                    <label for="UnidadDestino" class="etiqueta">A</label>
+                    <select class="campo-texto campo-select@(ClaseError("unidades"))" id="UnidadDestino" name="UnidadDestino">
+                        @foreach (string unidad in Model.Unidades)
+                        {
+                            <option value="@unidad" selected="@(unidad == Model.UnidadDestino)">@unidad</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="mensaje-error" role="alert">@Model.Error</div>
+            }
+
+            <button type="submit" class="boton boton-primario boton-ancho boton-grande">Convertir</button>
+        </form>
+
+        <section class="tarjeta-resultado" aria-live="polite">
+            <p class="resultado-titulo">@(Model.ResultadoTitulo ?? "Resultado")</p>
+            <p class="resultado-valor" title="@Model.ResultadoValor">@(Model.ResultadoValor ?? "—")</p>
+        </section>
+    </div>
+
+    <aside class="tarjeta columna-historial">
+        <div class="historial-encabezado">
+            <div>
+                <h2 class="titulo-historial">Historial de conversiones</h2>
+                <p class="texto-tenue texto-pequenio">
+                    @(Model.Historial.Count switch
+                    {
+                        0 => "Aún no hay conversiones",
+                        1 => "1 conversión en todos los clientes",
+                        int cantidad => $"{cantidad} conversiones en todos los clientes"
+                    })
+                </p>
+            </div>
+            <div class="historial-acciones">
+                @* El historial es compartido: "Actualizar" muestra lo convertido desde el escritorio y el móvil *@
+                <a class="boton boton-suave boton-pequenio" asp-action="Index" asp-route-tipo="@Model.Tipo"
+                   title="Ver las conversiones hechas desde los otros clientes">Actualizar</a>
+                @if (Model.Historial.Count > 0)
+                {
+                    <form asp-action="LimpiarHistorial" method="post"
+                          data-confirmar="Se borrarán las conversiones de todos los clientes (escritorio, web y móvil). Esta acción no se puede deshacer."
+                          data-confirmar-titulo="¿Borrar el historial?"
+                          data-confirmar-boton="Sí, borrar">
+                        <input type="hidden" name="tipo" value="@Model.Tipo" />
+                        <button type="submit" class="boton boton-secundario boton-pequenio">Limpiar</button>
+                    </form>
+                }
+            </div>
+        </div>
+
+        @if (Model.Historial.Count == 0)
+        {
+            <p class="historial-vacio">Las conversiones que realice aparecerán aquí.</p>
+        }
+        else
+        {
+            <div class="historial-tabla-contenedor">
+                <table class="historial-tabla">
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Tipo</th>
+                            <th>Conversión</th>
+                            <th><span class="visualmente-oculto">Acciones</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (RegistroConversion registro in Model.Historial)
+                        {
+                            string valor = FormatoUtil.FormatearNumero(registro.Valor);
+                            string resultado = FormatoUtil.FormatearNumero(registro.Resultado);
+                            <tr>
+                                <td>@registro.FechaHora.ToString("HH:mm:ss")</td>
+                                <td>@registro.Tipo.NombreVisible()</td>
+                                <td>
+                                    @valor @registro.UnidadOrigen<br />
+                                    <span class="texto-resultado">→ @resultado @registro.UnidadDestino</span>
+                                </td>
+                                <td>
+                                    <a class="enlace-reutilizar" title="Volver a cargar esta conversión"
+                                       asp-action="Index" asp-route-tipo="@registro.Tipo" asp-route-valor="@valor"
+                                       asp-route-origen="@registro.UnidadOrigen" asp-route-destino="@registro.UnidadDestino">Usar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </aside>
+</div>

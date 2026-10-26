@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ec.edu.monster</RootNamespace>
+    <!-- Las pruebas viven en la carpeta Pruebas del mismo proyecto: el Main es el de Program.cs -->
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+
+  <!--
+    Cliente WCF para consumir el servicio SOAP (proxy en Connected Services\ReferenciaServicio).
+    El asistente instala la versión 4.10, que arrastra paquetes con vulnerabilidades conocidas;
+    se usa la versión 10, solo los paquetes de HTTP, y se fijan las versiones corregidas de las
+    dependencias de criptografía (la 10.0.0 que trae WCF también tiene avisos de seguridad).
+  -->
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Http" Version="10.0.652802" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.13" />
+  </ItemGroup>
+
+  <!-- Pruebas unitarias (carpeta Pruebas) -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+</Project>

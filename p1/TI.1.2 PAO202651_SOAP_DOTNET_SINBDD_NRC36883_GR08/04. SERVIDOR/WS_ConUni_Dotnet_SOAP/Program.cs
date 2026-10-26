@@ -1,0 +1,35 @@
+using CoreWCF;
+using CoreWCF.Configuration;
+using CoreWCF.Description;
+using ec.edu.monster.Contratos;
+using ec.edu.monster.Excepciones;
+using ec.edu.monster.Seguridad;
+using ec.edu.monster.Servicios;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddServiceModelServices();
+builder.Services.AddServiceModelMetadata();
+
+// La dirección del WSDL usa el host de la petición (localhost en la PC, 10.0.2.2 en el emulador)
+builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
+
+// Comportamientos propios: validación del token (cabecera SOAP) y traducción de errores a SOAP Faults
+builder.Services.AddSingleton<IServiceBehavior, InspectorAutenticacion>();
+builder.Services.AddSingleton<IServiceBehavior, ManejadorErrores>();
+
+var app = builder.Build();
+
+app.UseServiceModel(servicios =>
+{
+    var enlace = new BasicHttpBinding { Namespace = ConstantesWS.Espacio };
+
+    servicios.AddService<WSConversorUnidades>();
+    servicios.AddServiceEndpoint<WSConversorUnidades, IWSConversorUnidades>(enlace, ConstantesWS.Ruta);
+
+    // Publica el WSDL en http://localhost:5080/WSConversorUnidades.svc?wsdl
+    var metadatos = app.Services.GetRequiredService<ServiceMetadataBehavior>();
+    metadatos.HttpGetEnabled = true;
+});
+
+app.Run();
