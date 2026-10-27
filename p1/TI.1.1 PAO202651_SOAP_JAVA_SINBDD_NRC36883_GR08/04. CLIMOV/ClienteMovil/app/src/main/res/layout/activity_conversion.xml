@@ -52,18 +52,6 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCambiarClave"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#2563EB"
-                android:paddingHorizontal="10dp"
-                android:text="CLAVE"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                app:cornerRadius="6dp" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -75,6 +63,21 @@
                 android:textStyle="bold"
                 app:backgroundTint="@null" />
         </LinearLayout>
+
+        <!-- ── Barra de Gestión de Usuario / Contraseña ── -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCambiarClave"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#131C31"
+            android:text="🔐 CAMBIAR CONTRASEÑA"
+            android:textColor="#38BDF8"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:strokeColor="#38BDF8"
+            app:strokeWidth="1.5dp" />
 
         <View
             android:layout_width="match_parent"
@@ -202,7 +205,7 @@
             android:textStyle="bold"
             app:backgroundTint="@null" />
 
-        <!-- ── Tarjeta de Resultado de la Conversión ── -->
+        <!-- ── Tarjeta de Respuesta Estructurada (RF-06 / CU-07) ── -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -214,7 +217,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RESULTADO DE LA CONVERSIÓN"
+                android:text="RESPUESTA ESTRUCTURADA (RF-06)"
                 android:textColor="#94A3B8"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -236,7 +239,6 @@
 
                 <TextView
                     android:id="@+id/tvCodigo"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"

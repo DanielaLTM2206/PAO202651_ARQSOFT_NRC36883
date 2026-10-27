@@ -72,6 +72,9 @@ public class ConversionActivity extends AppCompatActivity {
         setInitialValues();
         setupActions();
         cargarHistorial();
+        if (getIntent().getBooleanExtra("extra_show_password_dialog", false)) {
+            showChangePasswordDialog();
+        }
     }
 
     @Override
@@ -179,71 +182,78 @@ public class ConversionActivity extends AppCompatActivity {
     }
 
     private void showChangePasswordDialog() {
-        android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
-        layout.setOrientation(android.widget.LinearLayout.VERTICAL);
-        layout.setPadding(50, 40, 50, 10);
+        android.view.View dialogView = getLayoutInflater().inflate(R.layout.dialog_cambiar_clave, null);
 
-        final android.widget.EditText etActual = new android.widget.EditText(this);
-        etActual.setHint("Contraseña actual");
-        etActual.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        layout.addView(etActual);
+        android.widget.TextView tvError = dialogView.findViewById(R.id.tvMensajeErrorDialog);
+        android.widget.EditText etActual = dialogView.findViewById(R.id.etDialogActual);
+        android.widget.EditText etNueva = dialogView.findViewById(R.id.etDialogNueva);
+        android.widget.EditText etConfirmar = dialogView.findViewById(R.id.etDialogConfirmar);
+        com.google.android.material.button.MaterialButton btnCancelar = dialogView.findViewById(R.id.btnDialogCancelar);
+        com.google.android.material.button.MaterialButton btnGuardar = dialogView.findViewById(R.id.btnDialogGuardar);
 
-        final android.widget.EditText etNueva = new android.widget.EditText(this);
-        etNueva.setHint("Nueva contraseña");
-        etNueva.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        layout.addView(etNueva);
+        androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
 
-        final android.widget.EditText etConfirmar = new android.widget.EditText(this);
-        etConfirmar.setHint("Confirmar nueva contraseña");
-        etConfirmar.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        layout.addView(etConfirmar);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
 
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("🔑 Cambiar Contraseña")
-                .setMessage("Se sincronizará en todos los clientes (Web, Móvil, Escritorio, Consola).")
-                .setView(layout)
-                .setPositiveButton("Actualizar", (dialog, which) -> {
-                    String actual = etActual.getText().toString().trim();
-                    String nueva = etNueva.getText().toString().trim();
-                    String confirmar = etConfirmar.getText().toString().trim();
+        btnCancelar.setOnClickListener(v -> dialog.dismiss());
 
-                    if (actual.isEmpty() || nueva.isEmpty() || confirmar.isEmpty()) {
-                        showToast("Por favor completa todos los campos de contraseña.");
-                        return;
-                    }
-                    if (nueva.length() < 4) {
-                        showToast("La nueva contraseña debe tener al menos 4 caracteres.");
-                        return;
-                    }
-                    if (actual.equals(nueva)) {
-                        showToast("La nueva contraseña debe ser diferente a la actual.");
-                        return;
-                    }
-                    if (!nueva.equals(confirmar)) {
-                        showToast("La confirmación no coincide con la nueva contraseña.");
-                        return;
-                    }
+        btnGuardar.setOnClickListener(v -> {
+            String actual = etActual.getText().toString().trim();
+            String nueva = etNueva.getText().toString().trim();
+            String confirmar = etConfirmar.getText().toString().trim();
 
-                    setBusy(true);
-                    conversionController.cambiarContrasenia(baseUrl, actual, nueva, currentToken, res -> runOnUiThread(() -> {
-                        setBusy(false);
-                        if (res.isSuccess()) {
-                            new androidx.appcompat.app.AlertDialog.Builder(this)
-                                    .setTitle("Éxito")
-                                    .setMessage(res.getErrorMessage() != null ? res.getErrorMessage() : "Contraseña actualizada correctamente en memoria.")
-                                    .setPositiveButton("OK", null)
-                                    .show();
-                        } else {
-                            new androidx.appcompat.app.AlertDialog.Builder(this)
-                                    .setTitle("Error")
-                                    .setMessage(res.getErrorMessage())
-                                    .setPositiveButton("OK", null)
-                                    .show();
-                        }
-                    }));
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
+            if (actual.isEmpty() || nueva.isEmpty()) {
+                tvError.setText("Debe ingresar la contraseña actual y la nueva.");
+                tvError.setVisibility(android.view.View.VISIBLE);
+                return;
+            }
+            if (nueva.length() < 4) {
+                tvError.setText("La nueva contraseña debe tener al menos 4 caracteres.");
+                tvError.setVisibility(android.view.View.VISIBLE);
+                return;
+            }
+            if (actual.equals(nueva)) {
+                tvError.setText("La nueva contraseña no puede ser idéntica a la actual.");
+                tvError.setVisibility(android.view.View.VISIBLE);
+                return;
+            }
+            if (!nueva.equals(confirmar)) {
+                tvError.setText("La confirmación de la contraseña no coincide.");
+                tvError.setVisibility(android.view.View.VISIBLE);
+                return;
+            }
+
+            tvError.setVisibility(android.view.View.GONE);
+            btnGuardar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnGuardar.setText("ACTUALIZANDO...");
+
+            conversionController.cambiarContrasenia(baseUrl, actual, nueva, currentToken, res -> runOnUiThread(() -> {
+                btnGuardar.setEnabled(true);
+                btnCancelar.setEnabled(true);
+                btnGuardar.setText("GUARDAR");
+
+                if (res.isSuccess()) {
+                    dialog.dismiss();
+                    new androidx.appcompat.app.AlertDialog.Builder(this)
+                            .setTitle("✅ Contraseña Actualizada")
+                            .setMessage("La nueva contraseña se guardó con éxito en el servidor SOAP y se sincronizó para todos los clientes (Web, Móvil, Escritorio, Consola).")
+                            .setPositiveButton("ENTENDIDO", null)
+                            .show();
+                } else {
+                    String msg = res.getErrorMessage() != null ? res.getErrorMessage() : "Error al cambiar contraseña.";
+                    tvError.setText(msg);
+                    tvError.setVisibility(android.view.View.VISIBLE);
+                }
+            }));
+        });
+
+        dialog.show();
     }
 
     private void doConvert() {
@@ -256,49 +266,12 @@ public class ConversionActivity extends AppCompatActivity {
                 || TextUtils.isEmpty(selectedServiceName)
                 || TextUtils.isEmpty(origin)
                 || TextUtils.isEmpty(destination)) {
-            showToast("Por favor completa todos los campos de conversión.");
+            showToast("Complete todos los campos de conversión.");
             return;
-        }
-
-        double val;
-        try {
-            val = Double.parseDouble(valueText);
-        } catch (NumberFormatException e) {
-            showToast("El valor debe ser un número válido (ej. 100 o 3.14).");
-            return;
-        }
-
-        // Validar coherencia física
-        if ("Longitud".equalsIgnoreCase(selectedServiceName) && val < 0) {
-            showToast("La longitud no puede ser un valor negativo.");
-            return;
-        }
-        if ("Masa".equalsIgnoreCase(selectedServiceName) && val < 0) {
-            showToast("La masa no puede ser un valor negativo.");
-            return;
-        }
-        if ("Temperatura".equalsIgnoreCase(selectedServiceName)) {
-            String oNorm = origin.toLowerCase();
-            if ("kelvin".equals(oNorm) && val < 0) {
-                showToast("La temperatura en Kelvin no puede ser menor a 0 K (cero absoluto).");
-                return;
-            }
-            if ("celsius".equals(oNorm) && val < -273.15) {
-                showToast("La temperatura no puede ser menor a -273.15 °C (cero absoluto).");
-                return;
-            }
-            if ("fahrenheit".equals(oNorm) && val < -459.67) {
-                showToast("La temperatura no puede ser menor a -459.67 °F (cero absoluto).");
-                return;
-            }
         }
 
         if (origin.equals(destination)) {
-            etDestinoPreview.setText(String.format(Locale.US, "%.4f", val));
-            tvEstado.setText("ESTADO: OK");
-            tvEstado.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light));
-            tvMensaje.setText("Las unidades de origen y destino son iguales (" + origin + "). El valor se mantiene idéntico.");
-            showToast("Unidades iguales: el valor se mantiene idéntico.");
+            showToast("Seleccione unidades diferentes para convertir.");
             return;
         }
 

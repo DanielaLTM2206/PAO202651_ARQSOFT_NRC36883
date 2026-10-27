@@ -553,56 +553,8 @@ public class InterfazConversiones extends JFrame {
     }
 
     private void mostrarDialogoCambiarClave() {
-        JPasswordField txtActual = new JPasswordField();
-        JPasswordField txtNueva = new JPasswordField();
-        JPasswordField txtConfirmar = new JPasswordField();
-
-        JPanel panel = new JPanel(new java.awt.GridLayout(0, 1, 5, 5));
-        panel.add(new JLabel("Contraseña Actual:"));
-        panel.add(txtActual);
-        panel.add(new JLabel("Nueva Contraseña (mínimo 4 caracteres):"));
-        panel.add(txtNueva);
-        panel.add(new JLabel("Confirmar Nueva Contraseña:"));
-        panel.add(txtConfirmar);
-
-        int result = JOptionPane.showConfirmDialog(this, panel,
-                "Cambiar Contraseña - Sincronización Global",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-        if (result == JOptionPane.OK_OPTION) {
-            String actual = new String(txtActual.getPassword()).trim();
-            String nueva = new String(txtNueva.getPassword()).trim();
-            String confirmar = new String(txtConfirmar.getPassword()).trim();
-
-            if (actual.isEmpty() || nueva.isEmpty() || confirmar.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor completa todos los campos de contraseña.", "Campos Requeridos", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            if (nueva.length() < 4) {
-                JOptionPane.showMessageDialog(this, "La nueva contraseña debe tener al menos 4 caracteres.", "Dato Inválido", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            if (actual.equals(nueva)) {
-                JOptionPane.showMessageDialog(this, "La nueva contraseña debe ser diferente a la contraseña actual.", "Dato Inválido", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            if (!nueva.equals(confirmar)) {
-                JOptionPane.showMessageDialog(this, "La confirmación no coincide con la nueva contraseña.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            var resp = controlador.cambiarContrasenia(actual, nueva);
-            if ("OK".equalsIgnoreCase(resp.getEstado())) {
-                JOptionPane.showMessageDialog(this,
-                        (resp.getMensaje() != null ? resp.getMensaje() : "Contraseña actualizada exitosamente.") + 
-                        "\n\nSincronizado inmediatamente para todos los canales (Web, Móvil, Escritorio, Consola).",
-                        "Contraseña Actualizada", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        resp.getMensaje() != null ? resp.getMensaje() : "No se pudo actualizar la contraseña.",
-                        "Error al Cambiar Contraseña", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        CambiarClaveDialog dialog = new CambiarClaveDialog(this, controlador);
+        dialog.setVisible(true);
     }
 
         public static void main(String args[]) {
