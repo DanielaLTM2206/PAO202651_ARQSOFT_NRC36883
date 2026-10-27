@@ -1,0 +1,32 @@
+@startuml
+title "DS_02_INGRESO_SISTEMA"
+autonumber
+
+actor "APLICACION" as Aplicacion
+participant "LOGIN_VISTA" as LoginVista
+participant "LOGIN_CONTROLADOR" as LoginControlador
+participant "CLIENTE_REST_CONVERSOR" as ClienteRest
+participant "API_REST_CONVERSOR" as API_REST_CONVERSOR
+participant "SERVICIO_SEGURIDAD" as AuthService
+
+Aplicacion -> LoginVista: Ingresa usuario y contraseña
+LoginVista -> LoginControlador: iniciarSesion(usuario, clave)
+LoginControlador -> ClienteRest: autenticar(usuario, clave)
+
+ClienteRest -> API_REST_CONVERSOR: POST /api/auth/login { usuario, clave }
+API_REST_CONVERSOR -> AuthService: autenticar(usuario, clave)
+AuthService -> AuthService: valida contra 'claveActual' en memoria
+
+alt credenciales validas
+    AuthService --> API_REST_CONVERSOR: token de sesion generado
+    API_REST_CONVERSOR --> ClienteRest: RespuestaAutenticacion(OK, 200, token)
+    ClienteRest --> LoginControlador: sesion exitosa
+    LoginControlador --> LoginVista: redirigir a pantalla principal
+else credenciales invalidas
+    AuthService --> API_REST_CONVERSOR: RespuestaAutenticacion(ERROR, AUTH-001)
+    API_REST_CONVERSOR --> ClienteRest: RespuestaAutenticacion(ERROR, AUTH-001)
+    ClienteRest --> LoginControlador: error autenticacion
+    LoginControlador --> LoginVista: mostrar mensaje de error
+end
+
+@enduml

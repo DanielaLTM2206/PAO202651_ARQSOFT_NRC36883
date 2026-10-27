@@ -1,0 +1,77 @@
+@startuml
+title "Diagrama de Casos de Uso General del Sistema"
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 12
+skinparam ArrowColor #2563EB
+skinparam ArrowThickness 1.2
+
+skinparam actor {
+    BackgroundColor #EFF6FF
+    BorderColor #1D4ED8
+    BorderThickness 1.5
+}
+
+skinparam usecase {
+    BackgroundColor #F8FAFC
+    BorderColor #0284C7
+    BorderThickness 1.5
+    FontSize 12
+}
+
+package "Clientes Multi-Canal" {
+    actor "Cliente Web" as CliWeb
+    actor "Cliente Escritorio" as CliEsc
+    actor "Cliente Móvil" as CliMov
+    actor "Cliente Consola" as CliCon
+}
+
+actor "Usuario (Monster)" as Monster
+
+CliWeb -up-|> Monster
+CliEsc -up-|> Monster
+CliMov -up-|> Monster
+CliCon -up-|> Monster
+
+rectangle "Sistema de Conversión de Unidades" {
+
+    usecase "Iniciar Sesión" as Login
+    usecase "Consultar Catálogo de Unidades" as Catalogo
+    usecase "Realizar Conversión de Unidades" as Conversion
+    usecase "Consultar Historial de Conversiones" as Historial
+    usecase "Cambiar Contraseña" as Clave
+    usecase "Validar Sesión" as ValidarSesion
+
+    package "Tipos de Conversión" {
+        usecase "Convertir Longitud" as ConvLong
+        usecase "Convertir Masa" as ConvMasa
+        usecase "Convertir Temperatura" as ConvTemp
+    }
+}
+
+' Asociaciones del usuario
+Monster --> Login
+Monster --> Catalogo
+Monster --> Conversion
+Monster --> Historial
+Monster --> Clave
+
+' Inclusiones de seguridad
+Conversion ..> ValidarSesion : <<include>>
+Historial ..> ValidarSesion : <<include>>
+Clave ..> ValidarSesion : <<include>>
+
+' Tipos de conversión especializados
+Conversion <|-- ConvLong
+Conversion <|-- ConvMasa
+Conversion <|-- ConvTemp
+
+note bottom of Clave
+  El cambio de contraseña efectuado en cualquiera de los
+  clientes se sincroniza de forma inmediata en todo el sistema.
+end note
+
+@enduml

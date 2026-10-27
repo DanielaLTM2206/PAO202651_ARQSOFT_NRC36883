@@ -1,0 +1,42 @@
+@startuml
+title "CU_Realizar_Conversiones - Casos de Uso de Conversión de Unidades (RESTful .NET 8 - GR08)"
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Monster (Usuario Autenticado)" as Monster
+
+rectangle "Módulo de Conversión RESTful (ConversionController .NET 8)" {
+    usecase "CU-04: Realizar Conversión" as CU04
+    usecase "Convertir Longitud (POST /api/conversion/longitud)" as ConvLong
+    usecase "Convertir Masa (POST /api/conversion/masa)" as ConvMasa
+    usecase "Convertir Temperatura (POST /api/conversion/temperatura)" as ConvTemp
+    usecase "Validar Token Bearer en Memoria" as ValToken
+    usecase "Validar Regla VAL_007 (Mantisa <= 15 dígitos)" as Val007
+    usecase "Registrar en Historial (ConcurrentQueue)" as RegHist
+    usecase "CU-02: Consultar Catálogo de Unidades" as CU02
+}
+
+Monster --> CU04
+Monster --> CU02
+
+CU04 <|-- ConvLong
+CU04 <|-- ConvMasa
+CU04 <|-- ConvTemp
+
+CU04 ..> ValToken : <<include>>
+CU04 ..> Val007 : <<include>>
+CU04 ..> RegHist : <<include>>
+
+note right of Val007
+  Regla VAL_007: Se rechaza cualquier valor
+  cuya parte decimal o mantisa exceda
+  15 dígitos significativos (HTTP 400 Bad Request).
+end note
+
+note right of RegHist
+  Las conversiones exitosas se almacenan
+  en memoria en una estructura hilo-segura
+  ConcurrentQueue<ConversionRecord>.
+end note
+
+@enduml

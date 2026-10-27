@@ -1,0 +1,30 @@
+@startuml
+title "DS_03_CONVERTIR_LONGITUD"
+autonumber
+
+actor "APLICACION" as Aplicacion
+participant "CONVERSION_VISTA" as ConversionVista
+participant "CONVERSION_CONTROLADOR" as ConversionControlador
+participant "CLIENTE_REST_CONVERSOR" as ClienteRest
+participant "API_REST_CONVERSOR" as API_REST_CONVERSOR
+participant "SERVICIO_CONVERSION" as ServicioConversion
+participant "HISTORIAL_CENTRAL" as HistorialCentral
+
+Aplicacion -> ConversionVista: Ingresa valor, origen, destino
+ConversionVista -> ConversionControlador: convertirLongitud(valor, origen, destino)
+ConversionControlador -> ClienteRest: convertirLongitud(valor, origen, destino, token)
+
+ClienteRest -> API_REST_CONVERSOR: POST /api/conversion/longitud (valor, origen, destino, token)
+API_REST_CONVERSOR -> API_REST_CONVERSOR: validarToken(token)
+
+API_REST_CONVERSOR -> ServicioConversion: convertirLongitud(valor, origen, destino)
+ServicioConversion -> ServicioConversion: calcular formula matematica
+ServicioConversion --> API_REST_CONVERSOR: resultado
+
+API_REST_CONVERSOR -> HistorialCentral: registrarConversion("Longitud", valor, origen, resultado, destino)
+API_REST_CONVERSOR --> ClienteRest: RespuestaConversion(OK, 200, resultado)
+ClienteRest --> ConversionControlador: resultado estructurado
+ConversionControlador --> ConversionVista: renderizar resultado y actualizar historial
+ConversionVista --> Aplicacion: mostrar resultado en pantalla
+
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+title "DA_01_CONVERSION_RESTFUL - Diagrama de Actividad Pipeline de Conversión (GR08)"
+
+|Cliente (Web / Móvil / Escritorio / Consola)|
+start
+:Usuario ingresa credenciales (usuario y contraseña);
+:Enviar HTTP POST '/api/auth/login' con payload JSON;
+
+|Servidor RESTful (Kestrel / ASP.NET Core 8)|
+:Recibir HTTP Request;
+:Validar credenciales contra memoria (ConcurrentDictionary);
+
+if (¿Credenciales válidas?) then (no)
+    :Generar HTTP Response 401 Unauthorized (AUTH-001);
+    |Cliente (Web / Móvil / Escritorio / Consola)|
+    :Mostrar error de autenticación en pantalla;
+    stop
+else (sí)
+    |Servidor RESTful (Kestrel / ASP.NET Core 8)|
+    :Generar Token Bearer (UUID v4) en memoria;
+    :Construir HTTP Response 200 OK con Token JSON;
+endif
+
+|Cliente (Web / Móvil / Escritorio / Consola)|
+:Recibir Token y guardar en memoria del cliente;
+:Seleccionar categoría (Longitud, Masa, Temperatura);
+:Seleccionar unidades de Origen y Destino;
+:Ingresar valor numérico a convertir;
+
+if (¿Cumple regla VAL_007: Mantisa <= 15 dígitos?) then (no)
+    :Mostrar error local de validación numérica;
+    stop
+else (sí)
+endif
+
+:Construir HTTP POST '/api/conversion/{categoria}'
+con Header 'Authorization: Bearer <token>'
+y payload JSON { "valor", "origen", "destino" };
+:Enviar HTTP Request a Kestrel;
+
+|Servidor RESTful (Kestrel / ASP.NET Core 8)|
+:Recibir HTTP Request y extraer Bearer Token;
+:Validar Token en ConcurrentDictionary de sesiones;
+
+if (¿Token válido y activo?) then (no)
+    :Generar HTTP Response 401 Unauthorized;
+    |Cliente (Web / Móvil / Escritorio / Consola)|
+    :Redirigir a pantalla de Login;
+    stop
+else (sí)
+    |Servidor RESTful (Kestrel / ASP.NET Core 8)|
+    :Validar compatibilidad de unidades en catálogo;
+    if (¿Unidades soportadas?) then (no)
+        :Generar HTTP Response 400 Bad Request;
+        |Cliente (Web / Móvil / Escritorio / Consola)|
+        :Mostrar mensaje de unidad inválida;
+        stop
+    else (sí)
+        |Servidor RESTful (Kestrel / ASP.NET Core 8)|
+        :Ejecutar fórmula matemática en ConversionService;
+        :Registrar transacción en ConcurrentQueue<ConversionRecord>;
+        :Construir HTTP Response 200 OK estructurado con JSON;
+    endif
+endif
+
+|Cliente (Web / Móvil / Escritorio / Consola)|
+:Recibir HTTP Response 200 OK;
+:Deserializar JSON y renderizar resultado;
+:Actualizar tabla de historial local;
+stop
+
+@enduml

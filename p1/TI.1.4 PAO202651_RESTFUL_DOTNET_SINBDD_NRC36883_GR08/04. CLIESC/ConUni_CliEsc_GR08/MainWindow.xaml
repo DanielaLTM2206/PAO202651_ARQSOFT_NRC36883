@@ -1,0 +1,131 @@
+<Window x:Class="ConUni_CliEsc_GR08.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:ConUni_CliEsc_GR08.Views"
+        mc:Ignorable="d"
+        Title="Sistema de Conversion de Unidades RESTful - Monsters Inc (GR08)"
+        Height="840" Width="1240"
+        MinHeight="750" MinWidth="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="#0F172A"
+        Foreground="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="220"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Header Navigation -->
+        <Border Grid.Row="0" Background="#151B28" BorderBrush="#334155" BorderThickness="0,0,0,1" Padding="20,14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Avatar e Identidad -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="42" Height="42" CornerRadius="8" BorderBrush="#3B82F6" BorderThickness="2" Margin="0,0,14,0" ClipToBounds="True">
+                        <Image Source="pack://application:,,,/assets/Monster.jpg" Stretch="UniformToFill"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Sistema de Conversion RESTful" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,8,0"/>
+                            <Border Background="#2563EB" CornerRadius="10" Padding="8,2" VerticalAlignment="Center">
+                                <TextBlock Text="GR08" FontSize="10" FontWeight="Bold" Foreground="White"/>
+                            </Border>
+                        </StackPanel>
+                        <TextBlock Text="ASP.NET Core Web API .NET 8 (SINBDD) | Multi-Canalidad Universitaria" FontSize="11" Foreground="#94A3B8"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Acciones del Usuario -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="#0D121C" BorderBrush="#334155" BorderThickness="1" CornerRadius="16" Padding="12,5" Margin="0,0,12,0">
+                        <TextBlock x:Name="lblUsuarioSesion" Text="Sesion: MONSTER" FontSize="11" FontWeight="SemiBold" Foreground="#38BDF8"/>
+                    </Border>
+                    <Button Content="Cambiar Clave" Height="32" Padding="12,0" Background="#1E293B" Foreground="#E2E8F0" FontWeight="SemiBold" FontSize="11" BorderBrush="#334155" Margin="0,0,8,0" Click="BtnCambiarClave_Click" Cursor="Hand"/>
+                    <Button Content="Cerrar Sesion" Height="32" Padding="12,0" Background="#B91C1C" Foreground="White" FontWeight="Bold" FontSize="11" BorderThickness="0" Click="BtnCerrarSesion_Click" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Contenido Central: Tres Columnas de Servicios (Longitud, Masa, Temperatura) -->
+        <Grid Grid.Row="1" Margin="20,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Tarjeta 1: Longitud -->
+            <views:LongitudView x:Name="viewLongitud" Grid.Column="0"/>
+
+            <!-- Tarjeta 2: Masa -->
+            <views:MasaView x:Name="viewMasa" Grid.Column="2"/>
+
+            <!-- Tarjeta 3: Temperatura -->
+            <views:TemperaturaView x:Name="viewTemperatura" Grid.Column="4"/>
+        </Grid>
+
+        <!-- Seccion Inferior: Historial Sincronizado en Memoria (RF-06 / RF-07) -->
+        <Border Grid.Row="2" Background="#151B28" BorderBrush="#334155" BorderThickness="0,1,0,0" Padding="20,12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Historial Sincronizado en Memoria" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,0,10,0"/>
+                        <TextBlock Text="(Compartido en tiempo real con Web, Movil y Consola)" FontSize="11" Foreground="#94A3B8" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="Actualizar" Height="28" Padding="10,0" Background="#1E293B" Foreground="#E2E8F0" FontSize="11" FontWeight="SemiBold" BorderBrush="#334155" Margin="0,0,6,0" Click="BtnActualizarHistorial_Click" Cursor="Hand"/>
+                        <Button Content="Limpiar Historial" Height="28" Padding="10,0" Background="#7F1D1D" Foreground="#FCA5A5" FontSize="11" FontWeight="SemiBold" BorderThickness="0" Click="BtnLimpiarHistorial_Click" Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- DataGrid de Historial -->
+                <DataGrid Grid.Row="1" x:Name="dgHistorial" AutoGenerateColumns="False" IsReadOnly="True"
+                          Background="#0D121C" BorderBrush="#334155" BorderThickness="1"
+                          Foreground="White" RowBackground="#0D121C" AlternatingRowBackground="#111827"
+                          GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#1E293B"
+                          HeadersVisibility="Column" FontSize="11" CanUserAddRows="False">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#151B28"/>
+                            <Setter Property="Foreground" Value="#94A3B8"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="8,6"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="BorderBrush" Value="#334155"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Fecha/Hora" Binding="{Binding Fecha, StringFormat='yyyy-MM-dd HH:mm:ss'}" Width="160"/>
+                        <DataGridTextColumn Header="Categoria" Binding="{Binding TipoConversion}" Width="110"/>
+                        <DataGridTextColumn Header="Valor Original" Binding="{Binding ValorOriginal}" Width="110"/>
+                        <DataGridTextColumn Header="Origen" Binding="{Binding UnidadOrigen}" Width="90"/>
+                        <DataGridTextColumn Header="Resultado" Binding="{Binding ValorResultado}" Width="120"/>
+                        <DataGridTextColumn Header="Destino" Binding="{Binding UnidadDestino}" Width="90"/>
+                        <DataGridTextColumn Header="Usuario" Binding="{Binding Usuario}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

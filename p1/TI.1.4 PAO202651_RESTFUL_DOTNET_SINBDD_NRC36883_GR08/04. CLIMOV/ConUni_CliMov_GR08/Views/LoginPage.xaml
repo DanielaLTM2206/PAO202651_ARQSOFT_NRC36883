@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:UniversalConverter.Client.ViewModels"
+             xmlns:converters="clr-namespace:UniversalConverter.Client.Converters"
+             x:DataType="viewModels:LoginViewModel"
+             x:Class="UniversalConverter.Client.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#0F172A">
+
+    <ContentPage.Resources>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
+            <Border StrokeShape="RoundRectangle 16"
+                    StrokeThickness="1"
+                    Stroke="#334155"
+                    BackgroundColor="#151B28"
+                    Padding="28,32"
+                    WidthRequest="340">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Avatar corporativo -->
+                    <Border StrokeShape="RoundRectangle 50"
+                            Stroke="#3B82F6"
+                            StrokeThickness="2"
+                            WidthRequest="90"
+                            HeightRequest="90"
+                            HorizontalOptions="Center">
+                        <Image Source="sullivan.png"
+                               Aspect="AspectFill"
+                               WidthRequest="90"
+                               HeightRequest="90"/>
+                    </Border>
+
+                    <!-- Titulos institucionales -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="MONSTERS INC."
+                               FontSize="11"
+                               FontAttributes="Bold"
+                               TextColor="#38BDF8"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="INICIAR SESION"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               TextColor="White"/>
+                        <Label Text="Conversor RESTful .NET 8 (SINBDD)"
+                               FontSize="11"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#94A3B8"/>
+                    </VerticalStackLayout>
+
+                    <!-- Servidor Host -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Servidor API (Host / IP):" 
+                               FontSize="11"
+                               TextColor="#CBD5E1"/>
+                        <Border StrokeShape="RoundRectangle 8" Stroke="#334155" BackgroundColor="#0D121C" Padding="10,2">
+                            <Entry Text="{Binding ServerHost}"
+                                   TextColor="White"
+                                   PlaceholderColor="#64748B"
+                                   FontSize="13"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Campo Usuario -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Usuario Corporativo:" 
+                               FontSize="11"
+                               TextColor="#CBD5E1"/>
+                        <Border StrokeShape="RoundRectangle 8" Stroke="#334155" BackgroundColor="#0D121C" Padding="10,2">
+                            <Entry Text="{Binding Username}"
+                                   Placeholder="MONSTER"
+                                   TextColor="White"
+                                   PlaceholderColor="#64748B"
+                                   FontSize="13"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Campo Contrasena -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Contrasena:" 
+                               FontSize="11"
+                               TextColor="#CBD5E1"/>
+                        <Border StrokeShape="RoundRectangle 8" Stroke="#334155" BackgroundColor="#0D121C" Padding="10,2">
+                            <Entry Text="{Binding Password}"
+                                   Placeholder="MONSTER9"
+                                   IsPassword="True"
+                                   TextColor="White"
+                                   PlaceholderColor="#64748B"
+                                   FontSize="13"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Mensaje de Error -->
+                    <Border StrokeShape="RoundRectangle 8"
+                            Stroke="#DC2626"
+                            BackgroundColor="#2D1515"
+                            Padding="10"
+                            IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}">
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="#FCA5A5"
+                               HorizontalTextAlignment="Center"
+                               FontSize="11"/>
+                    </Border>
+
+                    <!-- Boton Iniciar Sesion -->
+                    <Button Text="INGRESAR AL SISTEMA"
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsNotBusy}"
+                            BackgroundColor="#2563EB"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            HeightRequest="46"
+                            FontSize="13"
+                            Margin="0,6,0,0"/>
+
+                    <!-- Indicador de Carga -->
+                    <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                                       Color="#38BDF8"
+                                       HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

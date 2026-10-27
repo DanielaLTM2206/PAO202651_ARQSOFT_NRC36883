@@ -1,0 +1,41 @@
+@startuml
+title "DS_01_INICIALIZAR_CLIENTE_REST"
+
+participant "APLICACION\n(Main)" as Main
+participant "CLIENTE_REST_CONVERSOR" as ClienteRest
+participant "CLIENTE_REST_HTTPCLIENT" as ProxySoap
+participant "API_REST_CONVERSOR" as Servicio
+participant "ADMINISTRADOR_TOKENS" as Tokens
+
+Main -> ClienteRest: 1. crear Cliente REST
+activate ClienteRest
+
+ClienteRest -> ProxySoap: 2. inicializar HttpClient BaseAddress (http://localhost:5000)
+activate ProxySoap
+
+ClienteRest -> ProxySoap: 3. login(usuario, contrasenia)
+ProxySoap -> Servicio: 4. login(usuario, contrasenia)
+activate Servicio
+
+alt credenciales correctas
+	Servicio -> Tokens: 5. GenerarToken()
+	activate Tokens
+	Tokens --> Servicio: 6. token
+	deactivate Tokens
+
+	Servicio --> ProxySoap: 7. token
+	ProxySoap --> ClienteRest: 8. token
+	ClienteRest -> ClienteRest: 9. guardar token para Header HTTP 'Authorization: Bearer <token>'
+	ClienteRest --> Main: 10. cliente inicializado y autenticado
+else credenciales incorrectas
+	Servicio --> ProxySoap: 7. RuntimeException("Credenciales incorrectas")
+	ProxySoap --> ClienteRest: 8. error de autenticacion
+	ClienteRest --> Main: 9. mostrar error de login
+end
+
+deactivate Servicio
+deactivate ProxySoap
+deactivate ClienteRest
+
+@enduml
+

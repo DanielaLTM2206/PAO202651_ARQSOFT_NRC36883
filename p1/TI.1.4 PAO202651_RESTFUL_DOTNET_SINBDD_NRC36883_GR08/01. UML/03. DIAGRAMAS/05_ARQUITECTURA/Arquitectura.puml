@@ -1,0 +1,68 @@
+@startuml
+title "Arquitectura - Diagrama de Arquitectura Global RESTful .NET 8 (SIN BDD - GR08)"
+skinparam componentStyle uml2
+
+package "Clientes Multi-Canal (Consumidores)" {
+    [Cliente Web SPA\n(HTML5 / Modern CSS / Fetch API)] as CliWeb
+    [Cliente Escritorio\n(WPF .NET 8 C# / HttpClient)] as CliEsc
+    [Cliente Móvil\n(.NET MAUI C# / HttpClient)] as CliMov
+    [Cliente Consola\n(CLI .NET 8 C# / Spectre.Console)] as CliCon
+}
+
+package "Servidor Kestrel - ASP.NET Core 8 Web API" {
+    package "Capa de Exposición (Controllers / Endpoints)" {
+        [AuthController\nPOST /api/auth/login\nPOST /api/auth/change-password] as AuthCtrl
+        [ConversionController\nPOST /api/conversion/{cat}\nGET /api/conversion/historial] as ConvCtrl
+        [CatalogoController\nGET /api/catalogo] as CatCtrl
+    }
+
+    package "Capa de Lógica de Negocio (Domain Services)" {
+        interface "IAuthService" as IAuth
+        [AuthService\nValidación Credenciales\nGeneración Tokens UUID] as AuthSvc
+        IAuth <|.. AuthSvc
+
+        interface "IConversionService" as IConv
+        [ConversionService\nFórmulas Longitud, Masa, Temp\nValidación VAL_007 Mantisa <= 15] as ConvSvc
+        IConv <|.. ConvSvc
+    }
+
+    package "Almacenamiento Concurrente en Memoria (SIN BDD)" {
+        database "ConcurrentDictionary<string, UserSession>\n(Tokens y Sesiones Activas)" as MemTokens
+        database "ConcurrentDictionary<string, string>\n(Credenciales Activas - Mutación Atómica)" as MemCreds
+        database "ConcurrentQueue<ConversionRecord>\n(Historial Global Compartido)" as MemHist
+        database "In-Memory Static Catalog\n(Catálogo de Unidades y Factores)" as MemCat
+    }
+}
+
+CliWeb --> AuthCtrl : HTTP/JSON (REST)
+CliWeb --> ConvCtrl : HTTP/JSON (Bearer)
+CliWeb --> CatCtrl : HTTP/JSON (REST)
+
+CliEsc --> AuthCtrl : HTTP/JSON (REST)
+CliEsc --> ConvCtrl : HTTP/JSON (Bearer)
+CliEsc --> CatCtrl : HTTP/JSON (REST)
+
+CliMov --> AuthCtrl : HTTP/JSON (REST)
+CliMov --> ConvCtrl : HTTP/JSON (Bearer)
+CliMov --> CatCtrl : HTTP/JSON (REST)
+
+CliCon --> AuthCtrl : HTTP/JSON (REST)
+CliCon --> ConvCtrl : HTTP/JSON (Bearer)
+CliCon --> CatCtrl : HTTP/JSON (REST)
+
+AuthCtrl --> IAuth
+ConvCtrl --> IConv
+
+AuthSvc --> MemTokens
+AuthSvc --> MemCreds
+ConvSvc --> MemCat
+ConvCtrl --> MemHist
+
+note right of MemCreds
+  ARQUITECTURA SIN BDD:
+  No existe base de datos relacional.
+  El cambio de contraseña muta '_currentPassword'
+  en memoria con efecto multi-canal inmediato.
+end note
+
+@enduml

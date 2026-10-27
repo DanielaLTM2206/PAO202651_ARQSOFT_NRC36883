@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monsters Inc. - Conversor de Unidades RESTful .NET 8 (GR08)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/jpeg" href="assets/monsterlogin.jpg">
+</head>
+<body>
+
+    <!-- ======================================================================
+         VISTA 1: LOGIN / AUTENTICACION RESTFUL (RF-01)
+         ====================================================================== -->
+    <div id="loginView" class="login-view-wrapper">
+        <div class="login-card">
+            <div class="login-form-side">
+                <span class="badge-corp">Monsters Inc. - RESTful GR08</span>
+                <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 6px;">Iniciar Sesion</h2>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 24px;">
+                    Ingrese sus credenciales para autenticarse con el servicio RESTful .NET 8
+                </p>
+
+                <div id="loginAlert" class="alert-box alert-error" style="display: none;">
+                    <span id="loginAlertMsg">Credenciales invalidas</span>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="txtUsuario">Usuario Corporativo</label>
+                        <input type="text" id="txtUsuario" class="input-control" placeholder="Ej: MONSTER" value="MONSTER" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtClave">Contrasena de Acceso</label>
+                        <input type="password" id="txtClave" class="input-control" placeholder="••••••••" value="MONSTER9" required>
+                    </div>
+
+                    <button type="submit" id="btnLogin" class="btn btn-primary btn-block" style="margin-top: 10px;">
+                        <span>INGRESAR AL SISTEMA</span>
+                    </button>
+                </form>
+
+                <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--input-border); font-size: 0.78rem; color: var(--text-muted); text-align: center;">
+                    Servidor REST: <code style="color: var(--primary);">http://localhost:5000/api</code> | Catedra Arq. Software
+                </div>
+            </div>
+
+            <div class="login-banner-side">
+                <div class="banner-img-container">
+                    <img src="assets/monsterlogin.jpg" alt="Monsters Inc Sulley">
+                </div>
+                <div class="banner-caption">
+                    <h3>James P. Sullivan</h3>
+                    <p>Director de Energia y Conversiones</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         VISTA 2: PANEL PRINCIPAL DASHBOARD (AUTENTICADO)
+         ====================================================================== -->
+    <div id="dashboardView" class="dashboard-view-wrapper" style="display: none;">
+        
+        <!-- Top Navigation -->
+        <header class="top-navbar">
+            <div class="nav-brand">
+                <div class="brand-avatar">
+                    <img src="assets/monsterlogin.jpg" alt="Avatar Usuario">
+                </div>
+                <div class="brand-text">
+                    <h1>Sistema de Conversion RESTful <span class="badge-corp" style="margin: 0; padding: 2px 8px; font-size: 0.65rem;">GR08</span></h1>
+                    <p>ASP.NET Core Web API .NET 8 (SINBDD) | Multi-Canalidad Universitaria</p>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <div class="user-badge">
+                    <span class="status-dot"></span>
+                    <span>Sesion: <strong id="lblUsuarioActivo" style="color: #fff;">MONSTER</strong></span>
+                </div>
+                <button type="button" id="btnAbrirModalClave" class="btn btn-secondary btn-sm" title="Cambiar Contrasena">
+                    Cambiar Clave
+                </button>
+                <button type="button" id="btnCerrarSesion" class="btn btn-danger btn-sm" title="Cerrar Sesion">
+                    Cerrar Sesion
+                </button>
+            </div>
+        </header>
+
+        <!-- Status Strip -->
+        <div class="status-bar-strip">
+            <div class="status-item">
+                <span>Servidor API:</span>
+                <strong id="lblServerStatus" style="color: #34d399;">Conectado (localhost:5000)</strong>
+            </div>
+            <div class="status-item">
+                <span>Token REST:</span>
+                <code id="lblTokenPreview" style="font-family: var(--font-mono); color: #38bdf8; font-size: 0.78rem;">mst_...</code>
+            </div>
+            <div class="status-item">
+                <span>Conversiones Globales:</span>
+                <strong id="lblTotalConversiones" style="color: #fbbf24;">0</strong>
+            </div>
+        </div>
+
+        <!-- 3-Column Services Grid (Disposicion de GR01 con Estilos Monsters Inc) -->
+        <main class="services-grid">
+            
+            <!-- TARJETA 1: LONGITUD -->
+            <section class="service-card card-long">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Longitud</span>
+                        </div>
+                        <span class="badge-tag badge-long">API /api/Longitud</span>
+                    </div>
+
+                    <form id="formLongitud">
+                        <div class="form-group">
+                            <label for="ddlLongitud">Tipo de Conversion</label>
+                            <select id="ddlLongitud" class="input-control" required>
+                                <option value="millaMetro">Milla &rarr; Metro</option>
+                                <option value="metroMilla">Metro &rarr; Milla</option>
+                                <option value="millaPulgada">Milla &rarr; Pulgada</option>
+                                <option value="pulgadaMilla">Pulgada &rarr; Milla</option>
+                                <option value="metroPulgada">Metro &rarr; Pulgada</option>
+                                <option value="pulgadaMetro">Pulgada &rarr; Metro</option>
+                                <option value="kilometroMetro">Kilometro &rarr; Metro</option>
+                                <option value="metroKilometro">Metro &rarr; Kilometro</option>
+                                <option value="pieMetro">Pie &rarr; Metro</option>
+                                <option value="yardaMetro">Yarda &rarr; Metro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtValorLongitud">Valor a Convertir (max 15 digitos)</label>
+                            <input type="text" id="txtValorLongitud" class="input-control" placeholder="Ej: 10" maxlength="15" required>
+                        </div>
+
+                        <button type="submit" id="btnConvertirLongitud" class="btn btn-primary btn-block">
+                            <span>CONVERTIR LONGITUD</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Panel Resultado Longitud -->
+                <div id="resLongitud" class="result-container" style="display: none;"></div>
+            </section>
+
+            <!-- TARJETA 2: MASA -->
+            <section class="service-card card-masa">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Masa</span>
+                        </div>
+                        <span class="badge-tag badge-masa">API /api/Masa</span>
+                    </div>
+
+                    <form id="formMasa">
+                        <div class="form-group">
+                            <label for="ddlMasa">Tipo de Conversion</label>
+                            <select id="ddlMasa" class="input-control" required>
+                                <option value="kilogramoLibra">Kilogramo &rarr; Libra</option>
+                                <option value="libraKilogramo">Libra &rarr; Kilogramo</option>
+                                <option value="kilogramoOnza">Kilogramo &rarr; Onza</option>
+                                <option value="onzaKilogramo">Onza &rarr; Kilogramo</option>
+                                <option value="libraOnza">Libra &rarr; Onza</option>
+                                <option value="onzaLibra">Onza &rarr; Libra</option>
+                                <option value="gramoKilogramo">Gramo &rarr; Kilogramo</option>
+                                <option value="kilogramoGramo">Kilogramo &rarr; Gramo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtValorMasa">Valor a Convertir (max 15 digitos)</label>
+                            <input type="text" id="txtValorMasa" class="input-control" placeholder="Ej: 25.5" maxlength="15" required>
+                        </div>
+
+                        <button type="submit" id="btnConvertirMasa" class="btn btn-primary btn-block" style="background: linear-gradient(135deg, #059669, #047857);">
+                            <span>CONVERTIR MASA</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Panel Resultado Masa -->
+                <div id="resMasa" class="result-container" style="display: none;"></div>
+            </section>
+
+            <!-- TARJETA 3: TEMPERATURA -->
+            <section class="service-card card-temp">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Temperatura</span>
+                        </div>
+                        <span class="badge-tag badge-temp">API /api/Temperatura</span>
+                    </div>
+
+                    <form id="formTemperatura">
+                        <div class="form-group">
+                            <label for="ddlTemperatura">Tipo de Conversion</label>
+                            <select id="ddlTemperatura" class="input-control" required>
+                                <option value="celsiusFahrenheit">Celsius &rarr; Fahrenheit</option>
+                                <option value="fahrenheitCelsius">Fahrenheit &rarr; Celsius</option>
+                                <option value="celsiusKelvin">Celsius &rarr; Kelvin</option>
+                                <option value="kelvinCelsius">Kelvin &rarr; Celsius</option>
+                                <option value="fahrenheitKelvin">Fahrenheit &rarr; Kelvin</option>
+                                <option value="kelvinFahrenheit">Kelvin &rarr; Fahrenheit</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtValorTemperatura">Valor a Convertir (max 15 digitos)</label>
+                            <input type="text" id="txtValorTemperatura" class="input-control" placeholder="Ej: 100" maxlength="15" required>
+                        </div>
+
+                        <button type="submit" id="btnConvertirTemperatura" class="btn btn-primary btn-block" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                            <span>CONVERTIR TEMPERATURA</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Panel Resultado Temperatura -->
+                <div id="resTemperatura" class="result-container" style="display: none;"></div>
+            </section>
+
+        </main>
+
+        <!-- SECCION DE HISTORIAL SINCRONIZADO GLOBAL (RF-06 / RF-07) -->
+        <section class="history-section">
+            <div class="section-header-row">
+                <div>
+                    <h2 style="font-size: 1.15rem; font-weight: 700; color: #fff;">Historial Sincronizado en Memoria</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Registro global de conversiones compartidas entre todos los canales (Web, Movil, Consola, Escritorio)</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="button" id="btnRecargarHistorial" class="btn btn-secondary btn-sm">
+                        Actualizar
+                    </button>
+                    <button type="button" id="btnLimpiarHistorial" class="btn btn-danger btn-sm">
+                        Limpiar Historial
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Categoria</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Valor Convertido</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblHistorialBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 24px;">
+                                Cargando historial desde el servidor REST...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ======================================================================
+         MODAL: CAMBIAR CONTRASENA EN MEMORIA (RF-08)
+         ====================================================================== -->
+    <div id="modalCambiarClave" class="modal-overlay">
+        <div class="modal-content">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 8px;">Cambiar Contrasena</h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 20px;">
+                La nueva clave se actualizara inmediatamente en el servidor REST central para todos los canales.
+            </p>
+
+            <div id="modalClaveAlert" class="alert-box alert-error" style="display: none;">
+                <span id="modalClaveAlertMsg"></span>
+            </div>
+
+            <form id="formCambiarClave">
+                <div class="form-group">
+                    <label for="txtClaveActual">Contrasena Actual</label>
+                    <input type="password" id="txtClaveActual" class="input-control" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtClaveNueva">Nueva Contrasena</label>
+                    <input type="password" id="txtClaveNueva" class="input-control" placeholder="Minimo 4 caracteres" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtClaveConfirmar">Confirmar Nueva Contrasena</label>
+                    <input type="password" id="txtClaveConfirmar" class="input-control" placeholder="Repita la nueva contrasena" required>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;">
+                    <button type="button" id="btnCerrarModalClave" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Clave</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js?v=3"></script>
+</body>
+</html>

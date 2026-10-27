@@ -1,0 +1,79 @@
+<Window x:Class="ConUni_CliEsc_GR08.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Iniciar Sesion - Monsters Inc Conversor REST (GR08)"
+        Height="620" Width="440"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#0F172A"
+        Foreground="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Encabezado con imagen corporativa -->
+        <Border Grid.Row="0" Background="#151B28" Padding="24,20" BorderBrush="#334155" BorderThickness="0,0,0,1">
+            <StackPanel HorizontalAlignment="Center">
+                <!-- Badge -->
+                <Border Background="#2563EB" CornerRadius="12" Padding="10,4" HorizontalAlignment="Center" Margin="0,0,0,12">
+                    <TextBlock Text="MONSTERS INC. - RESTFUL GR08" FontSize="10" FontWeight="Bold" Foreground="White"/>
+                </Border>
+
+                <!-- Avatar de Sulley -->
+                <Border Width="100" Height="100" CornerRadius="50" BorderBrush="#3B82F6" BorderThickness="2" HorizontalAlignment="Center" Margin="0,0,0,12" ClipToBounds="True">
+                    <Image Source="pack://application:,,,/assets/Monster.jpg" Stretch="UniformToFill"/>
+                </Border>
+
+                <TextBlock Text="INICIAR SESION" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock Text="Sistema de Conversion de Unidades REST .NET 8" FontSize="11" Foreground="#94A3B8" HorizontalAlignment="Center" Margin="0,3,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Formulario -->
+        <Border Grid.Row="1" Background="#0F172A" Padding="34,24">
+            <StackPanel VerticalAlignment="Center">
+                
+                <!-- Mensaje de Error -->
+                <Border x:Name="pnlError" Background="#2D1515" BorderBrush="#DC2626" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,0,0,16" Visibility="Collapsed">
+                    <TextBlock x:Name="lblMensajeError" Text="Error de autenticacion" Foreground="#FCA5A5" FontSize="11" TextWrapping="Wrap"/>
+                </Border>
+
+                <!-- Campo Usuario -->
+                <TextBlock Text="Usuario Corporativo:" FontSize="12" FontWeight="SemiBold" Foreground="#CBD5E1" Margin="0,0,0,6"/>
+                <TextBox x:Name="txtUsuario" FontSize="14" Padding="10" Background="#151B28" Foreground="White" BorderBrush="#334155" Margin="0,0,0,16" Text="MONSTER">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <!-- Campo Clave -->
+                <TextBlock Text="Contrasena de Acceso:" FontSize="12" FontWeight="SemiBold" Foreground="#CBD5E1" Margin="0,0,0,6"/>
+                <PasswordBox x:Name="txtClave" FontSize="14" Padding="10" Background="#151B28" Foreground="White" BorderBrush="#334155" Margin="0,0,0,24" Password="MONSTER9" KeyDown="TxtClave_KeyDown">
+                    <PasswordBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </PasswordBox.Resources>
+                </PasswordBox>
+
+                <!-- Boton Login -->
+                <Button x:Name="btnIngresar" Content="INGRESAR AL SISTEMA" Height="44" Background="#2563EB" Foreground="White" FontWeight="Bold" FontSize="13" BorderThickness="0" Cursor="Hand" Click="BtnIngresar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock Text="Servidor API: http://localhost:5000/api" FontSize="10" Foreground="#64748B" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

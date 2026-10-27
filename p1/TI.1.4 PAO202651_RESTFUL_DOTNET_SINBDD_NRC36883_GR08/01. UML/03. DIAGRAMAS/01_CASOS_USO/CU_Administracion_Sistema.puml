@@ -1,0 +1,28 @@
+@startuml
+title "CU_Administracion_Sistema - Casos de Uso de Seguridad y Acceso (GR08)"
+left to right direction
+
+actor "Monster (Usuario Autenticado)" as Monster
+
+rectangle "Módulo de Seguridad RESTful (.NET 8) (AuthService)" {
+    usecase "CU-01: Autenticarse" as CU01
+    usecase "CU-08: Cambiar Contraseña" as CU08
+    usecase "Gestionar Error de Autenticación (AUTH-001)" as ErrAuth
+    usecase "Gestionar Error Contraseña Actual Incorrecta (AUTH-002)" as ErrClave
+    usecase "Validar Token en Memoria" as ValToken
+}
+
+Monster --> CU01
+Monster --> CU08
+
+CU01 ..> ErrAuth : <<extend>>
+CU08 ..> ErrClave : <<extend>>
+CU08 ..> ValToken : <<include>>
+
+note right of CU08
+  Actualiza la credencial 'claveActual'
+  en memoria volátil en Kestrel Server (.NET 8).
+  Sincronización multi-canal instantánea.
+end note
+
+@enduml

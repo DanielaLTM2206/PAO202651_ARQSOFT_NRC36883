@@ -1,0 +1,47 @@
+@startuml
+title "CU_Sistema - Diagrama de Casos de Uso General (GR08)"
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Monster (Usuario)" as Monster
+
+package "Clientes Multi-canal" {
+    actor "Cliente Web (HTML5 SPA)" as CliWeb
+    actor "Cliente Escritorio (.NET 8 WPF)" as CliEsc
+    actor "Cliente Consola (.NET 8 CLI)" as CliCon
+    actor "Cliente Móvil (.NET 8 MAUI)" as CliMov
+}
+
+CliWeb -up-|> Monster
+CliEsc -up-|> Monster
+CliCon -up-|> Monster
+CliMov -up-|> Monster
+
+rectangle "Servicio RESTful Conversor de Unidades (Sin BDD - Memoria)" {
+    usecase "CU-01: Autenticarse" as CU01
+    usecase "CU-02: Consultar Catálogo de Unidades" as CU02
+    usecase "CU-03: Consultar Unidades por Categoría" as CU03
+    usecase "CU-04: Realizar Conversión" as CU04
+    usecase "CU-05: Validar Token de Seguridad" as CU05
+    usecase "CU-08: Cambiar Contraseña (Sincronización Global)" as CU08
+    usecase "CU-12: Consultar Historial Global Compartido" as CU12
+}
+
+Monster --> CU01
+Monster --> CU02
+Monster --> CU04
+Monster --> CU08
+Monster --> CU12
+
+CU04 ..> CU05 : <<include>>
+CU08 ..> CU05 : <<include>>
+CU12 ..> CU05 : <<include>>
+CU02 ..> CU03 : <<extend>>
+
+note right of CU08
+  El cambio de contraseña en cualquiera
+  de los clientes (Web, Escritorio, Consola, Móvil)
+  se sincroniza inmediatamente en memoria central.
+end note
+
+@enduml
