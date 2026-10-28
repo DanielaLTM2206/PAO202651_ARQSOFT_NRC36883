@@ -21,7 +21,25 @@ namespace ConUni_Client_DotNet
 
             string serverHost = args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]) 
                 ? args[0].Trim() 
-                : Environment.GetEnvironmentVariable("REST_HOST") ?? "localhost";
+                : Environment.GetEnvironmentVariable("REST_HOST") ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(serverHost))
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("Ingrese la IP o Dominio del Servidor RESTful [Enter para localhost]: ");
+                Console.ResetColor();
+                string? input = Console.ReadLine();
+                serverHost = string.IsNullOrWhiteSpace(input) ? "localhost" : input.Trim();
+            }
+
+            if (serverHost.Contains("trycloudflare.com", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!serverHost.StartsWith("http://", StringComparison.OrdinalIgnoreCase) && 
+                    !serverHost.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                {
+                    serverHost = "https://" + serverHost;
+                }
+            }
 
             _serverUrl = serverHost.StartsWith("http") 
                 ? (serverHost.EndsWith("/api") ? serverHost : $"{serverHost.TrimEnd('/')}/api")

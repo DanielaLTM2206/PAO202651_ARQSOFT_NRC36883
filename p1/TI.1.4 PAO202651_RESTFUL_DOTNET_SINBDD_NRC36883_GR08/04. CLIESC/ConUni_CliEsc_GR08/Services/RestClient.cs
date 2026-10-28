@@ -13,11 +13,22 @@ namespace ConUni_CliEsc_GR08.Services
         private static RestClient? _instance;
         private static string _customHost = "localhost";
 
+        public static string CustomHost => _customHost;
+
         public static void SetServerHost(string host)
         {
             if (!string.IsNullOrWhiteSpace(host))
             {
-                _customHost = host.Trim();
+                string h = host.Trim();
+                if (h.Contains("trycloudflare.com", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (!h.StartsWith("http://", StringComparison.OrdinalIgnoreCase) && 
+                        !h.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                    {
+                        h = "https://" + h;
+                    }
+                }
+                _customHost = h;
                 _instance = null;
             }
         }

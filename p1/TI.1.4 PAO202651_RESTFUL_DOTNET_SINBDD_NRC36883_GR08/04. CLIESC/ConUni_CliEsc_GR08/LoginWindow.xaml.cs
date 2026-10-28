@@ -9,7 +9,14 @@ namespace ConUni_CliEsc_GR08
         public LoginWindow()
         {
             InitializeComponent();
-            Loaded += (s, e) => txtUsuario.Focus();
+            Loaded += (s, e) => 
+            {
+                if (!string.IsNullOrWhiteSpace(RestClient.CustomHost))
+                {
+                    txtServidor.Text = RestClient.CustomHost;
+                }
+                txtUsuario.Focus();
+            };
         }
 
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
@@ -28,6 +35,11 @@ namespace ConUni_CliEsc_GR08
         private async System.Threading.Tasks.Task ValidarCredencialesAsync()
         {
             pnlError.Visibility = Visibility.Collapsed;
+
+            if (!string.IsNullOrWhiteSpace(txtServidor.Text))
+            {
+                RestClient.SetServerHost(txtServidor.Text.Trim());
+            }
 
             string usuario = txtUsuario.Text.Trim();
             string clave = txtClave.Password.Trim();

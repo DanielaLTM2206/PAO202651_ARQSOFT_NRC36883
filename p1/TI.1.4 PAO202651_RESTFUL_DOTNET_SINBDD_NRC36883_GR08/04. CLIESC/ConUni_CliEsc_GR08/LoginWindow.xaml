@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Iniciar Sesion - Monsters Inc Conversor REST (GR08)"
-        Height="620" Width="440"
+        Height="690" Width="440"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="#0F172A"
@@ -42,6 +42,16 @@
                 <Border x:Name="pnlError" Background="#2D1515" BorderBrush="#DC2626" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,0,0,16" Visibility="Collapsed">
                     <TextBlock x:Name="lblMensajeError" Text="Error de autenticacion" Foreground="#FCA5A5" FontSize="11" TextWrapping="Wrap"/>
                 </Border>
+
+                <!-- Campo Servidor REST -->
+                <TextBlock Text="Servidor REST / Dominio (Opcional):" FontSize="12" FontWeight="SemiBold" Foreground="#CBD5E1" Margin="0,0,0,6"/>
+                <TextBox x:Name="txtServidor" FontSize="13" Padding="8" Background="#151B28" Foreground="#38BDF8" BorderBrush="#334155" Margin="0,0,0,14" Text="localhost">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
 
                 <!-- Campo Usuario -->
                 <TextBlock Text="Usuario Corporativo:" FontSize="12" FontWeight="SemiBold" Foreground="#CBD5E1" Margin="0,0,0,6"/>
