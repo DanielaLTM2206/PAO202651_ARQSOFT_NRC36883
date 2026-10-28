@@ -42,6 +42,7 @@ namespace ec.edu.monster.Vista
             lblError = new Label();
             btnIngresar = new ec.edu.monster.Vista.Controles.BotonRedondeado();
             lblServidor = new Label();
+            lnkServidor = new LinkLabel();
             pnlLateral.SuspendLayout();
             pnlMarca.SuspendLayout();
             SuspendLayout();
@@ -190,6 +191,21 @@ namespace ec.edu.monster.Vista
             lblServidor.TabIndex = 10;
             lblServidor.Text = "Servidor:";
             //
+            // lnkServidor
+            //
+            lnkServidor.ActiveLinkColor = Color.FromArgb(0, 62, 110);
+            lnkServidor.AutoSize = true;
+            lnkServidor.Font = new Font("Segoe UI", 9F);
+            lnkServidor.LinkBehavior = LinkBehavior.HoverUnderline;
+            lnkServidor.LinkColor = Color.FromArgb(0, 84, 147);
+            lnkServidor.Location = new Point(470, 462);
+            lnkServidor.Name = "lnkServidor";
+            lnkServidor.Size = new Size(140, 20);
+            lnkServidor.TabIndex = 11;
+            lnkServidor.TabStop = true;
+            lnkServidor.Text = "Configurar servidor";
+            lnkServidor.LinkClicked += lnkServidor_LinkClicked;
+            //
             // FormLogin
             //
             AcceptButton = btnIngresar;
@@ -197,6 +213,7 @@ namespace ec.edu.monster.Vista
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(900, 560);
+            Controls.Add(lnkServidor);
             Controls.Add(lblServidor);
             Controls.Add(btnIngresar);
             Controls.Add(lblError);
@@ -236,5 +253,6 @@ namespace ec.edu.monster.Vista
         private Label lblError;
         private ec.edu.monster.Vista.Controles.BotonRedondeado btnIngresar;
         private Label lblServidor;
+        private LinkLabel lnkServidor;
     }
 }

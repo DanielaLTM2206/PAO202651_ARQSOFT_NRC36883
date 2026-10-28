@@ -1,6 +1,7 @@
 using ec.edu.monster.Cliente;
 using ec.edu.monster.Servicios;
 using ec.edu.monster.Sesion;
+using ec.edu.monster.Util;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,12 +21,18 @@ builder.Services.AddScoped<AlmacenSesion>();
 builder.Services.AddScoped<IAlmacenToken>(proveedor => proveedor.GetRequiredService<AlmacenSesion>());
 builder.Services.AddScoped<ManejadorTokenSOAP>();
 
-// Cliente del servicio SOAP .NET (la URL está en appsettings.json → ServidorSoap:Url)
+// Dirección del servidor SOAP: variable WS_SOAP_URL, la guardada en "Configurar servidor"
+// o la de appsettings.json (ServidorSoap:Url)
+builder.Services.AddSingleton(new ConfiguracionServidor(builder.Configuration["ServidorSoap:Url"]));
+builder.Services.AddSingleton<ProbadorConexion>();
+
+// Cliente del servicio SOAP .NET
 builder.Services.AddScoped<IContratoWSConversor, ClienteWSConversor>();
 
 // Lógica de la aplicación: validaciones y llamadas al servicio
 builder.Services.AddScoped<ServicioCuenta>();
 builder.Services.AddScoped<ServicioConversion>();
+builder.Services.AddScoped<ServicioServidor>();
 
 // Todos los formularios POST exigen el token antifalsificación
 builder.Services.AddControllersWithViews(opciones =>

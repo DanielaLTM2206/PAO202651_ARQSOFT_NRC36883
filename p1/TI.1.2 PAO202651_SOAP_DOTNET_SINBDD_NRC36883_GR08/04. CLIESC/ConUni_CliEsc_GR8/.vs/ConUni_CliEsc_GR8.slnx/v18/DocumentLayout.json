@@ -55,7 +55,7 @@
       "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\vista\\formcambiarcontrasenia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\vista\\formcambiarcontrasenia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:vista\\formcambiarcontrasenia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -84,7 +84,7 @@
               "RelativeDocumentMoniker": "Controlador\\LoginControlador.cs",
               "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Controlador\\LoginControlador.cs",
               "RelativeToolTip": "Controlador\\LoginControlador.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA2wBQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAUwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-25T05:04:03.313Z",
               "EditorCaption": ""
@@ -99,8 +99,7 @@
               "RelativeToolTip": "Controlador\\ConversionControlador.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAAAQwIAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:03:27.209Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:03:27.209Z"
             },
             {
               "$type": "Document",
@@ -112,8 +111,7 @@
               "RelativeToolTip": "Util\\ValidacionUtil.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA1wDUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:03:03.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:03:03.955Z"
             },
             {
               "$type": "Document",
@@ -125,8 +123,7 @@
               "RelativeToolTip": "Util\\FormatoUtil.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:02:47.944Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:02:47.944Z"
             },
             {
               "$type": "Document",
@@ -138,8 +135,7 @@
               "RelativeToolTip": "Cliente\\ManejadorTokenSOAP.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAUwEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:02:40.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:02:40.117Z"
             },
             {
               "$type": "Document",
@@ -151,8 +147,7 @@
               "RelativeToolTip": "Cliente\\IContratoWSConversor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:01:57.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:01:57.673Z"
             },
             {
               "$type": "Document",
@@ -164,8 +159,7 @@
               "RelativeToolTip": "Cliente\\ExcepcionClienteWS.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:01:44.45Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:01:44.45Z"
             },
             {
               "$type": "Document",
@@ -177,8 +171,7 @@
               "RelativeToolTip": "Cliente\\ClienteWSConversor.cs",
               "ViewState": "AgIAAKoAAAAAAAAAAAAQwNUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:01:30.994Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:01:30.994Z"
             },
             {
               "$type": "Document",
@@ -190,8 +183,7 @@
               "RelativeToolTip": "Vista\\Controles\\ImagenRecortada.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAQwEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:01:14.351Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:01:14.351Z"
             },
             {
               "$type": "Document",
@@ -203,8 +195,7 @@
               "RelativeToolTip": "Vista\\Controles\\CampoTexto.cs",
               "ViewState": "AgIAAPIAAAAAAAAAAAAAABwBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:00:48.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:00:48.01Z"
             },
             {
               "$type": "Document",
@@ -216,8 +207,7 @@
               "RelativeToolTip": "Vista\\Controles\\BotonRedondeado.cs",
               "ViewState": "AgIAAHMAAAAAAAAAAAAowKAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:00:06.046Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T05:00:06.046Z"
             },
             {
               "$type": "Document",
@@ -228,8 +218,7 @@
               "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormCambiarContrasenia.cs [Dise\u00F1o]",
               "RelativeToolTip": "Vista\\FormCambiarContrasenia.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T05:00:00.879Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-10-25T05:00:00.879Z"
             },
             {
               "$type": "Document",
@@ -241,8 +230,7 @@
               "RelativeToolTip": "Modelo\\TipoConversion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T04:59:42.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T04:59:42.456Z"
             },
             {
               "$type": "Document",
@@ -254,8 +242,7 @@
               "RelativeToolTip": "Modelo\\LoginModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T04:59:38.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T04:59:38.464Z"
             },
             {
               "$type": "Document",
@@ -267,8 +254,7 @@
               "RelativeToolTip": "Modelo\\RegistroConversion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T04:59:32.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T04:59:32.013Z"
             },
             {
               "$type": "Document",
@@ -280,8 +266,7 @@
               "RelativeToolTip": "Modelo\\ConversionModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-25T04:59:25.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-25T04:59:25.465Z"
             }
           ]
         }

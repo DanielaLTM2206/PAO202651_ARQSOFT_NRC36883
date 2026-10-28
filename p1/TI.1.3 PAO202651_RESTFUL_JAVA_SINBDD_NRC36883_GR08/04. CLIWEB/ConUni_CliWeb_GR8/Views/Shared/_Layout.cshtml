@@ -1,6 +1,6 @@
 ﻿@using ec.edu.monster.Sesion
 @inject AlmacenSesion Sesion
-@inject IConfiguration Configuracion
+@inject ec.edu.monster.Util.ConfiguracionServidor ConfiguracionServidor
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,7 +51,7 @@
     </main>
 
     <footer class="pie">
-        <div class="contenedor-app">Conectado a @Configuracion["ServidorRest:UrlBase"]</div>
+        <div class="contenedor-app">Conectado a @ConfiguracionServidor.UrlActual</div>
     </footer>
 
     <partial name="_DialogoConfirmacion" />

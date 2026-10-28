@@ -7,6 +7,7 @@ namespace ec.edu.monster.Vista;
 public partial class LoginPagina : ContentPage
 {
     private readonly LoginControlador loginControlador;
+    private readonly ServidorControlador servidorControlador = new();
 
     public LoginPagina(LoginControlador loginControlador, string? aviso = null)
     {
@@ -67,29 +68,46 @@ public partial class LoginPagina : ContentPage
     // Permite usar la app desde un teléfono real: allí se escribe la IP de la PC donde corre Payara
     private async void BtnCambiarServidor_Clicked(object? sender, EventArgs e)
     {
-        string? url = await DisplayPromptAsync(
+        string? entrada = await DisplayPromptAsync(
                 "Dirección del servidor",
-                "Escriba la URL del servicio RESTful. En el emulador de Android use 10.0.2.2; "
-                + "en un teléfono real, la IP de la PC conectada a la misma red Wi-Fi.",
+                "Escriba la IP de la PC donde corre Payara (por ejemplo 192.168.1.25) o la URL completa. "
+                + "En el emulador de Android, 10.0.2.2 es la PC donde corre el emulador.",
                 accept: "Guardar",
                 cancel: "Cancelar",
                 initialValue: ConfiguracionServidor.UrlActual,
                 keyboard: Keyboard.Url);
 
-        if (url is null)
+        if (entrada is null)
         {
             return;
         }
-        if (!ConfiguracionServidor.EsUrlValida(url))
+
+        string url;
+        try
         {
-            await DisplayAlertAsync("Dirección no válida",
-                    "Escriba una dirección completa, por ejemplo http://192.168.1.10:8080/WS_ConUni_Java_RESTFUL/api",
-                    "Entendido");
+            url = servidorControlador.CompletarUrl(entrada);
+        }
+        catch (ArgumentException ex)
+        {
+            await DisplayAlertAsync("Dirección no válida", ex.Message, "Entendido");
+            return;
+        }
+
+        // Se prueba antes de guardar: así se sabe en el momento si falla la red, el firewall o la dirección
+        CambiarEstadoOcupado(true);
+        ResultadoConexion resultado = await servidorControlador.ProbarAsync(url);
+        CambiarEstadoOcupado(false);
+
+        if (!resultado.Exitosa && !await DisplayAlertAsync("Sin conexión",
+                resultado.Mensaje + " ¿Desea guardar la dirección de todas formas?", "Guardar", "Cancelar"))
+        {
             return;
         }
 
         ConfiguracionServidor.UrlActual = url;
-        App.Actual.MostrarInicioSesion("Servidor actualizado. Ya puede iniciar sesión.");
+        App.Actual.MostrarInicioSesion(resultado.Exitosa
+                ? "Conexión correcta. Servidor actualizado, ya puede iniciar sesión."
+                : "Servidor actualizado.");
     }
 
     private void MostrarError(string? mensaje)

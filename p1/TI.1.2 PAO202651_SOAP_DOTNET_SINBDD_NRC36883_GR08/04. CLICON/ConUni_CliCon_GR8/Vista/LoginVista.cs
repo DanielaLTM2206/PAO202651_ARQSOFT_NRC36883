@@ -8,15 +8,30 @@ namespace ec.edu.monster.Vista;
 public class LoginVista
 {
     private readonly MensajesModelo mensajes = new();
+    private readonly ServidorControlador servidorControlador = new();
 
     public async Task IniciarAsync()
     {
         mensajes.MostrarBanner();
 
-        using var clienteWs = new ClienteWSConversor();
-        var loginControlador = new LoginControlador(clienteWs);
-        mensajes.MostrarDetalle("  Servidor SOAP: " + loginControlador.UrlServidor);
+        while (true)
+        {
+            // Se crea un cliente nuevo cada vez que se cambia la dirección del servidor
+            using var clienteWs = new ClienteWSConversor(servidorControlador.UrlActual);
+            var loginControlador = new LoginControlador(clienteWs);
+            mensajes.MostrarDetalle("  Servidor SOAP: " + loginControlador.UrlServidor);
 
+            if (await AtenderInicioSesionAsync(loginControlador))
+            {
+                return;
+            }
+            await new ServidorVista(servidorControlador).EjecutarAsync();
+        }
+    }
+
+    /// <returns>true si el programa debe terminar; false si el usuario quiere configurar el servidor.</returns>
+    private async Task<bool> AtenderInicioSesionAsync(LoginControlador loginControlador)
+    {
         while (true)
         {
             mensajes.MostrarTitulo("INICIO DE SESIÓN");
@@ -40,16 +55,24 @@ public class LoginVista
                 {
                     mensajes.MostrarMensaje("");
                     mensajes.MostrarExito("Sesión finalizada. Hasta pronto.");
-                    return;
+                    return true;
                 }
                 mensajes.MostrarAviso("  Sesión cerrada.");
             }
             catch (ExcepcionClienteWS ex)
             {
                 mensajes.MostrarError(ex.Message);
-                if (ex.EsErrorConexion && !EntradaUtil.LeerSiNo("  ¿Desea reintentar?"))
+                if (ex.EsErrorConexion)
                 {
-                    return;
+                    // Si el servidor está en otra computadora, aquí se cambia su dirección
+                    if (EntradaUtil.LeerSiNo("  ¿Desea configurar la dirección del servidor?"))
+                    {
+                        return false;
+                    }
+                    if (!EntradaUtil.LeerSiNo("  ¿Desea reintentar?"))
+                    {
+                        return true;
+                    }
                 }
             }
             catch (ArgumentException ex)

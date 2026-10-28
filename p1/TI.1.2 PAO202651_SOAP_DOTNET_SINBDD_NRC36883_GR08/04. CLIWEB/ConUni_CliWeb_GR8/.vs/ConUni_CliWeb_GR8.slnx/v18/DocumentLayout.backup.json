@@ -3,104 +3,104 @@
   "WorkspaceRootPath": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.2 PAO202651_SOAP_DOTNET_SINBDD_NRC36883_GR08\\04. CLIWEB\\ConUni_CliWeb_GR8\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\util\\formatoutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:util\\formatoutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\util\\formatoutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:util\\formatoutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\sesion\\almacensesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:sesion\\almacensesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\sesion\\almacensesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:sesion\\almacensesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\servicios\\serviciocuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:servicios\\serviciocuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\servicios\\serviciocuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:servicios\\serviciocuenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\servicios\\servicioconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:servicios\\servicioconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\servicios\\servicioconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:servicios\\servicioconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\manejadortokensoap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\manejadortokensoap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\manejadortokensoap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\manejadortokensoap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\ialmacentoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\ialmacentoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\ialmacentoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\ialmacentoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\controllers\\conversorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:controllers\\conversorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\controllers\\conversorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:controllers\\conversorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\shared\\_avisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\shared\\_avisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\shared\\_avisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\shared\\_avisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\shared\\_dialogoconfirmacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\shared\\_dialogoconfirmacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\shared\\_dialogoconfirmacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\shared\\_dialogoconfirmacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\shared\\_campocontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\shared\\_campocontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\shared\\_campocontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\shared\\_campocontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\cuenta\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\cuenta\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\cuenta\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\cuenta\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\cuenta\\cambiarcontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\cuenta\\cambiarcontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\cuenta\\cambiarcontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\cuenta\\cambiarcontrasenia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\conversor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\conversor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\conversor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\conversor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\conversormodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\conversormodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\conversormodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\conversormodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\cambiocontraseniamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CB71C3F4-C787-47B2-9BB0-62C161421C63}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\cambiocontraseniamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.2 pao202651_soap_dotnet_sinbdd_nrc36883_gr08\\04. cliweb\\conuni_cliweb_gr8\\models\\cambiocontraseniamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C9227672-E85B-56D0-554F-97C5A7FFA2F5}|ConUni_CliWeb_GR8.csproj|solutionrelative:models\\cambiocontraseniamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -135,8 +135,7 @@
               "RelativeToolTip": "Util\\FormatoUtil.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:28:03.553Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:28:03.553Z"
             },
             {
               "$type": "Document",
@@ -148,8 +147,7 @@
               "RelativeToolTip": "Sesion\\AlmacenSesion.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAA2wCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:27:20.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:27:20.671Z"
             },
             {
               "$type": "Document",
@@ -161,8 +159,7 @@
               "RelativeToolTip": "Servicios\\ServicioCuenta.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAUwC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:27:08.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:27:08.281Z"
             },
             {
               "$type": "Document",
@@ -174,8 +171,7 @@
               "RelativeToolTip": "Servicios\\ServicioConversion.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAA1wIEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:26:32.966Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:26:32.966Z"
             },
             {
               "$type": "Document",
@@ -187,8 +183,7 @@
               "RelativeToolTip": "Cliente\\ManejadorTokenSOAP.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAA2wFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:26:24.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:26:24.141Z"
             },
             {
               "$type": "Document",
@@ -200,8 +195,7 @@
               "RelativeToolTip": "Cliente\\IContratoWSConversor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:26:03.59Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:26:03.59Z"
             },
             {
               "$type": "Document",
@@ -213,8 +207,7 @@
               "RelativeToolTip": "Cliente\\IAlmacenToken.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:25:43.557Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:25:43.557Z"
             },
             {
               "$type": "Document",
@@ -226,8 +219,7 @@
               "RelativeToolTip": "Cliente\\ExcepcionClienteWS.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:25:13.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:25:13.56Z"
             },
             {
               "$type": "Document",
@@ -239,8 +231,7 @@
               "RelativeToolTip": "Cliente\\ClienteWSConversor.cs",
               "ViewState": "AgIAAKsAAAAAAAAAAAAgwNUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:24:09.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:24:09.4Z"
             },
             {
               "$type": "Document",
@@ -252,8 +243,7 @@
               "RelativeToolTip": "Controllers\\ConversorController.cs",
               "ViewState": "AgIAAHgAAAAAAAAAAAAQwKEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:23:25.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:23:25.869Z"
             },
             {
               "$type": "Document",
@@ -265,8 +255,7 @@
               "RelativeToolTip": "Views\\Shared\\_Avisos.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:22:46.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:22:46.428Z"
             },
             {
               "$type": "Document",
@@ -278,8 +267,7 @@
               "RelativeToolTip": "Views\\Shared\\_DialogoConfirmacion.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:22:17.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:22:17.834Z"
             },
             {
               "$type": "Document",
@@ -291,8 +279,7 @@
               "RelativeToolTip": "Views\\Shared\\_CampoContrasenia.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:22:12.072Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:22:12.072Z"
             },
             {
               "$type": "Document",
@@ -304,8 +291,7 @@
               "RelativeToolTip": "Views\\Cuenta\\Login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:20:59.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:20:59.049Z"
             },
             {
               "$type": "Document",
@@ -317,8 +303,7 @@
               "RelativeToolTip": "Views\\Cuenta\\CambiarContrasenia.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:20:59.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:20:59.601Z"
             },
             {
               "$type": "Document",
@@ -330,8 +315,7 @@
               "RelativeToolTip": "Views\\Conversor\\Index.cshtml",
               "ViewState": "AgIAADoAAAAAAAAAAAAwwHIAAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:19:44.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:19:44.64Z"
             },
             {
               "$type": "Document",
@@ -343,8 +327,7 @@
               "RelativeToolTip": "Views\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-23T15:19:41.5Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:19:41.5Z"
             },
             {
               "$type": "Document",
@@ -356,8 +339,7 @@
               "RelativeToolTip": "Models\\TipoConversion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:19:14.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:19:14.764Z"
             },
             {
               "$type": "Document",
@@ -369,8 +351,7 @@
               "RelativeToolTip": "Models\\RegistroConversion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:18:58.264Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:18:58.264Z"
             },
             {
               "$type": "Document",
@@ -382,8 +363,7 @@
               "RelativeToolTip": "Models\\LoginModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:18:46.999Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:18:46.999Z"
             },
             {
               "$type": "Document",
@@ -395,8 +375,7 @@
               "RelativeToolTip": "Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:18:34.087Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:18:34.087Z"
             },
             {
               "$type": "Document",
@@ -408,8 +387,7 @@
               "RelativeToolTip": "Models\\ConversorModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:18:28.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:18:28.604Z"
             },
             {
               "$type": "Document",
@@ -421,8 +399,7 @@
               "RelativeToolTip": "Models\\ConversionModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:17:52.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:17:52.851Z"
             },
             {
               "$type": "Document",
@@ -434,8 +411,7 @@
               "RelativeToolTip": "Models\\CambioContraseniaModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T15:15:50.741Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T15:15:50.741Z"
             }
           ]
         }

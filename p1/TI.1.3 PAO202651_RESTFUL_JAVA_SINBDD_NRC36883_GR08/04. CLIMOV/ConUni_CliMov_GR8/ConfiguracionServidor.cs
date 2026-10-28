@@ -30,9 +30,5 @@ public static class ConfiguracionServidor
         }
     }
 
-    public static bool EsUrlValida(string? url)
-    {
-        return Uri.TryCreate(url?.Trim(), UriKind.Absolute, out Uri? uri)
-                && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
-    }
+    public static bool EsUrlValida(string? url) => Util.DireccionServidor.EsUrlValida(url);
 }

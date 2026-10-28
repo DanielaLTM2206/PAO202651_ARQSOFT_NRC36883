@@ -1,4 +1,3 @@
-using ec.edu.monster.Cliente;
 using ec.edu.monster.Controlador;
 using ec.edu.monster.Vista;
 
@@ -16,8 +15,8 @@ namespace ec.edu.monster
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            using var clienteWs = new ClienteWSConversor();
-            Application.Run(new FormLogin(new LoginControlador(clienteWs)));
+            // La dirección del servidor REST se puede cambiar desde "Configurar servidor" en el inicio de sesión
+            Application.Run(new FormLogin(new ServidorControlador()));
         }
     }
 }
