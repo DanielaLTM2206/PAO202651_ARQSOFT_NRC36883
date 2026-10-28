@@ -1,13 +1,23 @@
-// ==========================================================================
+﻿// ==========================================================================
 // CLIENTE WEB RESTFUL .NET 8 (SINBDD) - MONSTERS INC GR08
 // ==========================================================================
 
 // Detecta dinámicamente la IP del servidor RESTful (localhost o IP de red local)
 const getApiBaseUrl = () => {
     const saved = localStorage.getItem("rest_server_host");
-    if (saved) return `http://${saved}:5000/api`;
-    const host = window.location.hostname || "localhost";
-    return `http://${host}:5000/api`;
+    if (saved) {
+        if (saved.startsWith("http://") || saved.startsWith("https://")) {
+            return saved.endsWith("/api") ? saved : `${saved.replace(/\/+$/, "")}/api`;
+        }
+        if (saved.includes("trycloudflare.com")) {
+            return `https://${saved}/api`;
+        }
+        return `http://${saved}:5000/api`;
+    }
+    if (window.location.protocol.startsWith("http")) {
+        return `${window.location.origin}/api`;
+    }
+    return "http://localhost:5000/api";
 };
 const API_BASE_URL = getApiBaseUrl();
 
@@ -55,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initApp() {
+    const lblApi = document.getElementById("lblApiEndpoint");
+    if (lblApi) lblApi.textContent = API_BASE_URL;
     // Si ya existe token, verificar validez
     if (state.token) {
         verificarTokenValido();
@@ -429,3 +441,4 @@ function ocultarAlertaClave() {
     const alertBox = document.getElementById("modalClaveAlert");
     if (alertBox) alertBox.style.display = "none";
 }
+

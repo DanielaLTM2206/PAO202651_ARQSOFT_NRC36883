@@ -16,6 +16,12 @@ if not errorlevel 1 (
 echo.
 echo Conectando a: %SERVER_IP% ...
 echo.
-cd /d "%~dp0ConUni_Client_DotNet"
-dotnet run -- %SERVER_IP%
+
+if exist "%~dp0publish_consola\ConUni_Client_DotNet.exe" (
+    "%~dp0publish_consola\ConUni_Client_DotNet.exe" "%SERVER_IP%"
+) else (
+    cd /d "%~dp0ConUni_Client_DotNet"
+    dotnet run -- "%SERVER_IP%"
+)
+
 pause
