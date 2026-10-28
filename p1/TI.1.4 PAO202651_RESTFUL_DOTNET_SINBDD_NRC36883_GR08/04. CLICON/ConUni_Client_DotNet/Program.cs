@@ -8,8 +8,8 @@ namespace ConUni_Client_DotNet
 {
     class Program
     {
-        private const string DEFAULT_SERVER_URL = "http://localhost:5000/api";
         private static RestClient _client = null!;
+        private static string _serverUrl = "http://localhost:5000/api";
 
         static async Task Main(string[] args)
         {
@@ -19,7 +19,15 @@ namespace ConUni_Client_DotNet
                 try { Console.Title = "Monsters Inc. - Cliente Consola RESTful (GR08)"; } catch { }
             }
 
-            _client = new RestClient(DEFAULT_SERVER_URL);
+            string serverHost = args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]) 
+                ? args[0].Trim() 
+                : Environment.GetEnvironmentVariable("REST_HOST") ?? "localhost";
+
+            _serverUrl = serverHost.StartsWith("http") 
+                ? (serverHost.EndsWith("/api") ? serverHost : $"{serverHost.TrimEnd('/')}/api")
+                : $"http://{serverHost}:5000/api";
+
+            _client = new RestClient(_serverUrl);
 
             MostrarBannerBienvenida();
 
@@ -95,7 +103,7 @@ namespace ConUni_Client_DotNet
             Console.WriteLine("|       Grupo 08 - Arquitectura de Software (SINBDD)            |");
             Console.WriteLine("+---------------------------------------------------------------+");
             Console.ResetColor();
-            Console.WriteLine($"Conectado a: {DEFAULT_SERVER_URL}\n");
+            Console.WriteLine($"Conectado a: {_serverUrl}\n");
         }
 
         private static async Task<bool> EjecutarLoginAsync()

@@ -1,4 +1,4 @@
-import os, subprocess
+import os, subprocess, sys
 m2 = os.path.expanduser('~/.m2/repository')
 dep_prefixes = [
     'jakarta/xml/ws/jakarta.xml.ws-api/4.0.1',
@@ -27,8 +27,9 @@ dep_prefixes = [
     'com/sun/xml/bind/jaxb-core/4.0.'
 ]
 here = os.path.dirname(os.path.abspath(__file__))
+classes = os.path.join(here, 'ClienteConsola', 'target', 'classes')
 jar = os.path.join(here, 'ClienteConsola', 'target', 'ClienteConsola-1.0-SNAPSHOT.jar')
-jars = [jar]
+jars = [classes, jar]
 for root, dirs, files in os.walk(m2):
     for f in files:
         if f.endswith('.jar') and not f.endswith('-sources.jar') and not f.endswith('-javadoc.jar'):
@@ -38,5 +39,6 @@ for root, dirs, files in os.walk(m2):
                     jars.append(os.path.join(root, f))
                     break
 cp = ';'.join(jars)
-cmd = ['java', '-cp', cp, 'ec.edu.monster.clienteconsola.ClienteConsola']
+host = sys.argv[1] if len(sys.argv) > 1 else 'localhost'
+cmd = ['java', f'-Dsoap.host={host}', '-cp', cp, 'ec.edu.monster.clienteconsola.ClienteConsola']
 subprocess.run(cmd)

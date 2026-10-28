@@ -18,7 +18,15 @@ import java.util.List;
  */
 public class ControladorConversiones {
 
-    private static final String ENDPOINT_URL = "http://localhost:8080/WS_ConUni_Java_SOAP/WSConversorUnidades";
+    private static String getHost() {
+        String h = System.getProperty("soap.host");
+        return (h != null && !h.trim().isEmpty()) ? h.trim() : "localhost";
+    }
+    private static String getPort() {
+        String p = System.getProperty("soap.port");
+        return (p != null && !p.trim().isEmpty()) ? p.trim() : "8080";
+    }
+    private static final String ENDPOINT_URL = "http://" + getHost() + ":" + getPort() + "/WS_ConUni_Java_SOAP/WSConversorUnidades";
     private static final String WSDL_URL = ENDPOINT_URL + "?wsdl";
 
     private WSConversorUnidades port;

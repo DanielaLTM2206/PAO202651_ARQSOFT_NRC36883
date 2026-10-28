@@ -1,7 +1,12 @@
 @echo off
 title Cliente Consola SOAP Java - Monsters Inc. GR08
 echo ===================================================
-echo   INICIANDO CLIENTE CONSOLA SOAP JAVA
+echo   CLIENTE CONSOLA SOAP JAVA - GR08
 echo ===================================================
-python "%~dp0ejecutar.py"
-pause
+echo.
+set /p SERVER_IP="Ingrese la IP del Servidor SOAP [Enter para localhost]: "
+if "%SERVER_IP%"=="" set SERVER_IP=localhost
+echo.
+echo Conectando con el servidor en: %SERVER_IP%:8080 ...
+echo.
+python "%~dp0ejecutar.py" %SERVER_IP%
