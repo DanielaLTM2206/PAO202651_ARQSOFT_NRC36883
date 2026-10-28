@@ -31,6 +31,19 @@
 
     <build>
         <plugins>
+            <!--
+              El repositorio esta dentro de OneDrive, que marca las carpetas como solo lectura: Maven borra
+              los archivos de target pero no esas carpetas. clean borra todo lo que puede y no detiene
+              la compilacion ("Limpiar y compilar" de NetBeans).
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

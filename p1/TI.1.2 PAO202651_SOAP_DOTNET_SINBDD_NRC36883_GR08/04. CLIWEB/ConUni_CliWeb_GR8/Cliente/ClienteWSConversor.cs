@@ -1,4 +1,5 @@
 using System.ServiceModel;
+using ec.edu.monster.Util;
 using Microsoft.Extensions.DependencyInjection;
 using ReferenciaServicio;
 
@@ -11,8 +12,6 @@ namespace ec.edu.monster.Cliente;
 /// </summary>
 public class ClienteWSConversor : IContratoWSConversor, IDisposable
 {
-    private const string UrlPorDefecto = "http://localhost:5080/WSConversorUnidades.svc";
-
     private static readonly TimeSpan TiempoEspera = TimeSpan.FromSeconds(10);
 
     private readonly ChannelFactory<IWSConversorUnidades>? fabrica;
@@ -21,9 +20,10 @@ public class ClienteWSConversor : IContratoWSConversor, IDisposable
 
     public string UrlServicio { get; }
 
+    // Se lee la dirección en cada petición: un cambio en "Configurar servidor" se aplica de inmediato
     [ActivatorUtilitiesConstructor]
-    public ClienteWSConversor(ManejadorTokenSOAP manejadorToken, IConfiguration configuracion)
-        : this(manejadorToken, configuracion["ServidorSoap:Url"] ?? UrlPorDefecto)
+    public ClienteWSConversor(ManejadorTokenSOAP manejadorToken, ConfiguracionServidor configuracion)
+        : this(manejadorToken, configuracion.UrlActual)
     {
     }
 

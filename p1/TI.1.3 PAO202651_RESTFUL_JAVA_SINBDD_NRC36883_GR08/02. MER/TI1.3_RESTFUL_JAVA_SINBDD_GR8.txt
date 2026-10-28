@@ -1,6 +1,6 @@
 ════════════════════════════════════════════════════════════
       ARQUITECTURA DE SOFTWARE
- DOCUMENTACIÓN – TI1.3. PROYECTO DE CONVERSIÓN DE UNIDADES RESTFUL CON JAVA SIN BDD
+ DOCUMENTACIÓN – TI1.3. PROYECTO DE CONVERCIÓN DE UNIDADES RESTFUL CON JAVA SIN BDD
 ════════════════════════════════════════════════════════════
 
 Buen día, Ingeniero.
@@ -15,6 +15,7 @@ Por esta razón, no se elaboró el Modelo Entidad-Relación (MER) ni el diagrama
 clases de entidades persistentes, ya que no existen tablas ni entidades que 
 almacenar. Las carpetas 02. MER y 03. BDD se mantienen únicamente para conservar 
 la estructura solicitada.
+
 
 Grupo 8
 ────────────────────────────

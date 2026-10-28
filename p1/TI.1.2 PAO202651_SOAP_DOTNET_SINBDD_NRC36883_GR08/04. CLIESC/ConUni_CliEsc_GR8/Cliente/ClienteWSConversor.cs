@@ -1,4 +1,5 @@
 using System.ServiceModel;
+using ec.edu.monster.Util;
 using ReferenciaServicio;
 
 namespace ec.edu.monster.Cliente;
@@ -9,9 +10,6 @@ namespace ec.edu.monster.Cliente;
 /// </summary>
 public class ClienteWSConversor : IContratoWSConversor, IDisposable
 {
-    private const string VariableUrlWs = "WS_SOAP_URL";
-    private const string UrlPorDefecto = "http://localhost:5080/WSConversorUnidades.svc";
-
     private static readonly TimeSpan TiempoEspera = TimeSpan.FromSeconds(10);
 
     private readonly ChannelFactory<IWSConversorUnidades>? fabrica;
@@ -20,7 +18,8 @@ public class ClienteWSConversor : IContratoWSConversor, IDisposable
 
     public string UrlServicio { get; }
 
-    public ClienteWSConversor() : this(ObtenerUrlConfigurada())
+    // Variable de entorno WS_SOAP_URL, dirección guardada por el usuario o localhost
+    public ClienteWSConversor() : this(new ConfiguracionServidor().UrlActual)
     {
     }
 
@@ -203,11 +202,5 @@ public class ClienteWSConversor : IContratoWSConversor, IDisposable
             ReceiveTimeout = TiempoEspera,
             CloseTimeout = TiempoEspera
         };
-    }
-
-    private static string ObtenerUrlConfigurada()
-    {
-        string? desdeVariable = Environment.GetEnvironmentVariable(VariableUrlWs);
-        return string.IsNullOrWhiteSpace(desdeVariable) ? UrlPorDefecto : desdeVariable;
     }
 }
