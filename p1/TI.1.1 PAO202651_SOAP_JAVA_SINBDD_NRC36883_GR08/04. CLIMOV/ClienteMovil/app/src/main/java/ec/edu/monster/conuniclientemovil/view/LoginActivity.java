@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     /* ── Widgets ─────────────────────────────────── */
     private EditText etUsuario;
     private EditText etClave;
+    private EditText etServidorIp;
     private Button btnLogin;
 
     /* ── Controller & Model ──────────────────────── */
@@ -75,6 +76,12 @@ public class LoginActivity extends AppCompatActivity {
     private void bindViews() {
         etUsuario = findViewById(R.id.etUsuario);
         etClave = findViewById(R.id.etClave);
+        etServidorIp = findViewById(R.id.etServidorIp);
+        String saved = appPreferences.getBaseUrl("");
+        if (!TextUtils.isEmpty(saved)) {
+            String host = extractHost(saved);
+            etServidorIp.setText(host);
+        }
         btnLogin = findViewById(R.id.btnLogin);
     }
 
@@ -95,22 +102,36 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        boolean isEmulator = Build.FINGERPRINT.startsWith("generic")
-                || Build.MODEL.contains("google_sdk")
-                || Build.MODEL.contains("Emulator")
-                || Build.HARDWARE.contains("goldfish")
-                || Build.HARDWARE.contains("ranchu");
-
-        String defaultUrl = isEmulator ? DEFAULT_BASE_URL_EMU : DEFAULT_BASE_URL_REAL;
-        String baseUrl = appPreferences.getBaseUrl(defaultUrl);
+        String customHost = etServidorIp.getText().toString().trim();
+        String baseUrl;
+        if (!TextUtils.isEmpty(customHost)) {
+            if (customHost.startsWith("http://") || customHost.startsWith("https://")) {
+                baseUrl = customHost.endsWith("/") ? customHost : customHost + "/";
+                if (!baseUrl.contains("WS_ConUni_Java_SOAP")) {
+                    baseUrl += "WS_ConUni_Java_SOAP/";
+                }
+            } else if (customHost.contains(":")) {
+                baseUrl = "http://" + customHost + "/WS_ConUni_Java_SOAP/";
+            } else {
+                baseUrl = "http://" + customHost + ":8080/WS_ConUni_Java_SOAP/";
+            }
+        } else {
+            boolean isEmulator = Build.FINGERPRINT.startsWith("generic")
+                    || Build.MODEL.contains("google_sdk")
+                    || Build.MODEL.contains("Emulator")
+                    || Build.HARDWARE.contains("goldfish")
+                    || Build.HARDWARE.contains("ranchu");
+            baseUrl = isEmulator ? DEFAULT_BASE_URL_EMU : DEFAULT_BASE_URL_REAL;
+        }
 
         setBusy(true);
+        final String effectiveBaseUrl = baseUrl;
 
-        loginController.login(baseUrl, usuario, clave, result ->
+        loginController.login(effectiveBaseUrl, usuario, clave, result ->
                 runOnUiThread(() -> {
                     String actualUrl = soapClient.getResolvedBaseUrl() != null
                             ? soapClient.getResolvedBaseUrl()
-                            : baseUrl;
+                            : effectiveBaseUrl;
                     appPreferences.saveBaseUrl(actualUrl);
                     handleLoginResult(result, actualUrl);
                 })
@@ -156,4 +177,14 @@ public class LoginActivity extends AppCompatActivity {
         etClave.setEnabled(!busy);
         btnLogin.setEnabled(!busy);
     }
+    private String extractHost(String url) {
+        if (url == null) return "";
+        String s = url.replace("http://", "").replace("https://", "");
+        int colon = s.indexOf(':');
+        if (colon != -1) return s.substring(0, colon);
+        int slash = s.indexOf('/');
+        if (slash != -1) return s.substring(0, slash);
+        return s;
+    }
+
 }

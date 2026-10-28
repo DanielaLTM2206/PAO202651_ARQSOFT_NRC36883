@@ -11,7 +11,21 @@ namespace ConUni_CliEsc_GR08.Services
     public class RestClient : IDisposable
     {
         private static RestClient? _instance;
-        public static RestClient Instance => _instance ??= new RestClient("http://localhost:5000/api");
+        private static string _customHost = "localhost";
+
+        public static void SetServerHost(string host)
+        {
+            if (!string.IsNullOrWhiteSpace(host))
+            {
+                _customHost = host.Trim();
+                _instance = null;
+            }
+        }
+
+        public static RestClient Instance => _instance ??= new RestClient(
+            _customHost.StartsWith("http") 
+                ? (_customHost.EndsWith("/api") ? _customHost : $"{_customHost.TrimEnd('/')}/api")
+                : $"http://{_customHost}:5000/api");
 
         private readonly HttpClient _httpClient;
         private readonly string _baseUrl;

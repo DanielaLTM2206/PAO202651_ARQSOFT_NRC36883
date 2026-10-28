@@ -1,12 +1,14 @@
 @echo off
 title Cliente Consola RESTful .NET 8 - Monsters Inc. GR08
 echo ===================================================
-echo   INICIANDO CLIENTE CONSOLA RESTful .NET 8
-echo   Conectando a: http://localhost:5000/api
+echo   CLIENTE CONSOLA RESTful .NET 8 - MONSTERS INC GR08
 echo ===================================================
 echo.
-echo Recuerda que el SERVIDOR RESTful debe estar prendido antes.
+set /p SERVER_IP="Ingrese la IP del Servidor RESTful [Enter para localhost]: "
+if "%SERVER_IP%"=="" set SERVER_IP=localhost
+echo.
+echo Conectando a: http://%SERVER_IP%:5000/api ...
 echo.
 cd /d "%~dp0ConUni_Client_DotNet"
-dotnet run
+dotnet run -- %SERVER_IP%
 pause

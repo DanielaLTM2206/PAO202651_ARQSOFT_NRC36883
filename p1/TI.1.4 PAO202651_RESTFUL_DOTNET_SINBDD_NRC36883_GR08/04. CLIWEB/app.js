@@ -2,7 +2,14 @@
 // CLIENTE WEB RESTFUL .NET 8 (SINBDD) - MONSTERS INC GR08
 // ==========================================================================
 
-const API_BASE_URL = "http://localhost:5000/api";
+// Detecta dinámicamente la IP del servidor RESTful (localhost o IP de red local)
+const getApiBaseUrl = () => {
+    const saved = localStorage.getItem("rest_server_host");
+    if (saved) return `http://${saved}:5000/api`;
+    const host = window.location.hostname || "localhost";
+    return `http://${host}:5000/api`;
+};
+const API_BASE_URL = getApiBaseUrl();
 
 const state = {
     token: sessionStorage.getItem("token") || null,

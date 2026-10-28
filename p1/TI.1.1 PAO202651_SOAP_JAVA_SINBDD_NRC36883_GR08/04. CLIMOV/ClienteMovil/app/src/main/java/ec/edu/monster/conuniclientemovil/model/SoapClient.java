@@ -51,7 +51,6 @@ public class SoapClient {
             list.add("http://127.0.0.1:8080/WS_ConUni_Java_SOAP/");
         } else {
             list.add("http://127.0.0.1:8080/WS_ConUni_Java_SOAP/");
-            list.add("http://192.168.100.15:8080/WS_ConUni_Java_SOAP/");
         }
         return list;
     }
@@ -260,25 +259,26 @@ public class SoapClient {
 
     private Object callWithFallback(String baseUrl, String methodName, SoapObject request) throws Exception {
         List<String> hostsToTry = new ArrayList<>();
-        if (resolvedBaseUrl != null && !resolvedBaseUrl.trim().isEmpty()) {
-            hostsToTry.add(resolvedBaseUrl.trim());
-        }
 
         if (baseUrl != null && !baseUrl.trim().isEmpty()) {
             String norm = baseUrl.trim();
             if (!isRunningOnEmulator() && norm.contains("10.0.2.2")) {
-                // Descartar 10.0.2.2 residual en dispositivos físicos
-            } else if (!hostsToTry.contains(norm)) {
+                // Descartar 10.0.2.2 en dispositivos fisicos
+            } else {
                 hostsToTry.add(norm);
             }
+        } else if (resolvedBaseUrl != null && !resolvedBaseUrl.trim().isEmpty()) {
+            hostsToTry.add(resolvedBaseUrl.trim());
         }
 
-        for (String candidate : getCandidateHosts()) {
-            if (!hostsToTry.contains(candidate)) {
-                hostsToTry.add(candidate);
+        // Solo recurrir a candidatos por defecto si no se especifico ninguna IP
+        if (hostsToTry.isEmpty()) {
+            for (String candidate : getCandidateHosts()) {
+                if (!hostsToTry.contains(candidate)) {
+                    hostsToTry.add(candidate);
+                }
             }
         }
-
         Exception lastException = null;
         for (String host : hostsToTry) {
             try {

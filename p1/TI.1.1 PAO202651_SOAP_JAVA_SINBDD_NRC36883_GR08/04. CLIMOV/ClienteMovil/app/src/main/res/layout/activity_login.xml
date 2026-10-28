@@ -131,6 +131,29 @@
                     android:textColorHint="#94A3B8"
                     android:textSize="16sp" />
 
+                <!-- Campo Servidor IP -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Servidor IP (Opcional)"
+                    android:textColor="#CBD5E1"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etServidorIp"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_input_modern"
+                    android:hint="127.0.0.1 (USB) o IP de red"
+                    android:inputType="text"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#0F172A"
+                    android:textColorHint="#94A3B8"
+                    android:textSize="15sp" />
+
                 <!-- Botón Login -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
