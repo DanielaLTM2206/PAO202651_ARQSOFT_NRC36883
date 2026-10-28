@@ -107,6 +107,11 @@ public class LoginActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(customHost)) {
             if (customHost.startsWith("http://") || customHost.startsWith("https://")) {
                 baseUrl = customHost.endsWith("/") ? customHost : customHost + "/";
+                if (!baseUrl.contains("WS_ConUni_Java_SOAP")) {
+                    baseUrl += "WS_ConUni_Java_SOAP/";
+                }
+            } else if (customHost.contains(":")) {
+                baseUrl = "http://" + customHost + "/WS_ConUni_Java_SOAP/";
             } else {
                 baseUrl = "http://" + customHost + ":8080/WS_ConUni_Java_SOAP/";
             }
@@ -120,12 +125,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         setBusy(true);
+        final String effectiveBaseUrl = baseUrl;
 
-        loginController.login(baseUrl, usuario, clave, result ->
+        loginController.login(effectiveBaseUrl, usuario, clave, result ->
                 runOnUiThread(() -> {
                     String actualUrl = soapClient.getResolvedBaseUrl() != null
                             ? soapClient.getResolvedBaseUrl()
-                            : baseUrl;
+                            : effectiveBaseUrl;
                     appPreferences.saveBaseUrl(actualUrl);
                     handleLoginResult(result, actualUrl);
                 })
