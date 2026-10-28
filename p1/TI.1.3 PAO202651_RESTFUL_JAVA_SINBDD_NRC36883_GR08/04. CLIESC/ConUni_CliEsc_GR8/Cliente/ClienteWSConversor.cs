@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 using ec.edu.monster.Cliente.Dto;
+using ec.edu.monster.Util;
 
 namespace ec.edu.monster.Cliente;
 
@@ -9,9 +10,6 @@ namespace ec.edu.monster.Cliente;
 /// </summary>
 public class ClienteWSConversor : IContratoWSConversor, IDisposable
 {
-    private const string VariableBaseWs = "WS_BASE_URL";
-    private const string BaseUrlPorDefecto = "http://localhost:8080/WS_ConUni_Java_RESTFUL/api";
-
     private static readonly TimeSpan TiempoEspera = TimeSpan.FromSeconds(10);
 
     private readonly HttpClient clienteHttp;
@@ -19,7 +17,8 @@ public class ClienteWSConversor : IContratoWSConversor, IDisposable
 
     public string BaseUrl { get; }
 
-    public ClienteWSConversor() : this(ObtenerBaseConfigurada())
+    // Variable de entorno WS_BASE_URL, dirección guardada por el usuario o localhost
+    public ClienteWSConversor() : this(new ConfiguracionServidor().UrlActual)
     {
     }
 
@@ -175,11 +174,5 @@ public class ClienteWSConversor : IContratoWSConversor, IDisposable
             // El cuerpo no es JSON (por ejemplo, una página de error del servidor)
         }
         return $"El servidor respondió con el código HTTP {(int)respuesta.StatusCode}.";
-    }
-
-    private static string ObtenerBaseConfigurada()
-    {
-        string? desdeVariable = Environment.GetEnvironmentVariable(VariableBaseWs);
-        return string.IsNullOrWhiteSpace(desdeVariable) ? BaseUrlPorDefecto : desdeVariable;
     }
 }

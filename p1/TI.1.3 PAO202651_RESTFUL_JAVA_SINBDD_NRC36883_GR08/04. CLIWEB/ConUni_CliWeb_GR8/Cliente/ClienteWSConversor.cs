@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 using ec.edu.monster.Cliente.Dto;
+using ec.edu.monster.Util;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ec.edu.monster.Cliente;
@@ -11,16 +12,15 @@ namespace ec.edu.monster.Cliente;
 /// </summary>
 public class ClienteWSConversor : IContratoWSConversor
 {
-    private const string BaseUrlPorDefecto = "http://localhost:8080/WS_ConUni_Java_RESTFUL/api";
-
     private readonly HttpClient clienteHttp;
     private readonly ManejadorTokenRESTFUL manejadorToken;
 
     public string BaseUrl { get; }
 
+    // Se lee la dirección en cada petición: un cambio en "Configurar servidor" se aplica de inmediato
     [ActivatorUtilitiesConstructor]
-    public ClienteWSConversor(HttpClient clienteHttp, ManejadorTokenRESTFUL manejadorToken, IConfiguration configuracion)
-        : this(clienteHttp, manejadorToken, configuracion["ServidorRest:UrlBase"] ?? BaseUrlPorDefecto)
+    public ClienteWSConversor(HttpClient clienteHttp, ManejadorTokenRESTFUL manejadorToken, ConfiguracionServidor configuracion)
+        : this(clienteHttp, manejadorToken, configuracion.UrlActual)
     {
     }
 

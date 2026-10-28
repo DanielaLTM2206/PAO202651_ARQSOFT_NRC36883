@@ -3,56 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\clientewsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\manejadortokenrestful.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\manejadortokenrestful.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\controlador\\conversioncontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:controlador\\conversioncontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\controlador\\logincontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:controlador\\logincontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7D896D6-ACCD-4F4B-8640-ED6DDBC318D1}|ConUni_CliEsc_GR8.csproj|solutionrelative:vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\excepcionclientews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\icontratowsconversor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\cliente\\manejadortokenrestful.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:cliente\\manejadortokenrestful.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\controlador\\conversioncontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:controlador\\conversioncontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\controlador\\logincontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:controlador\\logincontrolador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\conversionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\loginmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\registroconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\modelo\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:modelo\\tipoconversion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:util\\validacionutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|c:\\users\\steve\\onedrive\\escritorio\\8vo\\semestrearqui\\pao202651_arqsoft_nrc36883\\p1\\ti.1.3 pao202651_restful_java_sinbdd_nrc36883_gr08\\04. cliesc\\conuni_cliesc_gr8\\vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E05C495-8086-3FDE-0482-9CD746A525B1}|ConUni_CliEsc_GR8.csproj|solutionrelative:vista\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +66,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ExcepcionClienteWS.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Cliente\\ExcepcionClienteWS.cs",
               "RelativeDocumentMoniker": "Cliente\\ExcepcionClienteWS.cs",
@@ -74,12 +74,11 @@
               "RelativeToolTip": "Cliente\\ExcepcionClienteWS.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:15:39.571Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:15:39.571Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "IContratoWSConversor.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Cliente\\IContratoWSConversor.cs",
               "RelativeDocumentMoniker": "Cliente\\IContratoWSConversor.cs",
@@ -87,12 +86,11 @@
               "RelativeToolTip": "Cliente\\IContratoWSConversor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:15:30.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:15:30.635Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ManejadorTokenRESTFUL.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Cliente\\ManejadorTokenRESTFUL.cs",
               "RelativeDocumentMoniker": "Cliente\\ManejadorTokenRESTFUL.cs",
@@ -100,12 +98,11 @@
               "RelativeToolTip": "Cliente\\ManejadorTokenRESTFUL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:15:21.806Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:15:21.806Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ConversionControlador.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Controlador\\ConversionControlador.cs",
               "RelativeDocumentMoniker": "Controlador\\ConversionControlador.cs",
@@ -113,12 +110,11 @@
               "RelativeToolTip": "Controlador\\ConversionControlador.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAAQwGIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:15:10.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:15:10.219Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LoginControlador.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Controlador\\LoginControlador.cs",
               "RelativeDocumentMoniker": "Controlador\\LoginControlador.cs",
@@ -126,12 +122,11 @@
               "RelativeToolTip": "Controlador\\LoginControlador.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAA2wDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:15:05.08Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:15:05.08Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ConversionModelo.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Modelo\\ConversionModelo.cs",
               "RelativeDocumentMoniker": "Modelo\\ConversionModelo.cs",
@@ -139,12 +134,11 @@
               "RelativeToolTip": "Modelo\\ConversionModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:14:55.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:14:55.369Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "LoginModelo.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Modelo\\LoginModelo.cs",
               "RelativeDocumentMoniker": "Modelo\\LoginModelo.cs",
@@ -152,8 +146,7 @@
               "RelativeToolTip": "Modelo\\LoginModelo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:14:17.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:14:17.699Z"
             },
             {
               "$type": "Document",
@@ -170,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "RegistroConversion.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Modelo\\RegistroConversion.cs",
               "RelativeDocumentMoniker": "Modelo\\RegistroConversion.cs",
@@ -178,12 +171,11 @@
               "RelativeToolTip": "Modelo\\RegistroConversion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:14:24.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:14:24.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "TipoConversion.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Modelo\\TipoConversion.cs",
               "RelativeDocumentMoniker": "Modelo\\TipoConversion.cs",
@@ -191,12 +183,11 @@
               "RelativeToolTip": "Modelo\\TipoConversion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:14:00.99Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:14:00.99Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ValidacionUtil.cs",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Util\\ValidacionUtil.cs",
               "RelativeDocumentMoniker": "Util\\ValidacionUtil.cs",
@@ -204,8 +195,7 @@
               "RelativeToolTip": "Util\\ValidacionUtil.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA1wDUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:13:47.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:13:47.678Z"
             },
             {
               "$type": "Document",
@@ -222,15 +212,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "FormLogin.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormLogin.cs",
               "RelativeDocumentMoniker": "Vista\\FormLogin.cs",
               "ToolTip": "C:\\Users\\steve\\OneDrive\\Escritorio\\8vo\\SemestreARQUI\\PAO202651_ARQSOFT_NRC36883\\p1\\TI.1.3 PAO202651_RESTFUL_JAVA_SINBDD_NRC36883_GR08\\04. CLIESC\\ConUni_CliEsc_GR8\\Vista\\FormLogin.cs [Dise\u00F1o]",
               "RelativeToolTip": "Vista\\FormLogin.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T20:44:02.102Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2026-10-15T20:44:02.102Z"
             }
           ]
         }

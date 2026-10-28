@@ -9,6 +9,7 @@ import ec.edu.monster.cliente.dto.LoginRespuesta;
 import ec.edu.monster.cliente.dto.LoginSolicitud;
 import ec.edu.monster.cliente.dto.MensajeRespuesta;
 import ec.edu.monster.cliente.dto.UnidadesCategoriaRespuesta;
+import ec.edu.monster.util.ConfiguracionServidor;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,10 +24,6 @@ import java.util.List;
  */
 public class ClienteWSConversor implements ContratoWSConversor {
 
-    private static final String PROPIEDAD_BASE_WS = "ws.base.url";
-    private static final String VARIABLE_BASE_WS = "WS_BASE_URL";
-    private static final String BASE_URL_POR_DEFECTO = "http://localhost:8080/WS_ConUni_Java_RESTFUL/api";
-
     private static final Duration TIEMPO_ESPERA = Duration.ofSeconds(10);
     private static final String TIPO_JSON = "application/json";
 
@@ -37,8 +34,9 @@ public class ClienteWSConversor implements ContratoWSConversor {
     private final ManejadorTokenRESTFUL manejadorToken = new ManejadorTokenRESTFUL();
     private final String baseUrl;
 
+    // Propiedad ws.base.url, variable WS_BASE_URL, direccion guardada por el usuario o localhost
     public ClienteWSConversor() {
-        this(obtenerBaseConfigurada());
+        this(new ConfiguracionServidor().getUrlActual());
     }
 
     public ClienteWSConversor(String baseUrl) {
@@ -146,20 +144,6 @@ public class ClienteWSConversor implements ContratoWSConversor {
             // El cuerpo no es JSON (por ejemplo, una página de error del servidor)
         }
         return "El servidor respondio con el codigo HTTP " + respuesta.statusCode();
-    }
-
-    private static String obtenerBaseConfigurada() {
-        String desdePropiedad = System.getProperty(PROPIEDAD_BASE_WS);
-        if (desdePropiedad != null && !desdePropiedad.isBlank()) {
-            return desdePropiedad;
-        }
-
-        String desdeVariable = System.getenv(VARIABLE_BASE_WS);
-        if (desdeVariable != null && !desdeVariable.isBlank()) {
-            return desdeVariable;
-        }
-
-        return BASE_URL_POR_DEFECTO;
     }
 
     private static String normalizarBase(String base) {

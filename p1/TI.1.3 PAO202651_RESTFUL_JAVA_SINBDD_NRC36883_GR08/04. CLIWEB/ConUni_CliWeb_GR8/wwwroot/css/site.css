@@ -366,6 +366,17 @@ body {
   word-break: break-all;
 }
 
+/* Enlace a "Configurar servidor" (cuando Payara corre en otra computadora) */
+.enlace-servidor {
+  color: var(--primario);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.enlace-servidor:hover { color: var(--primario-hover); text-decoration: underline; }
+.texto-servidor + .enlace-servidor { display: inline-block; margin-top: -0.5rem; }
+.formulario .aviso { margin: 1rem 0 0; }
+
 /* ===== Conversor ===== */
 .rejilla-conversor {
   display: grid;

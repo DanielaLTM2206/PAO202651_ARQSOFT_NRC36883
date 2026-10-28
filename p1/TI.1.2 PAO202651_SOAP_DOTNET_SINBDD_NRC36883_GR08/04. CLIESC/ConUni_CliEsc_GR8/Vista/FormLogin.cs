@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using ec.edu.monster.Cliente;
 using ec.edu.monster.Controlador;
 using ec.edu.monster.Modelo;
@@ -6,13 +7,36 @@ namespace ec.edu.monster.Vista
 {
     public partial class FormLogin : Form
     {
-        private readonly LoginControlador loginControlador;
+        private readonly ServidorControlador servidorControlador;
+        private ClienteWSConversor clienteWs;
+        private LoginControlador loginControlador;
 
-        public FormLogin(LoginControlador loginControlador)
+        public FormLogin(ServidorControlador servidorControlador)
         {
             InitializeComponent();
-            this.loginControlador = loginControlador;
+            this.servidorControlador = servidorControlador;
+            Conectar();
+            FormClosed += (_, _) => clienteWs.Dispose();
+        }
+
+        // Crea el cliente del servicio con la dirección configurada (se repite al cambiar de servidor)
+        [MemberNotNull(nameof(clienteWs), nameof(loginControlador))]
+        private void Conectar()
+        {
+            clienteWs?.Dispose();
+            clienteWs = new ClienteWSConversor(servidorControlador.UrlActual);
+            loginControlador = new LoginControlador(clienteWs);
             lblServidor.Text = "Servidor SOAP: " + loginControlador.UrlServidor;
+        }
+
+        private void lnkServidor_LinkClicked(object? sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using var dialogo = new FormServidor(servidorControlador);
+            if (dialogo.ShowDialog(this) == DialogResult.OK)
+            {
+                Conectar();
+                lblError.Text = string.Empty;
+            }
         }
 
         private async void btnIngresar_Click(object sender, EventArgs e)
