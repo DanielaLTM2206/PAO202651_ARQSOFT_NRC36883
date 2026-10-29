@@ -1,5 +1,7 @@
 package ec.edu.monster.cliente;
 
+import ec.edu.monster.cliente.dto.RegistroConversionRespuesta;
+
 import java.util.List;
 
 /**
@@ -25,6 +27,12 @@ public interface ContratoWSConversor {
 
     // GET /unidades/{categoria}
     List<String> consultarUnidades(String categoria);
+
+    // GET /conversiones/historial (historial compartido por todos los clientes)
+    List<RegistroConversionRespuesta> consultarHistorial();
+
+    // DELETE /conversiones/historial
+    String limpiarHistorial();
 
     void cerrarSesion();
 }

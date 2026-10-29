@@ -1,5 +1,7 @@
+using System.Globalization;
 using ec.edu.monster.Cliente;
 using ec.edu.monster.Modelo;
+using ReferenciaServicio;
 
 namespace ec.edu.monster.Controlador;
 
@@ -27,6 +29,48 @@ public class ConversionControlador
             TipoConversion.Temperatura => clienteWs.ConvertirTemperaturaAsync(valor, unidadInicial, unidadFinal),
             _ => throw new ArgumentException("Debe seleccionar el tipo de conversión.")
         });
+    }
+
+    /// <summary>
+    /// Historial compartido por todos los clientes: lo guarda el servidor, así que incluye
+    /// las conversiones hechas desde el escritorio, la web, el móvil y la consola.
+    /// </summary>
+    public async Task<IReadOnlyList<RegistroConversion>> ObtenerHistorialAsync()
+    {
+        IReadOnlyList<RegistroConversionRespuesta> registros = await clienteWs.ConsultarHistorialAsync();
+
+        var historial = new List<RegistroConversion>();
+        foreach (RegistroConversionRespuesta registro in registros)
+        {
+            if (InterpretarRegistro(registro) is RegistroConversion convertido)
+            {
+                historial.Add(convertido);
+            }
+        }
+        return historial;
+    }
+
+    // Borra el historial en el servidor: deja de verse en todos los clientes
+    public Task<string> LimpiarHistorialAsync()
+    {
+        return clienteWs.LimpiarHistorialAsync();
+    }
+
+    // Convierte el registro del mensaje SOAP al modelo; si llega incompleto, se omite en lugar de fallar
+    public static RegistroConversion? InterpretarRegistro(RegistroConversionRespuesta registro)
+    {
+        bool fechaValida = DateTime.TryParse(registro.FechaHora, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out DateTime fechaHora);
+        bool tipoValido = Enum.TryParse(registro.Tipo, ignoreCase: true, out TipoConversion tipo)
+                && Enum.IsDefined(tipo);
+
+        if (!fechaValida || !tipoValido
+                || string.IsNullOrWhiteSpace(registro.UnidadOrigen) || string.IsNullOrWhiteSpace(registro.UnidadDestino))
+        {
+            return null;
+        }
+        return new RegistroConversion(fechaHora, tipo, registro.Valor, registro.UnidadOrigen,
+                registro.Resultado, registro.UnidadDestino);
     }
 
     // Las unidades se consultan al servidor (operación SOAP ConsultarUnidadesPorCategoria)

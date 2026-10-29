@@ -1,4 +1,5 @@
 using System.Globalization;
+using ec.edu.monster.Modelo;
 
 namespace ec.edu.monster.Util;
 
@@ -29,5 +30,17 @@ public static class FormatoUtil
             return numero.ToString("0.#########E+0", CultureInfo.InvariantCulture);
         }
         return redondeado.ToString("0." + new string('#', MaximoDecimales), CultureInfo.InvariantCulture);
+    }
+
+    public static string FormatearFechaHora(DateTime fechaHora)
+    {
+        return fechaHora.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+    }
+
+    // Por ejemplo: 1000 METRO = 1 KILOMETRO
+    public static string FormatearConversion(RegistroConversion registro)
+    {
+        return $"{FormatearNumero(registro.Valor)} {registro.UnidadOrigen} = "
+                + $"{FormatearNumero(registro.Resultado)} {registro.UnidadDestino}";
     }
 }

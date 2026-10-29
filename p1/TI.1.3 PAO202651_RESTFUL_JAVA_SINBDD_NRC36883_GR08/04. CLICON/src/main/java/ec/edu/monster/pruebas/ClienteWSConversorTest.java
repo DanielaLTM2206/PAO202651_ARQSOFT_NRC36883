@@ -2,6 +2,7 @@ package ec.edu.monster.pruebas;
 
 import ec.edu.monster.cliente.ClienteWSConversor;
 import ec.edu.monster.cliente.ExcepcionClienteWS;
+import ec.edu.monster.cliente.dto.RegistroConversionRespuesta;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import org.junit.jupiter.api.AfterEach;
@@ -27,6 +28,7 @@ public class ClienteWSConversorTest {
 
     private final AtomicReference<String> cuerpoRecibido = new AtomicReference<>();
     private final AtomicReference<String> autorizacionRecibida = new AtomicReference<>();
+    private final AtomicReference<String> metodoHistorial = new AtomicReference<>();
 
     @BeforeEach
     void iniciarServidor() throws IOException {
@@ -50,6 +52,17 @@ public class ClienteWSConversorTest {
         servidor.createContext("/api/unidades/temperatura", intercambio ->
                 responder(intercambio, 200,
                         "{\"Categoria\":\"temperatura\",\"Unidades\":[\"CELSIUS\",\"FAHRENHEIT\",\"KELVIN\",\"RANKINE\"]}"));
+
+        servidor.createContext("/api/conversiones/historial", intercambio -> {
+            metodoHistorial.set(intercambio.getRequestMethod());
+            autorizacionRecibida.set(intercambio.getRequestHeaders().getFirst("Authorization"));
+            if ("DELETE".equals(intercambio.getRequestMethod())) {
+                responder(intercambio, 200, "{\"Mensaje\":\"Historial de conversiones borrado\"}");
+            } else {
+                responder(intercambio, 200, "[{\"FechaHora\":\"2026-10-18T19:28:36\",\"Tipo\":\"Longitud\","
+                        + "\"Valor\":1000.0,\"UnidadOrigen\":\"METRO\",\"Resultado\":1.0,\"UnidadDestino\":\"KILOMETRO\"}]");
+            }
+        });
 
         servidor.start();
         cliente = new ClienteWSConversor("http://localhost:" + servidor.getAddress().getPort() + "/api/");
@@ -116,6 +129,38 @@ public class ClienteWSConversorTest {
 
         assertTrue(ex.esErrorAutenticacion());
         assertNull(cuerpoRecibido.get());
+    }
+
+    @Test
+    void deberiaLeerElHistorialCompartidoConElToken() {
+        cliente.login("Monster", "Monster9");
+
+        List<RegistroConversionRespuesta> historial = cliente.consultarHistorial();
+
+        assertEquals("GET", metodoHistorial.get());
+        assertEquals("Bearer abc-123", autorizacionRecibida.get());
+        assertEquals(1, historial.size());
+        assertEquals("Longitud", historial.get(0).getTipo());
+        assertEquals("KILOMETRO", historial.get(0).getUnidadDestino());
+        assertEquals(1000.0, historial.get(0).getValor(), 0.000001);
+    }
+
+    @Test
+    void deberiaBorrarElHistorialConDelete() {
+        cliente.login("Monster", "Monster9");
+
+        String mensaje = cliente.limpiarHistorial();
+
+        assertEquals("DELETE", metodoHistorial.get());
+        assertEquals("Historial de conversiones borrado", mensaje);
+    }
+
+    @Test
+    void deberiaExigirSesionAntesDeConsultarElHistorial() {
+        ExcepcionClienteWS ex = assertThrows(ExcepcionClienteWS.class, () -> cliente.consultarHistorial());
+
+        assertTrue(ex.esErrorAutenticacion());
+        assertNull(metodoHistorial.get());
     }
 
     @Test

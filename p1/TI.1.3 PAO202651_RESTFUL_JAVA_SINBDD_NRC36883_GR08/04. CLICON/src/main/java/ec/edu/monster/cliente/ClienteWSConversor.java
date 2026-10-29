@@ -8,6 +8,7 @@ import ec.edu.monster.cliente.dto.ConversionSolicitud;
 import ec.edu.monster.cliente.dto.LoginRespuesta;
 import ec.edu.monster.cliente.dto.LoginSolicitud;
 import ec.edu.monster.cliente.dto.MensajeRespuesta;
+import ec.edu.monster.cliente.dto.RegistroConversionRespuesta;
 import ec.edu.monster.cliente.dto.UnidadesCategoriaRespuesta;
 import ec.edu.monster.util.ConfiguracionServidor;
 
@@ -17,6 +18,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -83,6 +85,28 @@ public class ClienteWSConversor implements ContratoWSConversor {
                 .GET();
 
         return enviar(manejadorToken.adjuntarToken(peticion), UnidadesCategoriaRespuesta.class).getUnidades();
+    }
+
+    @Override
+    public List<RegistroConversionRespuesta> consultarHistorial() {
+        HttpRequest.Builder peticion = HttpRequest.newBuilder(URI.create(baseUrl + "/conversiones/historial"))
+                .header("Accept", TIPO_JSON)
+                .GET();
+
+        RegistroConversionRespuesta[] registros =
+                enviar(manejadorToken.adjuntarToken(peticion), RegistroConversionRespuesta[].class);
+        return registros == null ? List.of() : Arrays.asList(registros);
+    }
+
+    @Override
+    public String limpiarHistorial() {
+        HttpRequest.Builder peticion = HttpRequest.newBuilder(URI.create(baseUrl + "/conversiones/historial"))
+                .header("Accept", TIPO_JSON)
+                .DELETE();
+
+        MensajeRespuesta respuesta = enviar(manejadorToken.adjuntarToken(peticion), MensajeRespuesta.class);
+        return respuesta != null && respuesta.getMensaje() != null
+                ? respuesta.getMensaje() : "Historial de conversiones borrado";
     }
 
     @Override

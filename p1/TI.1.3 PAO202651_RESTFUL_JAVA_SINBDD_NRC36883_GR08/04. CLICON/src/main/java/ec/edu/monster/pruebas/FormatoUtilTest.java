@@ -1,8 +1,13 @@
 package ec.edu.monster.pruebas;
 
+import ec.edu.monster.modelo.RegistroConversion;
+import ec.edu.monster.modelo.TipoConversion;
 import ec.edu.monster.util.FormatoUtil;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,5 +27,18 @@ public class FormatoUtilTest {
     })
     void deberiaMostrarNumerosSinNotacionCientificaNiCerosSobrantes(double numero, String esperado) {
         assertEquals(esperado, FormatoUtil.formatearNumero(numero));
+    }
+
+    @Test
+    void deberiaFormatearLaFechaDelHistorial() {
+        assertEquals("29/10/2026 08:05:09", FormatoUtil.formatearFechaHora(LocalDateTime.of(2026, 10, 29, 8, 5, 9)));
+    }
+
+    @Test
+    void deberiaFormatearUnaConversionDelHistorial() {
+        RegistroConversion registro = new RegistroConversion(LocalDateTime.now(), TipoConversion.MASA,
+                2.5, "KILOGRAMO", 2500, "GRAMO");
+
+        assertEquals("2.5 KILOGRAMO = 2500 GRAMO", FormatoUtil.formatearConversion(registro));
     }
 }

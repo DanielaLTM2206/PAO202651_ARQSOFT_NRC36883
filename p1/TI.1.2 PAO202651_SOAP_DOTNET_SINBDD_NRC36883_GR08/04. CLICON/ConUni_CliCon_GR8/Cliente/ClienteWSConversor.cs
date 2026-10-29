@@ -93,6 +93,20 @@ public class ClienteWSConversor : IContratoWSConversor, IDisposable
         return respuesta?.Unidades ?? [];
     }
 
+    public async Task<IReadOnlyList<RegistroConversionRespuesta>> ConsultarHistorialAsync()
+    {
+        manejadorToken.ExigirSesion();
+        RegistroConversionRespuesta[] registros = await EjecutarAsync(canal => canal.ConsultarHistorialAsync());
+        return registros ?? [];
+    }
+
+    public async Task<string> LimpiarHistorialAsync()
+    {
+        manejadorToken.ExigirSesion();
+        MensajeRespuesta respuesta = await EjecutarAsync(canal => canal.LimpiarHistorialAsync());
+        return respuesta?.Mensaje ?? "Historial de conversiones borrado";
+    }
+
     public void CerrarSesion()
     {
         manejadorToken.LimpiarToken();

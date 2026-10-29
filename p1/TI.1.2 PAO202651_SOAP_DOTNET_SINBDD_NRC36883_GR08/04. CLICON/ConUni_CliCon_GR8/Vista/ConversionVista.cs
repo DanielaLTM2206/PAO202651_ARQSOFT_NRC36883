@@ -27,8 +27,10 @@ public class ConversionVista
             mensajes.MostrarMensaje("  [1] Convertir Longitud");
             mensajes.MostrarMensaje("  [2] Convertir Masa");
             mensajes.MostrarMensaje("  [3] Convertir Temperatura");
-            mensajes.MostrarMensaje("  [4] Cambiar contraseña");
-            mensajes.MostrarMensaje("  [5] Cerrar sesión");
+            mensajes.MostrarMensaje("  [4] Ver historial de conversiones");
+            mensajes.MostrarMensaje("  [5] Borrar historial");
+            mensajes.MostrarMensaje("  [6] Cambiar contraseña");
+            mensajes.MostrarMensaje("  [7] Cerrar sesión");
             mensajes.MostrarMensaje("  [0] Salir");
 
             int opcion = EntradaUtil.LeerEntero("  > Seleccione una opción: ");
@@ -45,9 +47,15 @@ public class ConversionVista
                     await ProcesarConversionAsync(TipoConversion.Temperatura);
                     break;
                 case 4:
-                    await ProcesarCambioContraseniaAsync();
+                    await ProcesarHistorialAsync(historial => historial.MostrarAsync());
                     break;
                 case 5:
+                    await ProcesarHistorialAsync(historial => historial.BorrarAsync());
+                    break;
+                case 6:
+                    await ProcesarCambioContraseniaAsync();
+                    break;
+                case 7:
                     mensajes.MostrarAviso("  Cerrando sesión...");
                     return false;
                 case 0:
@@ -85,6 +93,18 @@ public class ConversionVista
         catch (ArgumentException ex)
         {
             mensajes.MostrarError(ex.Message);
+        }
+    }
+
+    private async Task ProcesarHistorialAsync(Func<HistorialVista, Task> accion)
+    {
+        try
+        {
+            await accion(new HistorialVista(conversionControlador));
+        }
+        catch (ExcepcionClienteWS ex)
+        {
+            ManejarErrorServicio(ex);
         }
     }
 
