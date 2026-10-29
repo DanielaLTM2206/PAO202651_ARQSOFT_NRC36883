@@ -20,13 +20,24 @@ namespace ConUni_CliEsc_GR08.Services
             if (!string.IsNullOrWhiteSpace(host))
             {
                 string h = host.Trim();
+                while (h.StartsWith("https://", StringComparison.OrdinalIgnoreCase) || 
+                       h.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (h.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                        h = h.Substring(8).Trim();
+                    else if (h.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+                        h = h.Substring(7).Trim();
+                }
+
+                h = h.TrimEnd('/');
+                if (h.EndsWith("/api", StringComparison.OrdinalIgnoreCase))
+                {
+                    h = h.Substring(0, h.Length - 4).TrimEnd('/');
+                }
+
                 if (h.Contains("trycloudflare.com", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!h.StartsWith("http://", StringComparison.OrdinalIgnoreCase) && 
-                        !h.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-                    {
-                        h = "https://" + h;
-                    }
+                    h = "https://" + h;
                 }
                 _customHost = h;
                 _instance = null;

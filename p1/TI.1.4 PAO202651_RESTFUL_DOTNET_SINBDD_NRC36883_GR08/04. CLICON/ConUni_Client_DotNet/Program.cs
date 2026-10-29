@@ -32,18 +32,35 @@ namespace ConUni_Client_DotNet
                 serverHost = string.IsNullOrWhiteSpace(input) ? "localhost" : input.Trim();
             }
 
-            if (serverHost.Contains("trycloudflare.com", StringComparison.OrdinalIgnoreCase))
+            // Sanitizar de forma ultra-robusta contra dobles prefijos o espacios al copiar
+            serverHost = serverHost.Trim();
+            while (serverHost.StartsWith("https://", StringComparison.OrdinalIgnoreCase) || 
+                   serverHost.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
-                if (!serverHost.StartsWith("http://", StringComparison.OrdinalIgnoreCase) && 
-                    !serverHost.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-                {
-                    serverHost = "https://" + serverHost;
-                }
+                if (serverHost.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                    serverHost = serverHost.Substring(8).Trim();
+                else if (serverHost.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+                    serverHost = serverHost.Substring(7).Trim();
             }
 
-            _serverUrl = serverHost.StartsWith("http") 
-                ? (serverHost.EndsWith("/api") ? serverHost : $"{serverHost.TrimEnd('/')}/api")
-                : $"http://{serverHost}:5000/api";
+            serverHost = serverHost.TrimEnd('/');
+            if (serverHost.EndsWith("/api", StringComparison.OrdinalIgnoreCase))
+            {
+                serverHost = serverHost.Substring(0, serverHost.Length - 4).TrimEnd('/');
+            }
+
+            if (serverHost.Contains("trycloudflare.com", StringComparison.OrdinalIgnoreCase))
+            {
+                _serverUrl = $"https://{serverHost}/api";
+            }
+            else if (serverHost.Contains(":"))
+            {
+                _serverUrl = $"http://{serverHost}/api";
+            }
+            else
+            {
+                _serverUrl = $"http://{serverHost}:5000/api";
+            }
 
             _client = new RestClient(_serverUrl);
 
