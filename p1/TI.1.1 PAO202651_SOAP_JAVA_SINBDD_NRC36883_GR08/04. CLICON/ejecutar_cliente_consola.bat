@@ -8,6 +8,12 @@ set /p SERVER_IP="Ingrese la IP o Dominio del Servidor SOAP [Enter para localhos
 if "%SERVER_IP%"=="" set SERVER_IP=localhost
 
 set SERVER_PORT=8080
+
+:: Limpiar prefijos http:// o https:// y barras finales si el usuario los pega completos
+set SERVER_IP=%SERVER_IP:https://=%
+set SERVER_IP=%SERVER_IP:http://=%
+set SERVER_IP=%SERVER_IP:/=%
+
 echo %SERVER_IP% | findstr /i "trycloudflare.com" >nul
 if not errorlevel 1 set SERVER_PORT=80
 

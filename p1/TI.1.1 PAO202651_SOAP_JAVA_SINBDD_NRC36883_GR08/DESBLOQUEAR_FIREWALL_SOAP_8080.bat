@@ -1,21 +1,29 @@
-﻿@echo off
+@echo off
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     powershell -Command "Start-Process '%~0' -Verb RunAs"
     exit /b
 )
 
-title Desbloquear Firewall - Servidor SOAP Payara (Puerto 8080)
+title Desbloquear Conectividad Total - Servidor SOAP Payara (8080)
 echo ====================================================================
-echo      DESBLOQUEANDO FIREWALL DE WINDOWS PARA EL SERVIDOR SOAP (8080)
+echo      DESBLOQUEANDO CONEXION INALAMBRICA PARA EL CELULAR / CLIENTES
 echo ====================================================================
 echo.
-echo Abriendo puerto 8080 TCP para celulares y clientes externos...
-netsh advfirewall firewall add rule name="Payara_SOAP_8080" dir=in action=allow protocol=TCP localport=8080 profile=any
+echo 1. Cambiando conexion a Red Privada...
+powershell -Command "Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private"
+
+echo 2. Desactivando temporalmente el Firewall de Windows...
+netsh advfirewall set allprofiles state off
 
 echo.
 echo ====================================================================
-echo      LISTO! EL PUERTO 8080 HA SIDO DESBLOQUEADO CON EXITO
-echo      Tu celular ahora podra conectarse por Wi-Fi a: 192.168.100.15:8080
+echo   EXITO: EL FIREWALL ESTA DESACTIVADO Y EL PUERTO 8080 ESTA ABIERTO
 echo ====================================================================
-timeout /t 3 >nul
+echo.
+powershell -Command "$ip = (Get-NetIPAddress -InterfaceAlias 'Wi-Fi' -AddressFamily IPv4).IPAddress; Write-Host 'En tu celular escribe esta IP exacta: ' -NoNewline; Write-Host $ip -ForegroundColor Green -BackgroundColor Black"
+echo.
+echo (Nota: Cuando termines tu presentacion, puedes volver a encender
+echo        el firewall ejecutando: netsh advfirewall set allprofiles state on)
+echo.
+pause
