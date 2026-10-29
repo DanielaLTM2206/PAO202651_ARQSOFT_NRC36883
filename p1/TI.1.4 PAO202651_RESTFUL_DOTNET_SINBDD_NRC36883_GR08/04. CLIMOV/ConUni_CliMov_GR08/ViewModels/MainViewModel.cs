@@ -32,7 +32,7 @@ namespace UniversalConverter.Client.ViewModels
         private string? _selectedUnitTo;
 
         [ObservableProperty]
-        private string _usuarioSesion = "MONSTER";
+        private string _usuarioSesion = "monster";
 
         // Resultados
         [ObservableProperty]
@@ -100,7 +100,7 @@ namespace UniversalConverter.Client.ViewModels
         public MainViewModel(IConversionService restService)
         {
             _restService = restService;
-            UsuarioSesion = _restService.Usuario ?? "MONSTER";
+            UsuarioSesion = _restService.Usuario ?? "monster";
             UpdateUnitLists();
         }
 

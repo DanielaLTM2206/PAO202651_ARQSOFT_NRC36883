@@ -57,7 +57,7 @@ namespace WS_ConUni_DotNet_REST.Models
         public string UnidadOrigen { get; set; } = string.Empty;
         public double ValorResultado { get; set; }
         public string UnidadDestino { get; set; } = string.Empty;
-        public string Usuario { get; set; } = "MONSTER";
+        public string Usuario { get; set; } = "monster";
     }
 
     public class RespuestaHistorial

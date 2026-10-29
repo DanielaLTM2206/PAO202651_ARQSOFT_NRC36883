@@ -74,7 +74,7 @@
                                TextColor="#CBD5E1"/>
                         <Border StrokeShape="RoundRectangle 8" Stroke="#334155" BackgroundColor="#0D121C" Padding="10,2">
                             <Entry Text="{Binding Username}"
-                                   Placeholder="MONSTER"
+                                   Placeholder="monster"
                                    TextColor="White"
                                    PlaceholderColor="#64748B"
                                    FontSize="13"/>
@@ -88,7 +88,7 @@
                                TextColor="#CBD5E1"/>
                         <Border StrokeShape="RoundRectangle 8" Stroke="#334155" BackgroundColor="#0D121C" Padding="10,2">
                             <Entry Text="{Binding Password}"
-                                   Placeholder="MONSTER9"
+                                   Placeholder="monster9"
                                    IsPassword="True"
                                    TextColor="White"
                                    PlaceholderColor="#64748B"

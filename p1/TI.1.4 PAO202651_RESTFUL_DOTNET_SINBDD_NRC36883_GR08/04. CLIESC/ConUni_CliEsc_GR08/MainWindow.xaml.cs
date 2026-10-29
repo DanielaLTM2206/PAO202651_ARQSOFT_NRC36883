@@ -9,7 +9,7 @@ namespace ConUni_CliEsc_GR08
         public MainWindow()
         {
             InitializeComponent();
-            lblUsuarioSesion.Text = $"Sesion: {RestClient.Instance.Usuario ?? "MONSTER"}";
+            lblUsuarioSesion.Text = $"Sesion: {RestClient.Instance.Usuario ?? "monster"}";
 
             // Conectar eventos de conversión para refrescar historial automáticamente
             viewLongitud.ConversionRealizada += async () => await CargarHistorialAsync();

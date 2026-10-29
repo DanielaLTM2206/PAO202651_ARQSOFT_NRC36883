@@ -19,9 +19,7 @@ namespace WS_ConUni_DotNet_REST.Services
         // Almacenamiento en memoria (SINBDD)
         private static readonly ConcurrentDictionary<string, string> _usuariosClaves = new(StringComparer.OrdinalIgnoreCase)
         {
-            ["MONSTER"] = "MONSTER9",
             ["monster"] = "monster9",
-            ["ADMIN"] = "ADMIN123",
             ["admin"] = "admin123"
         };
 
@@ -52,9 +50,9 @@ namespace WS_ConUni_DotNet_REST.Services
                     $"Cuenta temporalmente bloqueada. Superó los {MAX_INTENTOS} intentos permitidos.");
             }
 
-            // Validar credenciales (flexible con mayúsculas y minúsculas)
+            // Validar credenciales exactamente contra la contraseña almacenada en memoria (sin atajos quemados)
             if (_usuariosClaves.TryGetValue(usuario, out string? claveEsperada) && 
-                (string.Equals(claveEsperada, clave, StringComparison.OrdinalIgnoreCase) || clave.Equals("MONSTER9", StringComparison.OrdinalIgnoreCase) || clave.Equals("monster9", StringComparison.OrdinalIgnoreCase)))
+                string.Equals(claveEsperada, clave, StringComparison.Ordinal))
             {
                 // Resetear intentos fallidos
                 _intentosFallidos.TryRemove(usuario, out _);
@@ -63,9 +61,9 @@ namespace WS_ConUni_DotNet_REST.Services
                 string token = $"mst_{Guid.NewGuid():N}_{DateTime.UtcNow.Ticks}";
                 DateTime expiracion = DateTime.UtcNow.Add(DURACION_TOKEN);
 
-                _tokensActivos[token] = (usuario.ToUpperInvariant(), expiracion);
+                _tokensActivos[token] = (usuario.ToLowerInvariant(), expiracion);
 
-                return LoginResponse.Exito(token, usuario.ToUpperInvariant(), expiracion);
+                return LoginResponse.Exito(token, usuario.ToLowerInvariant(), expiracion);
             }
             else
             {
@@ -123,7 +121,11 @@ namespace WS_ConUni_DotNet_REST.Services
                 return RespuestaBase.Error(ErrorConstants.AUTH_CAMPOS_REQUERIDOS, "Debe ingresar la clave actual y la nueva clave.");
             }
 
-            if (!_usuariosClaves.TryGetValue(usuario, out string? claveGuardada) || claveGuardada != claveActual)
+            claveActual = claveActual.Trim('\uFEFF', ' ', '\r', '\n', '\t');
+            claveNueva = claveNueva.Trim('\uFEFF', ' ', '\r', '\n', '\t');
+
+            if (!_usuariosClaves.TryGetValue(usuario, out string? claveGuardada) || 
+                !string.Equals(claveGuardada, claveActual, StringComparison.Ordinal))
             {
                 return RespuestaBase.Error(ErrorConstants.AUTH_CLAVE_ACTUAL_INCORRECTA, "La contraseña actual es incorrecta.");
             }
@@ -131,6 +133,11 @@ namespace WS_ConUni_DotNet_REST.Services
             if (claveNueva.Length < 4)
             {
                 return RespuestaBase.Error(ErrorConstants.AUTH_CLAVE_NUEVA_INVALIDA, "La nueva contraseña debe tener al menos 4 caracteres.");
+            }
+
+            if (string.Equals(claveActual, claveNueva, StringComparison.Ordinal))
+            {
+                return RespuestaBase.Error(ErrorConstants.AUTH_CLAVE_NUEVA_INVALIDA, "La nueva contraseña no puede ser igual a la actual.");
             }
 
             _usuariosClaves[usuario] = claveNueva;

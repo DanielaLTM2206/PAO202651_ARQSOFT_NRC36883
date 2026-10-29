@@ -31,7 +31,7 @@ namespace WS_ConUni_DotNet_REST.Services
                 UnidadOrigen = unidadOrigen,
                 ValorResultado = valorResultado,
                 UnidadDestino = unidadDestino,
-                Usuario = string.IsNullOrWhiteSpace(usuario) ? "MONSTER" : usuario
+                Usuario = string.IsNullOrWhiteSpace(usuario) ? "monster" : usuario.ToLowerInvariant()
             };
 
             _historial.Add(registro);

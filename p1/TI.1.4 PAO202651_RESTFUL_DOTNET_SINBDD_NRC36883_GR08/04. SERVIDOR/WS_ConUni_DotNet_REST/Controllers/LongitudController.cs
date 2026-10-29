@@ -59,7 +59,7 @@ namespace WS_ConUni_DotNet_REST.Controllers
                     return user;
                 }
             }
-            return "MONSTER";
+            return "monster";
         }
     }
 }

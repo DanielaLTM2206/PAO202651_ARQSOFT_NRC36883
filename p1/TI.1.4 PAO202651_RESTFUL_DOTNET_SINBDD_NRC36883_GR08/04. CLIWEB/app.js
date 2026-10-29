@@ -1,4 +1,4 @@
-﻿// ==========================================================================
+// ==========================================================================
 // CLIENTE WEB RESTFUL .NET 8 (SINBDD) - MONSTERS INC GR08
 // ==========================================================================
 
@@ -23,7 +23,7 @@ const API_BASE_URL = getApiBaseUrl();
 
 const state = {
     token: sessionStorage.getItem("token") || null,
-    usuario: sessionStorage.getItem("usuario") || "MONSTER"
+    usuario: sessionStorage.getItem("usuario") || "monster"
 };
 
 // Mapas de conversión de los DropDowns de GR01
@@ -198,7 +198,7 @@ function mostrarVistaDashboard() {
     document.getElementById("loginView").style.display = "none";
     document.getElementById("dashboardView").style.display = "block";
 
-    document.getElementById("lblUsuarioActivo").textContent = state.usuario || "MONSTER";
+    document.getElementById("lblUsuarioActivo").textContent = state.usuario || "monster";
     if (state.token) {
         document.getElementById("lblTokenPreview").textContent = state.token.substring(0, 16) + "...";
     }

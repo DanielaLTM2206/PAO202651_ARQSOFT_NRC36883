@@ -152,13 +152,13 @@ namespace ConUni_Client_DotNet
 
             while (intentos < maxIntentos)
             {
-                Console.Write("Usuario [Default: MONSTER]: ");
+                Console.Write("Usuario [Default: monster]: ");
                 string? usuario = Console.ReadLine()?.Trim('\uFEFF', ' ', '\r', '\n', '\t');
-                if (string.IsNullOrWhiteSpace(usuario)) usuario = "MONSTER";
+                if (string.IsNullOrWhiteSpace(usuario)) usuario = "monster";
 
-                Console.Write("Contrasena [Default: MONSTER9]: ");
+                Console.Write("Contrasena [Default: monster9]: ");
                 string clave = LeerContrasenaOculta().Trim('\uFEFF', ' ', '\r', '\n', '\t');
-                if (string.IsNullOrWhiteSpace(clave)) clave = "MONSTER9";
+                if (string.IsNullOrWhiteSpace(clave)) clave = "monster9";
 
                 Console.WriteLine("\nVerificando credenciales con la API REST...");
                 var res = await _client.IniciarSesionAsync(usuario, clave);

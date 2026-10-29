@@ -55,7 +55,7 @@
 
                 <!-- Campo Usuario -->
                 <TextBlock Text="Usuario Corporativo:" FontSize="12" FontWeight="SemiBold" Foreground="#CBD5E1" Margin="0,0,0,6"/>
-                <TextBox x:Name="txtUsuario" FontSize="14" Padding="10" Background="#151B28" Foreground="White" BorderBrush="#334155" Margin="0,0,0,16" Text="MONSTER">
+                <TextBox x:Name="txtUsuario" FontSize="14" Padding="10" Background="#151B28" Foreground="White" BorderBrush="#334155" Margin="0,0,0,16" Text="monster">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="6"/>
@@ -65,7 +65,7 @@
 
                 <!-- Campo Clave -->
                 <TextBlock Text="Contrasena de Acceso:" FontSize="12" FontWeight="SemiBold" Foreground="#CBD5E1" Margin="0,0,0,6"/>
-                <PasswordBox x:Name="txtClave" FontSize="14" Padding="10" Background="#151B28" Foreground="White" BorderBrush="#334155" Margin="0,0,0,24" Password="MONSTER9" KeyDown="TxtClave_KeyDown">
+                <PasswordBox x:Name="txtClave" FontSize="14" Padding="10" Background="#151B28" Foreground="White" BorderBrush="#334155" Margin="0,0,0,24" Password="monster9" KeyDown="TxtClave_KeyDown">
                     <PasswordBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="6"/>

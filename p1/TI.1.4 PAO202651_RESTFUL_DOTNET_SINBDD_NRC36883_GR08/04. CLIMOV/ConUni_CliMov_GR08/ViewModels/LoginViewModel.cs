@@ -15,10 +15,10 @@ namespace UniversalConverter.Client.ViewModels
         private bool _isBusy;
 
         [ObservableProperty]
-        private string _username = "MONSTER";
+        private string _username = "monster";
 
         [ObservableProperty]
-        private string _password = "MONSTER9";
+        private string _password = "monster9";
 
         [ObservableProperty]
         private string? _errorMessage;
