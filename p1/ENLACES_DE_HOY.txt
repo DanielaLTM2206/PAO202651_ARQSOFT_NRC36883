@@ -1,0 +1,15 @@
+======================================================================
+          ENLACES DE HOY PARA LA PRESENTACION (GR08)
+======================================================================
+
+--- 1. PROYECTO SOAP JAVA (Puerto 8080) ---
+Dominio:     https://numerous-appliance-server-offering.trycloudflare.com
+Cliente Web: https://numerous-appliance-server-offering.trycloudflare.com/ClienteWeb/
+WSDL:        https://numerous-appliance-server-offering.trycloudflare.com/WS_ConUni_Java_SOAP/WSConversorUnidades?wsdl
+
+--- 2. PROYECTO RESTful .NET 8 (Puerto 5000) ---
+Dominio:     https://flickr-symantec-opens-executed.trycloudflare.com
+Cliente Web: https://flickr-symantec-opens-executed.trycloudflare.com/app/index.html
+Swagger:     https://flickr-symantec-opens-executed.trycloudflare.com/
+
+======================================================================
