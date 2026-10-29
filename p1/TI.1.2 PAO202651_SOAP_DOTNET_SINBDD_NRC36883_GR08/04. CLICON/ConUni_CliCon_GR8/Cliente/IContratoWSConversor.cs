@@ -1,9 +1,10 @@
+using ReferenciaServicio;
+
 namespace ec.edu.monster.Cliente;
 
 /// <summary>
 /// Operaciones del servicio SOAP WSConversorUnidades que usa el cliente de consola.
 /// Los controladores dependen de esta interfaz y no del proxy WCF generado.
-/// La consola no muestra el historial, por eso no incluye esas operaciones.
 /// </summary>
 public interface IContratoWSConversor
 {
@@ -22,6 +23,12 @@ public interface IContratoWSConversor
 
     // Operación SOAP ConsultarUnidadesPorCategoria
     Task<IReadOnlyList<string>> ConsultarUnidadesAsync(string categoria);
+
+    // Operación SOAP ConsultarHistorial (historial compartido por todos los clientes)
+    Task<IReadOnlyList<RegistroConversionRespuesta>> ConsultarHistorialAsync();
+
+    // Operación SOAP LimpiarHistorial
+    Task<string> LimpiarHistorialAsync();
 
     void CerrarSesion();
 }

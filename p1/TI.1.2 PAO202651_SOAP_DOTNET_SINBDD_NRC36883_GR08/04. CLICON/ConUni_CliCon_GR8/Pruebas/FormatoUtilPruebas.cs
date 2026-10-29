@@ -1,3 +1,4 @@
+using ec.edu.monster.Modelo;
 using ec.edu.monster.Util;
 using Xunit;
 
@@ -17,5 +18,23 @@ public class FormatoUtilPruebas
     public void DeberiaMostrarNumerosSinNotacionCientificaNiCerosSobrantes(double numero, string esperado)
     {
         Assert.Equal(esperado, FormatoUtil.FormatearNumero(numero));
+    }
+
+    [Fact]
+    public void DeberiaFormatearLaFechaDelHistorial()
+    {
+        Assert.Equal("29/10/2026 08:05:09", FormatoUtil.FormatearFechaHora(new DateTime(2026, 10, 29, 8, 5, 9)));
+    }
+
+    [Theory]
+    [InlineData(1000, "METRO", 1, "KILOMETRO", "1000 METRO = 1 KILOMETRO")]
+    [InlineData(100, "CELSIUS", 212, "FAHRENHEIT", "100 CELSIUS = 212 FAHRENHEIT")]
+    [InlineData(2.5, "KILOGRAMO", 2500, "GRAMO", "2.5 KILOGRAMO = 2500 GRAMO")]
+    public void DeberiaFormatearUnaConversionDelHistorial(double valor, string origen, double resultado,
+            string destino, string esperado)
+    {
+        var registro = new RegistroConversion(DateTime.Now, TipoConversion.Longitud, valor, origen, resultado, destino);
+
+        Assert.Equal(esperado, FormatoUtil.FormatearConversion(registro));
     }
 }

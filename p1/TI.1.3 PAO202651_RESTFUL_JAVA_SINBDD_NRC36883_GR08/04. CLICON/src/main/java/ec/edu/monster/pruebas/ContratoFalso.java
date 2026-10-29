@@ -1,7 +1,9 @@
 package ec.edu.monster.pruebas;
 
 import ec.edu.monster.cliente.ContratoWSConversor;
+import ec.edu.monster.cliente.dto.RegistroConversionRespuesta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +49,22 @@ class ContratoFalso implements ContratoWSConversor {
     public List<String> consultarUnidades(String categoria) {
         operacionLlamada = "consultarUnidades:" + categoria;
         return List.of("A", "B");
+    }
+
+    // Historial que "guarda el servidor" en las pruebas
+    final List<RegistroConversionRespuesta> historialServidor = new ArrayList<>();
+
+    @Override
+    public List<RegistroConversionRespuesta> consultarHistorial() {
+        operacionLlamada = "consultarHistorial";
+        return List.copyOf(historialServidor);
+    }
+
+    @Override
+    public String limpiarHistorial() {
+        operacionLlamada = "limpiarHistorial";
+        historialServidor.clear();
+        return "Historial de conversiones borrado";
     }
 
     @Override

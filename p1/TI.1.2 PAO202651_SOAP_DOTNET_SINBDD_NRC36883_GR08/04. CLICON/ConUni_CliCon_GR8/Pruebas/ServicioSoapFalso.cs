@@ -16,6 +16,7 @@ internal class ServicioSoapFalso : IWSConversorUnidades
     public string Token { get; set; } = "token-de-prueba";
     public double ValorConvertido { get; set; } = 1.0;
     public string[] Unidades { get; set; } = ["METRO", "KILOMETRO"];
+    public RegistroConversionRespuesta[] Historial { get; set; } = [];
 
     public Task<LoginRespuesta> LoginAsync(string Usuario, string Contrasena)
         => Responder(new LoginRespuesta { Token = Token }, "Login", Usuario, Contrasena);
@@ -44,10 +45,13 @@ internal class ServicioSoapFalso : IWSConversorUnidades
                 "ConsultarUnidadesPorCategoria", Categoria);
 
     public Task<RegistroConversionRespuesta[]> ConsultarHistorialAsync()
-        => Responder(Array.Empty<RegistroConversionRespuesta>(), "ConsultarHistorial");
+        => Responder(Historial, "ConsultarHistorial");
 
     public Task<MensajeRespuesta> LimpiarHistorialAsync()
-        => Responder(new MensajeRespuesta { Mensaje = "Historial de conversiones borrado" }, "LimpiarHistorial");
+    {
+        Historial = [];
+        return Responder(new MensajeRespuesta { Mensaje = "Historial de conversiones borrado" }, "LimpiarHistorial");
+    }
 
     private Task<T> Responder<T>(T respuesta, string operacion, params object?[] argumentos)
     {

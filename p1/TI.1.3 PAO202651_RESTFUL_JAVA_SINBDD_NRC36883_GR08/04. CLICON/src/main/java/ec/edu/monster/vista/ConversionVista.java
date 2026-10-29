@@ -32,8 +32,10 @@ public class ConversionVista {
             mensajes.mostrarMensaje("  [1] Convertir Longitud");
             mensajes.mostrarMensaje("  [2] Convertir Masa");
             mensajes.mostrarMensaje("  [3] Convertir Temperatura");
-            mensajes.mostrarMensaje("  [4] Cambiar contrasenia");
-            mensajes.mostrarMensaje("  [5] Cerrar sesion");
+            mensajes.mostrarMensaje("  [4] Ver historial de conversiones");
+            mensajes.mostrarMensaje("  [5] Borrar historial");
+            mensajes.mostrarMensaje("  [6] Cambiar contrasenia");
+            mensajes.mostrarMensaje("  [7] Cerrar sesion");
             mensajes.mostrarMensaje("  [0] Salir");
 
             int opcion = EntradaUtil.leerEntero("  > Seleccione una opcion: ");
@@ -42,8 +44,10 @@ public class ConversionVista {
                 case 1 -> procesarConversion(TipoConversion.LONGITUD);
                 case 2 -> procesarConversion(TipoConversion.MASA);
                 case 3 -> procesarConversion(TipoConversion.TEMPERATURA);
-                case 4 -> procesarCambioContrasenia();
-                case 5 -> {
+                case 4 -> procesarHistorial(true);
+                case 5 -> procesarHistorial(false);
+                case 6 -> procesarCambioContrasenia();
+                case 7 -> {
                     mensajes.mostrarAviso("  Cerrando sesion...");
                     return false;
                 }
@@ -75,6 +79,19 @@ public class ConversionVista {
             manejarErrorServicio(ex);
         } catch (IllegalArgumentException ex) {
             mensajes.mostrarError(ex.getMessage());
+        }
+    }
+
+    private void procesarHistorial(boolean mostrar) {
+        HistorialVista historialVista = new HistorialVista(conversionControlador);
+        try {
+            if (mostrar) {
+                historialVista.mostrar();
+            } else {
+                historialVista.borrar();
+            }
+        } catch (ExcepcionClienteWS ex) {
+            manejarErrorServicio(ex);
         }
     }
 

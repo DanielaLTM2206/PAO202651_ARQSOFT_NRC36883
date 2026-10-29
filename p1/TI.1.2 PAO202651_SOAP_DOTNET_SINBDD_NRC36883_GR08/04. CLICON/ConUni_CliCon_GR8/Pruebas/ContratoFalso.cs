@@ -1,4 +1,5 @@
 using ec.edu.monster.Cliente;
+using ReferenciaServicio;
 
 namespace ec.edu.monster.Pruebas;
 
@@ -39,6 +40,22 @@ internal class ContratoFalso : IContratoWSConversor
     {
         OperacionLlamada = "ConsultarUnidades:" + categoria;
         return Task.FromResult<IReadOnlyList<string>>(["A", "B"]);
+    }
+
+    // Historial que "guarda el servidor" en las pruebas
+    public List<RegistroConversionRespuesta> HistorialServidor { get; } = new();
+
+    public Task<IReadOnlyList<RegistroConversionRespuesta>> ConsultarHistorialAsync()
+    {
+        OperacionLlamada = "ConsultarHistorial";
+        return Task.FromResult<IReadOnlyList<RegistroConversionRespuesta>>(HistorialServidor.ToList());
+    }
+
+    public Task<string> LimpiarHistorialAsync()
+    {
+        OperacionLlamada = "LimpiarHistorial";
+        HistorialServidor.Clear();
+        return Task.FromResult("Historial de conversiones borrado");
     }
 
     public void CerrarSesion()

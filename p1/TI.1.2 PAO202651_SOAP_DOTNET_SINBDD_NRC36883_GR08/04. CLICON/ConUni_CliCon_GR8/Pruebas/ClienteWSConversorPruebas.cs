@@ -123,4 +123,35 @@ public class ClienteWSConversorPruebas
 
         Assert.True(error.EsErrorConexion);
     }
+
+    [Fact]
+    public async Task DeberiaLeerYLimpiarElHistorialCompartido()
+    {
+        servicio.Historial =
+        [
+            new RegistroConversionRespuesta
+            {
+                FechaHora = "2026-10-19T15:30:00", Tipo = "Longitud", Valor = 1000,
+                UnidadOrigen = "METRO", Resultado = 1, UnidadDestino = "KILOMETRO"
+            }
+        ];
+        await cliente.LoginAsync("Monster", "Monster9");
+
+        var historial = await cliente.ConsultarHistorialAsync();
+        string mensaje = await cliente.LimpiarHistorialAsync();
+
+        Assert.Single(historial);
+        Assert.Equal("KILOMETRO", historial[0].UnidadDestino);
+        Assert.Equal("Historial de conversiones borrado", mensaje);
+        Assert.Empty(await cliente.ConsultarHistorialAsync());
+    }
+
+    [Fact]
+    public async Task DeberiaExigirSesionAntesDeConsultarElHistorial()
+    {
+        var error = await Assert.ThrowsAsync<ExcepcionClienteWS>(() => cliente.ConsultarHistorialAsync());
+
+        Assert.True(error.EsErrorAutenticacion);
+        Assert.Null(servicio.OperacionLlamada);
+    }
 }
