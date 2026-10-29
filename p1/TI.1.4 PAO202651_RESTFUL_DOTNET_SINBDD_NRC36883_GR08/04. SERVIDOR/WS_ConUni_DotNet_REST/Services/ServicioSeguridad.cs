@@ -27,9 +27,11 @@ namespace WS_ConUni_DotNet_REST.Services
         private static readonly ConcurrentDictionary<string, (string Usuario, DateTime Expiracion)> _tokensActivos = new();
 
         // Control de intentos fallidos
-        private static readonly ConcurrentDictionary<string, int> _intentosFallidos = new(StringComparer.OrdinalIgnoreCase);
+        // Control de intentos fallidos con desbloqueo temporal automático (30 segundos)
+        private static readonly ConcurrentDictionary<string, (int Intentos, DateTime BloqueadoHasta)> _intentosFallidos = new(StringComparer.OrdinalIgnoreCase);
 
         private const int MAX_INTENTOS = 3;
+        private static readonly TimeSpan DURACION_BLOQUEO = TimeSpan.FromSeconds(30);
         private static readonly TimeSpan DURACION_TOKEN = TimeSpan.FromHours(8);
 
         public LoginResponse Autenticar(string usuario, string clave)
@@ -42,12 +44,24 @@ namespace WS_ConUni_DotNet_REST.Services
             usuario = usuario.Trim('\uFEFF', ' ', '\r', '\n', '\t');
             clave = clave.Trim('\uFEFF', ' ', '\r', '\n', '\t');
 
-            // Verificar si el usuario está temporalmente bloqueado
-            if (_intentosFallidos.TryGetValue(usuario, out int fallos) && fallos >= MAX_INTENTOS)
+            // Verificar si el usuario está temporalmente bloqueado con expiración automática
+            if (_intentosFallidos.TryGetValue(usuario, out var fallosInfo))
             {
-                return LoginResponse.Fallo(
-                    ErrorConstants.AUTH_CREDENCIALES_INVALIDAS,
-                    $"Cuenta temporalmente bloqueada. Superó los {MAX_INTENTOS} intentos permitidos.");
+                if (fallosInfo.Intentos >= MAX_INTENTOS)
+                {
+                    if (DateTime.UtcNow < fallosInfo.BloqueadoHasta)
+                    {
+                        int segs = Math.Max(1, (int)(fallosInfo.BloqueadoHasta - DateTime.UtcNow).TotalSeconds);
+                        return LoginResponse.Fallo(
+                            ErrorConstants.AUTH_CREDENCIALES_INVALIDAS,
+                            $"Cuenta bloqueada temporalmente. Espere {segs} segundo(s) o reinicie el servidor.");
+                    }
+                    else
+                    {
+                        // Ya pasó el tiempo de bloqueo -> desbloqueo automático
+                        _intentosFallidos.TryRemove(usuario, out _);
+                    }
+                }
             }
 
             // Validar credenciales exactamente contra la contraseña almacenada en memoria (sin atajos quemados)
@@ -67,12 +81,23 @@ namespace WS_ConUni_DotNet_REST.Services
             }
             else
             {
-                int nuevosFallos = _intentosFallidos.AddOrUpdate(usuario, 1, (_, current) => current + 1);
-                int restantes = MAX_INTENTOS - nuevosFallos;
+                var ahora = DateTime.UtcNow;
+                int nuevosFallos = 1;
+                if (_intentosFallidos.TryGetValue(usuario, out var prev) && ahora < prev.BloqueadoHasta)
+                {
+                    nuevosFallos = prev.Intentos + 1;
+                }
 
+                var bloqueadoHasta = nuevosFallos >= MAX_INTENTOS 
+                    ? ahora.Add(DURACION_BLOQUEO) 
+                    : ahora.Add(TimeSpan.FromMinutes(5));
+
+                _intentosFallidos[usuario] = (nuevosFallos, bloqueadoHasta);
+
+                int restantes = MAX_INTENTOS - nuevosFallos;
                 string mensaje = restantes > 0
                     ? $"Credenciales incorrectas. Te quedan {restantes} intento(s)."
-                    : $"Credenciales incorrectas. Has superado el límite de {MAX_INTENTOS} intentos.";
+                    : $"Superó los {MAX_INTENTOS} intentos. Cuenta bloqueada por 30 segundos.";
 
                 return LoginResponse.Fallo(ErrorConstants.AUTH_CREDENCIALES_INVALIDAS, mensaje);
             }
@@ -147,7 +172,11 @@ namespace WS_ConUni_DotNet_REST.Services
 
         public int ObtenerIntentosFallidos(string usuario)
         {
-            return _intentosFallidos.TryGetValue(usuario.Trim(), out int val) ? val : 0;
+            if (_intentosFallidos.TryGetValue(usuario.Trim(), out var info))
+            {
+                return DateTime.UtcNow < info.BloqueadoHasta ? info.Intentos : 0;
+            }
+            return 0;
         }
 
         public void CerrarSesion(string? token)
